@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  --color-dark-bg: #0B0B0A;
+  --color-dark-surface: #141413;
+  --color-cream-bg: #F4F0E8;
+  --color-cream-text: #0B0B0A;
+  
+  --color-text-primary: #F4F0E8;
+  --color-text-muted: #A7A39B;
+  --color-text-cream: #D6D1C8;
+  
+  --color-gold: #C7A66A;
+  --color-gold-hover: #D8B87A;
+  --color-gold-dark: #6E5A37;
+  
+  --color-border-dark: rgba(244, 240, 232, 0.18);
+  --color-border-cream: rgba(11, 11, 10, 0.15);
+}
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    background-color: #0B0B0A;
+    color: #F4F0E8;
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    overflow-x: clip;
+    min-height: 100vh;
+    background-color: #0B0B0A;
+  }
+
+  section[id] {
+    scroll-margin-top: 6rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto !important;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  :focus-visible {
+    outline: 2px solid #C7A66A;
+    outline-offset: 3px;
+  }
+}
+
+.hero-heading {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  color: #F4F0E8;
+}
+
+.display-heading {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  font-size: clamp(3rem, 8vw, 7.5rem);
+}
+
+.section-heading {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  font-size: clamp(2.2rem, 5.5vw, 5rem);
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #C7A66A;
+}
+
+.body-editorial {
+  font-weight: 300;
+  line-height: 1.65;
+  color: #A7A39B;
+  font-size: clamp(0.95rem, 1.4vw, 1.25rem);
+}
