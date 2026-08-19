@@ -1,97 +1,120 @@
-import React, { useState, useRef } from 'react';
-import { motion, AnimatePresence, useSpring } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
+import { useScroll } from 'framer-motion';
 import { servicesData } from '../../../data/services.ts';
-import { Service } from '../../../types/index.ts';
-import { useReducedMotion } from '../../../hooks/useReducedMotion.ts';
-import { useMediaQuery } from '../../../hooks/useMediaQuery.ts';
-import ServiceItem from './ServiceItem.tsx';
+import ServiceCard from './ServiceCard.tsx';
 import FadeIn from '../../ui/FadeIn.tsx';
 
 export default function ServicesSection() {
-  const [activeService, setActiveService] = useState<Service | null>(null);
   const containerRef = useRef<HTMLElement>(null);
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
 
-  const isReduced = useReducedMotion();
-  const isFinePointer = useMediaQuery('(hover: hover) and (pointer: fine)');
+  // Measure scroll progress across the whole services stacking container
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end end'],
+  });
 
-  // Smooth springs for cursor follow
-  const springConfig = { damping: 22, stiffness: 220, mass: 0.6 };
-  const cursorX = useSpring(0, springConfig);
-  const cursorY = useSpring(0, springConfig);
+  // Track active card for the side progress indicator
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on('change', (latest) => {
+      const step = 1 / servicesData.length;
+      const index = Math.min(
+        servicesData.length - 1,
+        Math.floor(latest / step)
+      );
+      setActiveCardIndex(index);
+    });
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    if (!containerRef.current || isReduced || !isFinePointer) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    cursorX.set(e.clientX - rect.left);
-    cursorY.set(e.clientY - rect.top);
-  };
+    return () => unsubscribe();
+  }, [scrollYProgress]);
 
   return (
-    <div className="px-3 sm:px-6 md:px-8 max-w-7xl mx-auto w-full">
-      <section
-        id="services"
-        ref={containerRef}
-        onMouseMove={handleMouseMove}
-        className="bg-[#F4F0E8] text-[#0B0B0A] rounded-[32px] sm:rounded-[44px] md:rounded-[56px] py-20 sm:py-28 md:py-36 px-5 sm:px-8 md:px-10 lg:px-12 my-8 sm:my-16 relative z-10 overflow-hidden shadow-2xl"
-      >
-        {/* Floating Pointer-Following Image Preview Card (Desktop Fine Pointer Only) */}
-        {!isReduced && isFinePointer && (
-          <AnimatePresence>
-            {activeService && activeService.image && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.85 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.85 }}
-                transition={{ duration: 0.25, ease: 'easeOut' }}
-                style={{
-                  left: cursorX,
-                  top: cursorY,
-                  x: '-50%',
-                  y: '-120%',
-                }}
-                className="pointer-events-none absolute z-30 w-52 sm:w-64 aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-2 border-[#C7A66A] bg-[#0B0B0A]"
-              >
-                <img
-                  src={activeService.image}
-                  alt={activeService.name}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-3 text-center">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#F4F0E8] block">
-                    {activeService.name}
-                  </span>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        )}
+    <section
+      id="services"
+      ref={containerRef}
+      className="relative py-24 sm:py-32 md:py-40 px-4 sm:px-8 md:px-12 bg-[#0B0B0A]"
+    >
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <FadeIn className="text-center mb-16 sm:mb-20 md:mb-24">
+          <p className="eyebrow mb-3">02 / SERVICES & PRICING</p>
+          <h2 className="display-heading text-[#F4F0E8] mb-4">
+            CUT. STYLE. REFINE.
+          </h2>
+          <p className="body-editorial max-w-xl mx-auto">
+            Scroll through our individual signature grooming offerings, tailored to your head structure and lifestyle.
+          </p>
+        </FadeIn>
 
-        <div className="max-w-6xl mx-auto relative z-10">
-          {/* Header */}
-          <FadeIn className="text-center mb-16 sm:mb-20 md:mb-24">
-            <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-[#6E5A37] mb-3">
-              02 / SERVICES & PRICING
-            </p>
-            <h2 className="display-heading text-[#0B0B0A]">
-              CUT. STYLE. REFINE.
-            </h2>
-          </FadeIn>
+        {/* Main Content Layout with Sticky Side Progress Indicator */}
+        <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          {/* Desktop Sticky Vertical Progress Indicator */}
+          <div className="hidden lg:block lg:col-span-2 sticky top-36 z-20">
+            <div className="flex flex-col gap-6 py-6 border-l border-[rgba(244,240,232,0.15)] pl-6">
+              <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#A7A39B]">
+                INDEX
+              </span>
+              {servicesData.map((service, idx) => {
+                const isActive = activeCardIndex === idx;
+                return (
+                  <div
+                    key={service.id}
+                    className={`flex items-center gap-3 transition-all duration-300 ${
+                      isActive ? 'opacity-100' : 'opacity-40'
+                    }`}
+                  >
+                    <span
+                      className={`text-xs font-mono font-bold tracking-wider ${
+                        isActive ? 'text-[#C7A66A]' : 'text-[#F4F0E8]'
+                      }`}
+                    >
+                      {String(idx + 1).padStart(2, '0')}
+                    </span>
+                    <div
+                      className={`h-[2px] transition-all duration-300 rounded-full ${
+                        isActive
+                          ? 'w-10 bg-[#C7A66A]'
+                          : 'w-4 bg-[rgba(244,240,232,0.3)]'
+                      }`}
+                    />
+                    <span
+                      className={`text-[11px] uppercase tracking-wider font-semibold truncate max-w-[100px] ${
+                        isActive ? 'text-[#F4F0E8]' : 'text-[#A7A39B]'
+                      }`}
+                    >
+                      {service.name}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
 
-          {/* Dynamic Services List with Hover Triggers */}
-          <div className="flex flex-col">
-            {servicesData.map((service, index) => (
-              <FadeIn key={service.id} delay={index * 0.08}>
-                <ServiceItem
+          {/* Sticky Stacking Cards Container */}
+          <div className="lg:col-span-10 flex flex-col w-full">
+            {servicesData.map((service, index) => {
+              // Target scale calculation: deeper cards scale down slightly more
+              const targetScale = 1 - (servicesData.length - index) * 0.035;
+              const range: [number, number] = [
+                index * (1 / servicesData.length),
+                1,
+              ];
+
+              return (
+                <ServiceCard
+                  key={service.id}
                   service={service}
                   index={index}
-                  onHoverStart={() => setActiveService(service)}
-                  onHoverEnd={() => setActiveService(null)}
+                  total={servicesData.length}
+                  progress={scrollYProgress}
+                  range={range}
+                  targetScale={targetScale}
                 />
-              </FadeIn>
-            ))}
+              );
+            })}
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }
