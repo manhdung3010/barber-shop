@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 import { barberProfile } from '../../data/barber.ts';
 import { navigationData } from '../../data/navigation.ts';
@@ -45,18 +45,46 @@ export default function Navbar() {
     menuTriggerRef.current?.focus();
   };
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      closeMenu();
+
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        const headerOffset = 80; // height of fixed navbar + breathing room
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+
+        // Update URL hash without instant jumping
+        window.history.pushState(null, '', href);
+      } else if (href === '#') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.history.pushState(null, '', window.location.pathname);
+      }
+    }
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? 'bg-[#0B0B0A]/85 backdrop-blur-md border-b border-[rgba(244,240,232,0.12)] py-4'
-          : 'bg-transparent py-6 sm:py-8'
+          : 'bg-[#0B0B0A]/30 backdrop-blur-sm py-6 sm:py-8'
       }`}
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 flex items-center justify-between">
         {/* Brand Logo */}
         <a
           href="#"
+          onClick={(e) => handleNavClick(e, '#')}
           className="text-lg sm:text-xl md:text-2xl font-extrabold uppercase tracking-wider text-[#F4F0E8] hover:text-[#C7A66A] transition-colors"
         >
           {barberProfile.shopName}
@@ -68,7 +96,8 @@ export default function Navbar() {
             <a
               key={item.href}
               href={item.href}
-              className="text-xs lg:text-sm font-medium uppercase tracking-[0.18em] text-[#F4F0E8] hover:opacity-70 transition-opacity"
+              onClick={(e) => handleNavClick(e, item.href)}
+              className="text-xs lg:text-sm font-medium uppercase tracking-[0.18em] text-[#F4F0E8] hover:text-[#C7A66A] transition-colors cursor-pointer"
             >
               {item.label}
             </a>
@@ -123,8 +152,8 @@ export default function Navbar() {
                 key={item.href}
                 ref={idx === 0 ? firstLinkRef : undefined}
                 href={item.href}
-                onClick={closeMenu}
-                className="text-2xl sm:text-3xl font-extrabold uppercase tracking-wider text-[#F4F0E8] hover:text-[#C7A66A] transition-colors"
+                onClick={(e) => handleNavClick(e, item.href)}
+                className="text-2xl sm:text-3xl font-extrabold uppercase tracking-wider text-[#F4F0E8] hover:text-[#C7A66A] transition-colors cursor-pointer"
               >
                 {item.label}
               </a>
