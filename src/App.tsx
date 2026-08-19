@@ -9,6 +9,7 @@ import TestimonialsSection from './components/sections/Testimonials/Testimonials
 import LocationSection from './components/sections/Location/LocationSection.tsx';
 import BookingSection from './components/sections/Booking/BookingSection.tsx';
 import Footer from './components/layout/Footer.tsx';
+import MarqueeTicker from './components/ui/MarqueeTicker.tsx';
 import { barberProfile } from './data/barber.ts';
 import { generateBarberShopJsonLd } from './utils/seo.ts';
 
@@ -30,9 +31,39 @@ export default function App() {
       <Navbar />
       <main>
         <HeroSection />
+        
+        {/* Editorial Transition Ticker 1 */}
+        <MarqueeTicker
+          direction="left"
+          speedSeconds={32}
+          items={[
+            'PRECISION SKIN FADES',
+            'BESPOKE GROOMING',
+            'MODERN TEXTURED CROPS',
+            'CUSTOM PERMS',
+            'TIMELESS CLASSICS',
+            'BEARD SCULPTING',
+          ]}
+        />
+
         <StylesSection />
         <ServicesSection />
         <AboutSection />
+
+        {/* Editorial Transition Ticker 2 */}
+        <MarqueeTicker
+          direction="right"
+          speedSeconds={38}
+          items={[
+            'THE CHAIR EXPERIENCE',
+            '1-ON-1 ATTENTION',
+            'JAPANESE STEEL SHEARS',
+            'HOT TOWEL RITUAL',
+            'PREMIUM GROOMING',
+            'YOUR STYLE SIGNATURE',
+          ]}
+        />
+
         <GallerySection />
         <TestimonialsSection />
         <LocationSection />

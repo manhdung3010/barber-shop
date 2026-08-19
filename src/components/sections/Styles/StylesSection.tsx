@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { stylesData } from '../../../data/styles.ts';
+import { barberProfile } from '../../../data/barber.ts';
 import { StyleCategory, StyleFilter } from '../../../types/index.ts';
 import StyleCard from './StyleCard.tsx';
+import BeforeAfterSlider from '../../ui/BeforeAfterSlider.tsx';
 import FadeIn from '../../ui/FadeIn.tsx';
 
 const FILTER_TABS: { label: string; value: StyleFilter }[] = [
@@ -33,6 +35,13 @@ export default function StylesSection() {
             A selection of precision cuts, skin fades, textured crops, and crafted styles created in the chair.
           </p>
         </FadeIn>
+
+        {/* Interactive Before & After Transformation Slider Showcase */}
+        {barberProfile.showBeforeAfter && barberProfile.beforeAfter && (
+          <FadeIn delay={0.1} className="mb-20 sm:mb-28">
+            <BeforeAfterSlider data={barberProfile.beforeAfter} />
+          </FadeIn>
+        )}
 
         {/* Filter Tabs */}
         <FadeIn delay={0.15}>

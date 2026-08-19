@@ -7,6 +7,7 @@ export const servicesData: Service[] = [
     description: 'Classic haircut tailored to your face shape, hair texture, and preferred style.',
     price: '[PRICE]',
     duration: '45 MIN',
+    image: '/images/services/haircut.svg',
   },
   {
     id: 'fade',
@@ -14,6 +15,7 @@ export const servicesData: Service[] = [
     description: 'Clean low, mid, or high fade with detailed blending and crisp razor finishing.',
     price: '[PRICE]',
     duration: '45 MIN',
+    image: '/images/services/fade.svg',
   },
   {
     id: 'haircut-beard',
@@ -21,6 +23,7 @@ export const servicesData: Service[] = [
     description: 'Complete tailored haircut, hot towel beard trim, shaping, and conditioning styling.',
     price: '[PRICE]',
     duration: '60 MIN',
+    image: '/images/services/haircut-beard.svg',
   },
   {
     id: 'perm',
@@ -28,6 +31,7 @@ export const servicesData: Service[] = [
     description: 'Textured, Korean-inspired, or customized wavy perm designed around your hair structure.',
     price: '[PRICE]',
     duration: '90 MIN',
+    image: '/images/services/perm.svg',
   },
   {
     id: 'styling',
@@ -35,5 +39,6 @@ export const servicesData: Service[] = [
     description: 'Invigorating hair wash, scalp massage, blow-dry, and signature pomade styling.',
     price: '[PRICE]',
     duration: '30 MIN',
+    image: '/images/services/styling.svg',
   },
 ];

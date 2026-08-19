@@ -4,6 +4,24 @@ export interface OpeningHour {
   closed?: boolean;
 }
 
+export interface BeforeAfterData {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  beforeImage: string;
+  afterImage: string;
+  altBefore: string;
+  altAfter: string;
+}
+
+export interface ProcessStep {
+  number: string;
+  title: string;
+  description: string;
+  duration?: string;
+}
+
 export interface BarberProfile {
   name: string;
   shopName: string;
@@ -20,7 +38,7 @@ export interface BarberProfile {
   };
   bioHeadline: string;
   bioParagraphs: string[];
-  stats: { value: string; label: string }[];
+  stats: { value: string; numericValue: number; label: string; suffix?: string }[];
   city: string;
   country: string;
   address: string;
@@ -45,6 +63,8 @@ export interface BarberProfile {
   };
   establishedYear: string;
   showTestimonials: boolean;
+  showBeforeAfter: boolean;
+  beforeAfter?: BeforeAfterData;
 }
 
 export interface Service {
@@ -53,6 +73,7 @@ export interface Service {
   description: string;
   price: string;
   duration?: string;
+  image?: string;
 }
 
 export type StyleCategory = 'fade' | 'textured' | 'classic' | 'long' | 'beard';

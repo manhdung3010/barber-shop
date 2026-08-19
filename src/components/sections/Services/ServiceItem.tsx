@@ -4,13 +4,24 @@ import { Service } from '../../../types/index.ts';
 interface ServiceItemProps {
   service: Service;
   index: number;
+  onHoverStart?: () => void;
+  onHoverEnd?: () => void;
 }
 
-export default function ServiceItem({ service, index }: ServiceItemProps) {
+export default function ServiceItem({
+  service,
+  index,
+  onHoverStart,
+  onHoverEnd,
+}: ServiceItemProps) {
   const formattedNumber = String(index + 1).padStart(2, '0');
 
   return (
-    <div className="group flex flex-col md:flex-row md:items-center justify-between py-8 sm:py-10 md:py-12 border-b border-[rgba(11,11,10,0.15)] transition-colors hover:bg-[rgba(11,11,10,0.03)] px-4 sm:px-6 rounded-2xl">
+    <div
+      onMouseEnter={onHoverStart}
+      onMouseLeave={onHoverEnd}
+      className="group relative flex flex-col md:flex-row md:items-center justify-between py-8 sm:py-10 md:py-12 border-b border-[rgba(11,11,10,0.15)] transition-colors hover:bg-[rgba(11,11,10,0.03)] px-4 sm:px-6 rounded-2xl cursor-default"
+    >
       {/* Index Number */}
       <div className="text-4xl sm:text-6xl md:text-7xl font-black text-[#0B0B0A]/30 group-hover:text-[#0B0B0A] transition-colors md:w-32 mb-4 md:mb-0">
         {formattedNumber}
