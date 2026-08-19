@@ -56,15 +56,15 @@ export default function StylesSection() {
 
         {/* Horizontal Editorial Category Navigation with Animated Layout Indicator */}
         <FadeIn delay={0.15}>
-          <div className="overflow-x-auto no-scrollbar border-b border-[rgba(244,240,232,0.12)] pb-4 mb-12 sm:mb-16 -mx-5 px-5 sm:mx-0 sm:px-0">
-            <nav className="flex items-center gap-8 sm:gap-12 md:gap-16 whitespace-nowrap min-w-max" aria-label="Portfolio Category Filter">
+          <div className="border-b border-[rgba(244,240,232,0.12)] pb-4 mb-12 sm:mb-16">
+            <div className="flex items-center gap-6 sm:gap-10 md:gap-14 overflow-x-auto no-scrollbar py-2">
               {FILTER_TABS.map((tab) => {
                 const isActive = activeFilter === tab.value;
                 return (
                   <button
                     key={tab.value}
                     onClick={() => setActiveFilter(tab.value)}
-                    className={`relative pb-3 text-xs sm:text-sm font-bold uppercase tracking-[0.25em] transition-colors cursor-pointer ${
+                    className={`relative pb-3 text-xs sm:text-sm font-bold uppercase tracking-[0.25em] transition-colors cursor-pointer shrink-0 ${
                       isActive ? 'text-[#F4F0E8]' : 'text-[#A7A39B] hover:text-[#F4F0E8]'
                     }`}
                   >
@@ -79,14 +79,14 @@ export default function StylesSection() {
                   </button>
                 );
               })}
-            </nav>
+            </div>
           </div>
         </FadeIn>
 
         {/* Animated Portfolio Masonry Grid */}
         <motion.div
           layout
-          className="grid grid-cols-12 gap-6 sm:gap-8"
+          className="grid grid-cols-12 gap-8 sm:gap-10"
         >
           <AnimatePresence mode="popLayout">
             {filteredStyles.map((item, index) => (

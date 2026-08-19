@@ -14,7 +14,7 @@ interface StyleCardProps {
 
 export default function StyleCard({ item, index, onOpenLightbox }: StyleCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardRef, { once: true, amount: 0.2 });
+  const isInView = useInView(cardRef, { once: true, amount: 0.15 });
   const isReduced = useReducedMotion();
   const isFinePointer = useMediaQuery('(hover: hover) and (pointer: fine)');
 
@@ -40,10 +40,10 @@ export default function StyleCard({ item, index, onOpenLightbox }: StyleCardProp
   }[item.layoutVariant || 'standard'];
 
   const isFeatured = item.layoutVariant === 'featured' || item.layoutVariant === 'wide';
+  const formattedNumber = String(index + 1).padStart(2, '0');
 
   return (
-    <motion.div
-      layout
+    <div
       ref={cardRef}
       role="button"
       tabIndex={0}
@@ -58,10 +58,10 @@ export default function StyleCard({ item, index, onOpenLightbox }: StyleCardProp
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onMouseMove={handleMouseMove}
-      className={`group relative rounded-[24px] sm:rounded-[36px] overflow-hidden border border-[rgba(244,240,232,0.12)] hover:border-[rgba(199,166,106,0.4)] transition-colors duration-500 cursor-pointer bg-[#0E0E0D] ${spanClass}`}
+      className={`group flex flex-col cursor-pointer ${spanClass}`}
     >
-      {/* 1. Image Clip-Path Reveal (Primary Cinematic Effect) */}
-      <div className="relative w-full h-full overflow-hidden">
+      {/* 1. LARGE HAIRCUT IMAGE CONTAINER WITH CINEMATIC CLIP-PATH REVEAL */}
+      <div className="relative w-full rounded-[22px] sm:rounded-[32px] overflow-hidden border border-[rgba(244,240,232,0.12)] group-hover:border-[#C7A66A]/40 transition-colors duration-500 bg-[#121211] shadow-xl">
         <motion.div
           initial={isReduced ? { opacity: 1, scale: 1 } : { clipPath: 'inset(0 0 100% 0)', opacity: 0, scale: 1.04 }}
           animate={
@@ -73,7 +73,7 @@ export default function StyleCard({ item, index, onOpenLightbox }: StyleCardProp
           }
           transition={{
             duration: 0.85,
-            delay: (index % 3) * 0.12,
+            delay: (index % 3) * 0.1,
             ease: [0.16, 1, 0.3, 1], // luxury editorial easing
           }}
           className="w-full h-full"
@@ -86,6 +86,9 @@ export default function StyleCard({ item, index, onOpenLightbox }: StyleCardProp
             imageClassName="group-hover:scale-104 transition-transform duration-700 ease-out"
           />
         </motion.div>
+
+        {/* Subtle Dark Gradient Scrim on Image Hover */}
+        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none" />
 
         {/* 2. Desktop Subtle "◯ VIEW" Indicator Following Pointer */}
         {!isReduced && isFinePointer && (
@@ -102,7 +105,7 @@ export default function StyleCard({ item, index, onOpenLightbox }: StyleCardProp
               x: '-50%',
               y: '-50%',
             }}
-            className="pointer-events-none absolute z-20 hidden md:flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#0B0B0A]/85 backdrop-blur-md border border-[#C7A66A]/60 text-[#F4F0E8] shadow-xl"
+            className="pointer-events-none absolute z-20 hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0B0B0A]/85 backdrop-blur-md border border-[#C7A66A]/70 text-[#F4F0E8] shadow-2xl"
           >
             <Eye className="w-3.5 h-3.5 text-[#C7A66A]" />
             <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#F4F0E8]">
@@ -110,38 +113,39 @@ export default function StyleCard({ item, index, onOpenLightbox }: StyleCardProp
             </span>
           </motion.div>
         )}
-
-        {/* 3. Dark Editorial Overlay with Metadata Scroll Reveal */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent opacity-95 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-400 flex flex-col justify-between p-6 sm:p-8 z-10">
-          {/* Top Tag Row */}
-          <div className="flex items-center justify-between">
-            <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-[#C7A66A] bg-[#0B0B0A]/70 backdrop-blur-md px-3 py-1 rounded-full border border-[rgba(244,240,232,0.1)]">
-              {String(index + 1).padStart(2, '0')} / {item.category.toUpperCase()}
-            </span>
-            <div className="p-2 rounded-full bg-[#0B0B0A]/70 text-[#C7A66A] border border-[rgba(244,240,232,0.1)]">
-              <ArrowUpRight className="w-4 h-4" />
-            </div>
-          </div>
-
-          {/* Bottom Title & Description Reveal */}
-          <motion.div
-            initial={isReduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-            animate={isReduced ? { opacity: 1, y: 0 } : isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-            transition={{
-              duration: 0.6,
-              delay: (index % 3) * 0.12 + 0.3,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-          >
-            <h3 className={`font-extrabold uppercase tracking-tight text-[#F4F0E8] mb-1.5 ${isFeatured ? 'text-2xl sm:text-3xl md:text-4xl' : 'text-lg sm:text-xl'}`}>
-              {item.title}
-            </h3>
-            <p className="text-xs sm:text-sm text-[#A7A39B] line-clamp-2 max-w-lg font-light leading-relaxed">
-              {item.description}
-            </p>
-          </motion.div>
-        </div>
       </div>
-    </motion.div>
+
+      {/* 3. EDITORIAL METADATA DIRECTLY BELOW IMAGE */}
+      <motion.div
+        initial={isReduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+        animate={isReduced ? { opacity: 1, y: 0 } : isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+        transition={{
+          duration: 0.6,
+          delay: (index % 3) * 0.1 + 0.25,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        className="pt-4 sm:pt-5 px-1 flex flex-col"
+      >
+        {/* Category & Number Row */}
+        <div className="flex items-center justify-between mb-1.5">
+          <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-[0.25em] text-[#C7A66A]">
+            {formattedNumber} / {item.category.toUpperCase()}
+          </span>
+          <div className="p-1 rounded-full text-[#A7A39B] group-hover:text-[#C7A66A] transition-colors">
+            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </div>
+        </div>
+
+        {/* Title */}
+        <h3 className={`font-bold uppercase tracking-tight text-[#F4F0E8] group-hover:text-[#C7A66A] transition-colors mb-1 ${isFeatured ? 'text-xl sm:text-2xl md:text-3xl' : 'text-base sm:text-lg md:text-xl'}`}>
+          {item.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-xs sm:text-sm text-[#A7A39B] font-light leading-relaxed line-clamp-2">
+          {item.description}
+        </p>
+      </motion.div>
+    </div>
   );
 }
