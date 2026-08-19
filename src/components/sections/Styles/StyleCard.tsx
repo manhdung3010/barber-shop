@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { motion, useInView, useSpring } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useTransform, MotionValue } from 'framer-motion';
 import { Eye, ArrowUpRight } from 'lucide-react';
 import { StyleItem } from '../../../types/index.ts';
 import { useReducedMotion } from '../../../hooks/useReducedMotion.ts';
@@ -9,142 +9,114 @@ import EditorialImage from '../../ui/EditorialImage.tsx';
 interface StyleCardProps {
   item: StyleItem;
   index: number;
+  total: number;
+  progress: MotionValue<number>;
+  range: [number, number];
+  targetScale: number;
   onOpenLightbox: (index: number, e: React.MouseEvent<HTMLElement>) => void;
 }
 
-export default function StyleCard({ item, index, onOpenLightbox }: StyleCardProps) {
+export default function StyleCard({
+  item,
+  index,
+  total,
+  progress,
+  range,
+  targetScale,
+  onOpenLightbox,
+}: StyleCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardRef, { once: true, amount: 0.15 });
   const isReduced = useReducedMotion();
   const isFinePointer = useMediaQuery('(hover: hover) and (pointer: fine)');
 
-  const [isHovered, setIsHovered] = useState(false);
-
-  // Subtle spring-dampened cursor follow for the "◯ VIEW" indicator
-  const springConfig = { damping: 25, stiffness: 250, mass: 0.5 };
-  const cursorX = useSpring(0, springConfig);
-  const cursorY = useSpring(0, springConfig);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current || isReduced || !isFinePointer) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    cursorX.set(e.clientX - rect.left);
-    cursorY.set(e.clientY - rect.top);
-  };
-
-  const spanClass = {
-    featured: 'col-span-12 lg:col-span-8',
-    wide: 'col-span-12 md:col-span-8',
-    tall: 'col-span-12 md:col-span-6 lg:col-span-4',
-    standard: 'col-span-12 md:col-span-6 lg:col-span-4',
-  }[item.layoutVariant || 'standard'];
-
-  const isFeatured = item.layoutVariant === 'featured' || item.layoutVariant === 'wide';
+  // Dynamic scale transformation as subsequent cards stack over
+  const scale = useTransform(progress, range, [1, targetScale]);
   const formattedNumber = String(index + 1).padStart(2, '0');
+
+  // Sticky top offset creating physical lookbook tabs
+  const topOffset = `calc(88px + ${index * 18}px)`;
 
   return (
     <div
       ref={cardRef}
-      role="button"
-      tabIndex={0}
-      aria-label={`View haircut style: ${item.title}`}
-      onClick={(e) => onOpenLightbox(index, e)}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          onOpenLightbox(index, e as unknown as React.MouseEvent<HTMLElement>);
-        }
+      className="sticky top-0 w-full flex items-center justify-center mb-16 sm:mb-24 last:mb-0"
+      style={{
+        top: topOffset,
       }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onMouseMove={handleMouseMove}
-      className={`group flex flex-col cursor-pointer ${spanClass}`}
     >
-      {/* 1. LARGE HAIRCUT IMAGE CONTAINER WITH CINEMATIC CLIP-PATH REVEAL */}
-      <div className="relative w-full rounded-[22px] sm:rounded-[32px] overflow-hidden border border-[rgba(244,240,232,0.12)] group-hover:border-[#C7A66A]/40 transition-colors duration-500 bg-[#121211] shadow-xl">
-        <motion.div
-          initial={isReduced ? { opacity: 1, scale: 1 } : { clipPath: 'inset(0 0 100% 0)', opacity: 0, scale: 1.04 }}
-          animate={
-            isReduced
-              ? { opacity: 1, scale: 1 }
-              : isInView
-              ? { clipPath: 'inset(0 0 0% 0)', opacity: 1, scale: 1 }
-              : { clipPath: 'inset(0 0 100% 0)', opacity: 0, scale: 1.04 }
-          }
-          transition={{
-            duration: 0.85,
-            delay: (index % 3) * 0.1,
-            ease: [0.16, 1, 0.3, 1], // luxury editorial easing
-          }}
-          className="w-full h-full"
-        >
-          <EditorialImage
-            src={item.image}
-            alt={item.alt}
-            aspectRatio={isFeatured ? '16/9' : '4/5'}
-            watermarkLabel={item.category}
-            imageClassName="group-hover:scale-104 transition-transform duration-700 ease-out"
-          />
-        </motion.div>
-
-        {/* Subtle Dark Gradient Scrim on Image Hover */}
-        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none" />
-
-        {/* 2. Desktop Subtle "◯ VIEW" Indicator Following Pointer */}
-        {!isReduced && isFinePointer && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.6 }}
-            animate={{
-              opacity: isHovered ? 1 : 0,
-              scale: isHovered ? 1 : 0.6,
-            }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
-            style={{
-              left: cursorX,
-              top: cursorY,
-              x: '-50%',
-              y: '-50%',
-            }}
-            className="pointer-events-none absolute z-20 hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0B0B0A]/85 backdrop-blur-md border border-[#C7A66A]/70 text-[#F4F0E8] shadow-2xl"
-          >
-            <Eye className="w-3.5 h-3.5 text-[#C7A66A]" />
-            <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#F4F0E8]">
-              VIEW
-            </span>
-          </motion.div>
-        )}
-      </div>
-
-      {/* 3. EDITORIAL METADATA DIRECTLY BELOW IMAGE */}
       <motion.div
-        initial={isReduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-        animate={isReduced ? { opacity: 1, y: 0 } : isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-        transition={{
-          duration: 0.6,
-          delay: (index % 3) * 0.1 + 0.25,
-          ease: [0.16, 1, 0.3, 1],
+        style={{
+          scale: isReduced ? 1 : scale,
+          transformOrigin: 'top center',
         }}
-        className="pt-4 sm:pt-5 px-1 flex flex-col"
+        role="button"
+        tabIndex={0}
+        aria-label={`View haircut style in lookbook: ${item.title}`}
+        onClick={(e) => onOpenLightbox(index, e)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onOpenLightbox(index, e as unknown as React.MouseEvent<HTMLElement>);
+          }
+        }}
+        className="group w-full rounded-[28px] sm:rounded-[44px] md:rounded-[52px] bg-[#121211] text-[#F4F0E8] border border-[rgba(244,240,232,0.14)] hover:border-[#C7A66A]/40 shadow-[0_-12px_45px_rgba(0,0,0,0.5)] p-5 sm:p-8 md:p-12 flex flex-col justify-between cursor-pointer transition-colors duration-500 overflow-hidden select-none"
       >
-        {/* Category & Number Row */}
-        <div className="flex items-center justify-between mb-1.5">
-          <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-[0.25em] text-[#C7A66A]">
-            {formattedNumber} / {item.category.toUpperCase()}
-          </span>
-          <div className="p-1 rounded-full text-[#A7A39B] group-hover:text-[#C7A66A] transition-colors">
+        {/* Top Lookbook Header Tag */}
+        <div className="flex items-center justify-between border-b border-[rgba(244,240,232,0.12)] pb-4 sm:pb-5 mb-5 sm:mb-8">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <span className="text-xs sm:text-sm font-mono font-bold tracking-[0.25em] text-[#C7A66A]">
+              {formattedNumber} / {item.category.toUpperCase()}
+            </span>
+            <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-[#C7A66A]/50" />
+            <span className="hidden sm:inline-block text-[11px] uppercase tracking-[0.2em] font-semibold text-[#A7A39B]">
+              LOOKBOOK SPECIFICATION
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#A7A39B] group-hover:text-[#C7A66A] transition-colors">
+            <span>FULLSCREEN</span>
             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </div>
         </div>
 
-        {/* Title */}
-        <h3 className={`font-bold uppercase tracking-tight text-[#F4F0E8] group-hover:text-[#C7A66A] transition-colors mb-1 ${isFeatured ? 'text-xl sm:text-2xl md:text-3xl' : 'text-base sm:text-lg md:text-xl'}`}>
-          {item.title}
-        </h3>
+        {/* Dominant Visual Haircut Image Frame */}
+        <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] md:aspect-[21/9] rounded-[20px] sm:rounded-[32px] overflow-hidden border border-[rgba(244,240,232,0.1)] bg-[#0B0B0A] shadow-2xl mb-6 sm:mb-8">
+          <EditorialImage
+            src={item.image}
+            alt={item.alt}
+            aspectRatio="16/9"
+            watermarkLabel={item.category}
+            imageClassName="group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+          />
 
-        {/* Description */}
-        <p className="text-xs sm:text-sm text-[#A7A39B] font-light leading-relaxed line-clamp-2">
-          {item.description}
-        </p>
+          {/* Desktop Subtle "VIEW ↗" Badge */}
+          {!isReduced && isFinePointer && (
+            <div className="pointer-events-none absolute bottom-5 right-5 z-20 hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-[#0B0B0A]/85 backdrop-blur-md border border-[#C7A66A]/70 text-[#F4F0E8] shadow-2xl opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all">
+              <Eye className="w-3.5 h-3.5 text-[#C7A66A]" />
+              <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#F4F0E8]">
+                VIEW ↗
+              </span>
+            </div>
+          )}
+        </div>
+
+        {/* Bottom Editorial Content */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pt-2">
+          <div className="max-w-2xl">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#F4F0E8] group-hover:text-[#C7A66A] transition-colors mb-2 leading-[0.98]">
+              {item.title}
+            </h3>
+            <p className="text-sm sm:text-base md:text-lg font-light text-[#A7A39B] leading-relaxed">
+              {item.description}
+            </p>
+          </div>
+
+          <div className="text-right hidden md:block">
+            <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#A7A39B]">
+              PLATE {formattedNumber} OF {String(total).padStart(2, '0')}
+            </span>
+          </div>
+        </div>
       </motion.div>
     </div>
   );
