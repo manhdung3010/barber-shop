@@ -1,9 +1,9 @@
 # Design Specification: Premium Dark Editorial Barber Portfolio Landing Page
 
 **Date**: 2026-08-19  
-**Status**: Revised Specification (Ready for Approval)  
+**Status**: Approved Specification  
 **Project**: `[BARBERSHOP_NAME]` Portfolio Landing Page  
-**Tech Stack**: React 19 / 18, TypeScript, Tailwind CSS, Framer Motion, Lucide React, Vite
+**Tech Stack**: React 19, TypeScript, Tailwind CSS 4, Framer Motion, Lucide React, Vite
 
 ---
 
@@ -68,11 +68,11 @@ The visual identity combines a modern barber studio with high-end men's grooming
    - **GPU Acceleration**: Animate strictly `transform` and `opacity` (never animate `width`, `height`, `top`, `left`, or `margin`).
 2. **Subtle Desktop Magnet (Primary CTA Only)**:
    - Very subtle cursor-follow on the main Booking CTA button on non-touch devices with pointer support (`@media (hover: hover) and (pointer: fine)`).
-   - Removed `CustomCursor` completely to preserve a grounded, confident editorial feel.
+   - No CustomCursor component (preserves a grounded, confident editorial feel).
 
 ### 3.2 Accessibility Architecture
 1. **Focus States**: High-contrast, visible `:focus-visible` styling (`outline: 2px solid #C7A66A`, `outline-offset: 3px`) across all interactive elements.
-2. **Accessible Buttons**: All icon-only buttons (Mobile Menu Toggle, Lightbox Close, Lightbox Previous, Lightbox Next) include explicit `aria-label` and `title` attributes.
+2. **Accessible Buttons**: All icon-only buttons (Mobile Menu Toggle, Lightbox Close, Lightbox Previous, Lightbox Next) include explicit `aria-label` attributes.
 3. **Mobile Navigation Dialog**:
    - Trigger includes `aria-expanded` and `aria-controls="mobile-menu"`.
    - On open: Focus moves automatically to the first interactive menu link.
@@ -167,7 +167,6 @@ d:/barber-web/
 ├── index.html
 ├── package.json
 ├── tsconfig.json
-├── tailwind.config.js
 └── vite.config.ts
 ```
 
@@ -190,6 +189,14 @@ export interface BarberProfile {
   tagline: string;
   heroHeadline: string;
   heroSupportingText: string;
+  heroImage: {
+    src: string;
+    alt: string;
+  };
+  barberImage: {
+    src: string;
+    alt: string;
+  };
   bioHeadline: string;
   bioParagraphs: string[];
   stats: { value: string; label: string }[];
@@ -221,19 +228,19 @@ export interface BarberProfile {
 
 export interface Service {
   id: string;
-  number: string;
   name: string;
   description: string;
   price: string;
   duration?: string;
 }
 
-export type StyleCategory = 'all' | 'fade' | 'textured' | 'classic' | 'long' | 'beard';
+export type StyleCategory = 'fade' | 'textured' | 'classic' | 'long' | 'beard';
+export type StyleFilter = 'all' | StyleCategory;
 
 export interface StyleItem {
   id: string;
   title: string;
-  category: 'fade' | 'textured' | 'classic' | 'long' | 'beard';
+  category: StyleCategory;
   description: string;
   image: string;
   alt: string;
@@ -283,7 +290,7 @@ export interface NavigationItem {
 - **CTAs**:
   - Primary `"BOOK AN APPOINTMENT"` with subtle `Magnet` wrapper pointing to `barberProfile.booking.primaryUrl`.
   - Secondary `"VIEW STYLES"` anchor pointing to `#styles`.
-- **Hero Image**: Single high-priority image (`/images/hero/hero.jpg`) with `loading="eager"`, `fetchpriority="high"`, and reserved aspect ratio.
+- **Hero Image**: Metadata supplied by `barberProfile.heroImage` with `loading="eager"`, `fetchpriority="high"`, `decoding="async"`, and reserved aspect ratio.
 - **Footer Meta**: Dynamic city/country (`${barberProfile.city}, ${barberProfile.country}`), opening hours summary, and established year.
 
 ### 6.3 Styles Section (`src/components/sections/Styles/StylesSection.tsx`)
@@ -296,15 +303,15 @@ export interface NavigationItem {
 ### 6.4 Services Section (`src/components/sections/Services/ServicesSection.tsx`)
 - **Background**: `#F4F0E8` (warm cream) with `rounded-t-[40px] sm:rounded-t-[60px]`.
 - **Heading**: `"CUT. STYLE. REFINE."`.
-- **Dynamic Render**: `services.map(...)` rendering any number of service rows.
-- **Row Anatomy**: Big numeric index (`item.number`), title, description, price badge (`item.price`), and subtle hover arrow transition.
+- **Dynamic Render**: `services.map((item, index) => ...)` rendering service rows dynamically, with index-derived number badge (e.g. `String(index + 1).padStart(2, '0')`).
+- **Row Anatomy**: Big numeric index, title, description, price badge (`item.price`), and subtle hover arrow transition.
 
 ### 6.5 About Section (`src/components/sections/About/AboutSection.tsx`)
 - **Background**: `#0B0B0A`.
 - **Eyebrow**: `"03 / THE BARBER"`.
 - **Heading**: `"MORE THAN A HAIRCUT."`.
 - **Layout**:
-  - Left: Portrait photograph (`/images/barber/barber.jpg`, aspect 4/5, rounded editorial frame).
+  - Left: Portrait photograph (`barberProfile.barberImage`, aspect 4/5, rounded editorial frame).
   - Right: Personal craft biography (`barberProfile.bioParagraphs.map(...)`) + dynamic statistics grid (`barberProfile.stats.map(...)`).
 
 ### 6.6 Gallery Section (`src/components/sections/Gallery/GallerySection.tsx`)
@@ -338,7 +345,7 @@ export interface NavigationItem {
 - **Eyebrow**: `"07 / BOOK YOUR NEXT CUT"`.
 - **Heading**: `"READY FOR A BETTER CUT?"`.
 - **Booking Flow**:
-  - Primary CTA: Large button linking directly to `barberProfile.booking.primaryUrl` (e.g. Zalo / Booking Channel) with subtle desktop `Magnet` effect.
+  - Primary CTA: Large button linking directly to `barberProfile.booking.primaryUrl` with subtle desktop `Magnet` effect.
   - Secondary Channels: Direct quick-action links (Zalo, Messenger, Instagram, Phone) rendered cleanly underneath.
 
 ### 6.10 Footer (`src/components/layout/Footer.tsx`)
@@ -357,33 +364,36 @@ export interface NavigationItem {
 - **Favicon**: Minimalist dark-editorial SVG favicon.
 
 ### 7.2 LocalBusiness / BarberShop Schema (JSON-LD)
-A valid Schema.org script is injected into `<head>` dynamically based on `barberProfile`:
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "BarberShop",
-  "name": "[BARBERSHOP_NAME]",
-  "image": "https://example.com/images/hero/hero.jpg",
-  "telephone": "[PHONE]",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "[ADDRESS]",
-    "addressLocality": "[CITY]",
-    "addressCountry": "[COUNTRY]"
-  },
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      "opens": "09:00",
-      "closes": "20:00"
-    }
-  ],
-  "url": "https://example.com",
-  "priceRange": "$$"
+A clean, valid Schema.org script is injected dynamically into `<head>` based on `barberProfile`, outputting only non-empty, genuine fields without emitting fake placeholders:
+```typescript
+export function generateBarberShopJsonLd(profile: BarberProfile) {
+  const schema: Record<string, any> = {
+    "@context": "https://schema.org",
+    "@type": "BarberShop",
+    "name": profile.shopName,
+  };
+
+  if (profile.heroImage?.src) {
+    schema.image = profile.heroImage.src;
+  }
+  if (profile.phone && !profile.phone.includes("[")) {
+    schema.telephone = profile.phone;
+  }
+  if (profile.address && !profile.address.includes("[")) {
+    schema.address = {
+      "@type": "PostalAddress",
+      "streetAddress": profile.address,
+      "addressLocality": profile.city,
+      "addressCountry": profile.country,
+    };
+  }
+  if (profile.socials?.googleMaps && !profile.socials.googleMaps.includes("[")) {
+    schema.hasMap = profile.socials.googleMaps;
+  }
+
+  return JSON.stringify(schema, null, 2);
 }
 ```
-*Note*: Real data values are injected only when provided; placeholders are maintained safely.
 
 ---
 
@@ -401,7 +411,7 @@ public/images/
 ### 8.2 `EditorialImage` Component Implementation
 - **Layout Stability**: Container explicitly reserves aspect ratio (`aspect-[4/5]`, `aspect-[3/4]`, `aspect-square`, etc.) to prevent layout shifts during image loading.
 - **Performance Loading**:
-  - Hero image: `loading="eager"`, `fetchpriority="high"`, `decoding="sync"`.
+  - Hero image: `loading="eager"`, `fetchpriority="high"`, `decoding="async"`.
   - Below-the-fold images: `loading="lazy"`, `decoding="async"`.
 - **Graceful Fallbacks**:
   - Shows dark shimmer loading skeleton while fetching.
@@ -426,4 +436,4 @@ public/images/
 4. **Performance & SEO**:
    - Image container dimension reservation to prevent loading layout shifts.
    - High-priority hero image loading and lazy loading for below-fold assets.
-   - Valid Semantic HTML heading hierarchy (`h1` -> `h2` -> `h3`) and `BarberShop` JSON-LD schema.
+   - Valid Semantic HTML heading hierarchy (`h1` -> `h2` -> `h3`) and safe `BarberShop` JSON-LD schema.
