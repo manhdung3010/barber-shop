@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <defs>
+    <radialGradient id="midGlow" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#1A1A18"/>
+      <stop offset="80%" stop-color="#0B0B0A"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5C88F"/>
+      <stop offset="100%" stop-color="#96743A"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#midGlow)"/>
+  <circle cx="400" cy="420" r="220" fill="#131312" stroke="rgba(244,240,232,0.1)" stroke-width="1.5"/>
+  <!-- Mid Fade & Quiff Shape -->
+  <path d="M320 340 C360 260, 440 280, 480 340 Q440 400 400 410 Q360 400 320 340 Z" fill="url(#gold)"/>
+  <path d="M300 480 Q400 390 500 480" fill="none" stroke="url(#gold)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M290 520 Q400 430 510 520" fill="none" stroke="rgba(244,240,232,0.25)" stroke-width="2" stroke-linecap="round"/>
+  <text x="400" y="700" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="12" font-weight="700" letter-spacing="5" fill="#C7A66A">STYLE 02 / FADE</text>
+  <text x="400" y="740" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="26" font-weight="900" letter-spacing="2" fill="#F4F0E8">MID FADE / QUIFF</text>
+  <text x="400" y="775" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="11" font-weight="400" letter-spacing="2" fill="#A7A39B">BALANCED BLEND • MODERN VOLUME</text>
+</svg>

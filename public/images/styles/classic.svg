@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <defs>
+    <radialGradient id="classicGlow" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#1A1A18"/>
+      <stop offset="80%" stop-color="#0B0B0A"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5C88F"/>
+      <stop offset="100%" stop-color="#96743A"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#classicGlow)"/>
+  <circle cx="400" cy="420" r="220" fill="#131312" stroke="rgba(244,240,232,0.1)" stroke-width="1.5"/>
+  <!-- Classic Side Part Swelling Line -->
+  <path d="M300 360 C360 300, 480 320, 500 400 C450 440, 360 420, 300 360 Z" fill="url(#gold)"/>
+  <line x1="330" y1="360" x2="310" y2="440" stroke="#0B0B0A" stroke-width="4" stroke-linecap="round"/>
+  <path d="M300 480 Q400 420 500 480" fill="none" stroke="rgba(244,240,232,0.3)" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="400" y="700" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="12" font-weight="700" letter-spacing="5" fill="#C7A66A">STYLE 05 / CLASSIC</text>
+  <text x="400" y="740" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="26" font-weight="900" letter-spacing="2" fill="#F4F0E8">CLASSIC SIDE PART</text>
+  <text x="400" y="775" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="11" font-weight="400" letter-spacing="2" fill="#A7A39B">TAILORED GENTLEMAN • TIMELESS TAPER</text>
+</svg>

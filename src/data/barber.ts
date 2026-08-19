@@ -7,11 +7,11 @@ export const barberProfile: BarberProfile = {
   heroHeadline: 'YOUR STYLE. YOUR SIGNATURE.',
   heroSupportingText: 'Precision cuts, modern fades, and personalized grooming crafted for your style.',
   heroImage: {
-    src: '/images/hero/hero.jpg',
+    src: '/images/hero/hero.svg',
     alt: 'Master barber at work styling precision haircut',
   },
   barberImage: {
-    src: '/images/barber/barber.jpg',
+    src: '/images/barber/barber.svg',
     alt: 'Portrait of master barber [BARBER_NAME]',
   },
   bioHeadline: 'MORE THAN A HAIRCUT.',
