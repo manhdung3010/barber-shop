@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
-import { Sparkles, MoveHorizontal } from 'lucide-react';
+import { MoveHorizontal } from 'lucide-react';
 import { BeforeAfterData } from '../../types/index.ts';
 
 interface BeforeAfterSliderProps {
@@ -66,7 +66,7 @@ export default function BeforeAfterSlider({ data, className = '' }: BeforeAfterS
       <div
         ref={containerRef}
         role="slider"
-        aria-label="Before and after haircut comparison slider"
+        aria-label="Thanh trượt so sánh kiểu tóc trước và sau khi cắt"
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={Math.round(sliderPosition)}
@@ -103,13 +103,13 @@ export default function BeforeAfterSlider({ data, className = '' }: BeforeAfterS
         {/* Floating Badges */}
         <div className="absolute top-5 left-5 z-20 pointer-events-none">
           <span className="px-3.5 py-1.5 rounded-full text-[10px] sm:text-xs font-extrabold uppercase tracking-[0.2em] bg-[#0B0B0A]/85 text-[#A7A39B] border border-[rgba(244,240,232,0.15)] backdrop-blur-md">
-            BEFORE
+            TRƯỚC KHI CẮT
           </span>
         </div>
 
         <div className="absolute top-5 right-5 z-20 pointer-events-none">
           <span className="px-3.5 py-1.5 rounded-full text-[10px] sm:text-xs font-extrabold uppercase tracking-[0.2em] bg-[#C7A66A]/90 text-[#0B0B0A] font-semibold shadow-lg backdrop-blur-md">
-            AFTER
+            SAU KHI CẮT
           </span>
         </div>
 
@@ -127,12 +127,7 @@ export default function BeforeAfterSlider({ data, className = '' }: BeforeAfterS
           </div>
         </div>
 
-        {/* Bottom Hint */}
-        <div className="absolute bottom-4 inset-x-0 flex justify-center pointer-events-none z-20">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] uppercase tracking-widest text-[#A7A39B] bg-[#0B0B0A]/75 backdrop-blur-sm border border-[rgba(244,240,232,0.1)]">
-            <Sparkles className="w-3 h-3 text-[#C7A66A]" /> Drag to compare craft
-          </span>
-        </div>
+        
       </div>
 
       {/* Caption & Transformation Meta */}

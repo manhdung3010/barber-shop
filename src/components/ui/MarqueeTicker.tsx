@@ -8,14 +8,14 @@ interface MarqueeTickerProps {
 }
 
 const DEFAULT_ITEMS = [
-  'PRECISION SKIN FADES',
-  'BESPOKE GROOMING',
-  'MODERN TEXTURED CROPS',
-  'CUSTOM PERMS',
-  'TIMELESS CLASSICS',
-  'BEARD SCULPTING',
-  '1-ON-1 CHAIR EXPERIENCE',
-  'THE CRAFT SPEAKS',
+  'FADE SẮC NÉT',
+  'CẮT TÓC THIẾT KẾ',
+  'TEXTURED CROP HIỆN ĐẠI',
+  'UỐN PHỒNG CHUẨN FORM',
+  'CLASSIC LỊCH LÃM',
+  'TỈA RÂU ĐẲNG CẤP',
+  'TRẢI NGHIỆM 1-ON-1',
+  'TÁC PHẨM THAY LỜI NÓI',
 ];
 
 export default function MarqueeTicker({

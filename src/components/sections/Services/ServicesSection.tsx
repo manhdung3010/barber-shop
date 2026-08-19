@@ -22,19 +22,18 @@ export default function ServicesSection() {
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <FadeIn className="text-center mb-16 sm:mb-20 md:mb-24">
-          <p className="eyebrow mb-3">02 / SERVICES & PRICING</p>
+          <p className="eyebrow mb-3">02 / DỊCH VỤ & BẢNG GIÁ</p>
           <h2 className="display-heading text-[#F4F0E8] mb-4">
-            CUT. STYLE. REFINE.
+            CẮT. TẠO KIỂU. TRAU CHUỐT.
           </h2>
           <p className="body-editorial max-w-xl mx-auto">
-            Scroll through our individual signature grooming offerings, tailored to your head structure and lifestyle.
+            Trải nghiệm các gói dịch vụ chăm sóc diện mạo cá nhân được thiết kế riêng theo tỉ lệ khuôn mặt và phong cách sống của bạn.
           </p>
         </FadeIn>
 
         {/* Sticky Stacking Cards Container */}
         <div className="flex flex-col w-full">
           {servicesData.map((service, index) => {
-            // Target scale calculation: deeper cards scale down slightly more
             const targetScale = 1 - (servicesData.length - index) * 0.035;
             const range: [number, number] = [
               index * (1 / servicesData.length),

@@ -25,12 +25,12 @@ export default function StylesSection() {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <FadeIn className="text-center mb-16 sm:mb-24 md:mb-32">
-          <p className="eyebrow mb-3">01 / SIGNATURE STYLES</p>
+          <p className="eyebrow mb-3">01 / BỘ SƯU TẬP KIỂU TÓC</p>
           <h2 className="display-heading max-w-4xl mx-auto mb-6">
-            THE WORK SPEAKS FOR ITSELF.
+            TÁC PHẨM THAY LỜI NÓI.
           </h2>
           <p className="body-editorial max-w-xl mx-auto">
-            Scroll to discover our signature portfolio of precision skin fades, textured crops, and crafted silhouettes.
+            Khám phá lookbook các mẫu tóc fade sắc nét, tỉa layer texture và phom dáng thiết kế riêng tại ghế cắt.
           </p>
         </FadeIn>
 

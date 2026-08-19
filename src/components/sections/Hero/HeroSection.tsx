@@ -22,13 +22,13 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <FadeIn delay={0.1}>
           <p className="eyebrow text-center md:text-left mb-4 sm:mb-6">
-            {barberProfile.shopName} / PERSONAL BARBER STUDIO
+            {barberProfile.shopName} / TIỆM BARBER CÁ NHÂN CAO CẤP
           </p>
         </FadeIn>
 
         {/* Hero Dominant Headline */}
         <FadeIn delay={0.2} y={35}>
-          <h1 className="hero-heading text-[15vw] sm:text-[13vw] md:text-[11vw] lg:text-[9.5vw] text-center md:text-left">
+          <h1 className="hero-heading text-[12vw] sm:text-[10vw] md:text-[8.5vw] lg:text-[7.2vw] text-center md:text-left">
             {barberProfile.heroHeadline}
           </h1>
         </FadeIn>
@@ -61,7 +61,7 @@ export default function HeroSection() {
               size="md"
               className="w-full sm:w-auto"
             >
-              View Styles
+              Xem Kiểu Tóc
             </Button>
           </FadeIn>
         </div>
@@ -91,7 +91,7 @@ export default function HeroSection() {
           <span>{hoursSummary}</span>
         </FadeIn>
         <FadeIn delay={0.65}>
-          <span>EST. {barberProfile.establishedYear}</span>
+          <span>THÀNH LẬP NĂM {barberProfile.establishedYear}</span>
         </FadeIn>
       </div>
     </section>

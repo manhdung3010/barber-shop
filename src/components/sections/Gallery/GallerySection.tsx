@@ -54,17 +54,17 @@ export default function GallerySection() {
         <FadeIn className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[rgba(244,240,232,0.12)] pb-6 gap-3">
           <div className="flex items-center gap-3">
             <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-[0.25em] text-[#C7A66A]">
-              04 / THE MANIFESTO
+              04 / TUYÊN NGÔN NGHỆ THUẬT
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-[#C7A66A]/60" />
             <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-[#A7A39B]">
-              ARCHITECTURAL RITUAL
+              QUY CHUẨN KIẾN TRÚC
             </span>
           </div>
 
           <div className="flex items-center gap-6 text-[10px] font-mono uppercase tracking-widest text-[#A7A39B]">
-            <span>INDEX: ARCHIVE.04</span>
-            <span className="hidden sm:inline">PRECISION CRAFT</span>
+            <span>CHỈ MỤC: ARCHIVE.04</span>
+            <span className="hidden sm:inline">TAY NGHỀ CHUẨN XÁC</span>
           </div>
         </FadeIn>
       </div>
@@ -80,26 +80,20 @@ export default function GallerySection() {
       >
         <div className="relative p-4 sm:p-6">
           <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-28 h-28 sm:w-40 sm:h-40 text-[#C7A66A]">
-            {/* Blade 1 */}
             <path d="M50 145 C45 130, 48 115, 60 100 L140 30 C143 28, 147 32, 145 35 L75 115 C70 120, 68 135, 60 145 Z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-            {/* Blade 2 */}
             <path d="M95 140 C100 125, 96 112, 85 100 L145 40 C148 38, 144 34, 140 35 L68 108 C64 112, 60 125, 65 140 Z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-            {/* Handle Loops with Tang */}
             <ellipse cx="45" cy="150" rx="14" ry="18" stroke="currentColor" strokeWidth="1.4" transform="rotate(-20 45 150)" />
             <ellipse cx="98" cy="148" rx="14" ry="18" stroke="currentColor" strokeWidth="1.4" transform="rotate(20 98 148)" />
-            {/* Finger Rest Tang */}
             <path d="M33 158 C26 162, 22 170, 24 175" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-            {/* Precision Pivot Screw & Tension Dial */}
             <circle cx="80" cy="104" r="5" fill="#141413" stroke="currentColor" strokeWidth="1.5" />
             <circle cx="80" cy="104" r="2" fill="currentColor" />
-            {/* Measurement Graduation Lines on Blade */}
             <line x1="105" y1="65" x2="110" y2="70" stroke="currentColor" strokeWidth="1" strokeOpacity="0.6" />
             <line x1="115" y1="55" x2="120" y2="60" stroke="currentColor" strokeWidth="1" strokeOpacity="0.6" />
             <line x1="125" y1="45" x2="130" y2="50" stroke="currentColor" strokeWidth="1" strokeOpacity="0.6" />
           </svg>
           <div className="absolute -bottom-2 left-2 flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.25em] text-[#C7A66A]">
             <span className="w-1 h-1 rounded-full bg-[#C7A66A]" />
-            <span>[SHEARS // 6.5" HITACHI COBALT]</span>
+            <span>[KÉO CẮT // 6.5" THÉP HITACHI COBALT]</span>
           </div>
         </div>
       </motion.div>
@@ -111,30 +105,24 @@ export default function GallerySection() {
       >
         <div className="relative p-4 sm:p-6">
           <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-32 h-32 sm:w-48 sm:h-48 text-[#C7A66A]">
-            {/* Headrest */}
             <rect x="85" y="15" width="30" height="14" rx="4" stroke="currentColor" strokeWidth="1.2" />
             <path d="M100 29 L100 40" stroke="currentColor" strokeWidth="1.5" />
-            {/* Backrest with Tufted Diamond Stitching */}
             <path d="M70 40 C65 40, 60 45, 62 75 L65 105 C65 110, 70 115, 80 115 L120 115 C130 115, 135 110, 135 105 L138 75 C140 45, 135 40, 130 40 Z" stroke="currentColor" strokeWidth="1.2" />
             <line x1="75" y1="65" x2="125" y2="65" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" strokeOpacity="0.5" />
             <line x1="75" y1="90" x2="125" y2="90" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" strokeOpacity="0.5" />
-            {/* Padded Seat Cushion */}
             <rect x="55" y="115" width="90" height="22" rx="6" stroke="currentColor" strokeWidth="1.4" />
-            {/* Polished Armrest & Recline Lever */}
             <path d="M50 85 C50 75, 60 75, 70 75 L70 115" stroke="currentColor" strokeWidth="1.4" />
             <path d="M150 85 C150 75, 140 75, 130 75 L130 115" stroke="currentColor" strokeWidth="1.4" />
             <path d="M142 122 L158 110" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             <circle cx="158" cy="110" r="2.5" fill="currentColor" />
-            {/* Hydraulic Column & Heavy Cast-Iron Round Base */}
             <rect x="94" y="137" width="12" height="35" stroke="currentColor" strokeWidth="1.4" />
             <ellipse cx="100" cy="178" rx="55" ry="14" stroke="currentColor" strokeWidth="1.4" />
             <ellipse cx="100" cy="178" rx="42" ry="9" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-            {/* Footrest Platform with Crossbar */}
             <path d="M70 137 L50 170 L75 170" stroke="currentColor" strokeWidth="1.2" />
           </svg>
           <div className="absolute -bottom-2 left-4 flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.25em] text-[#A7A39B]">
             <span className="w-1 h-1 rounded-full bg-[#A7A39B]" />
-            <span>[CHAIR // HYDRAULIC 360° TAKARA SPEC]</span>
+            <span>[GHẾ CẮT // THỦY LỰC XOAY 360° CHUẨN TAKARA]</span>
           </div>
         </div>
       </motion.div>
@@ -146,24 +134,19 @@ export default function GallerySection() {
       >
         <div className="relative p-4 sm:p-6">
           <svg width="170" height="190" viewBox="0 0 170 190" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-28 h-32 sm:w-36 sm:h-44 text-[#C7A66A]">
-            {/* Top Blade Teeth */}
             <path d="M55 25 L115 25 L110 40 L60 40 Z" stroke="currentColor" strokeWidth="1.2" />
             <path d="M60 20 L60 25 M65 20 L65 25 M70 20 L70 25 M75 20 L75 25 M80 20 L80 25 M85 20 L85 25 M90 20 L90 25 M95 20 L95 25 M100 20 L100 25 M105 20 L105 25 M110 20 L110 25" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-            {/* Metal Clipper Ergonomic Body */}
             <path d="M60 40 C55 60, 52 100, 58 145 C60 160, 68 170, 85 170 C102 170, 110 160, 112 145 C118 100, 115 60, 110 40 Z" stroke="currentColor" strokeWidth="1.4" />
-            {/* Diamond Knurled Metal Grip Texture */}
             <line x1="62" y1="85" x2="108" y2="85" stroke="currentColor" strokeWidth="1" strokeOpacity="0.4" />
             <line x1="60" y1="105" x2="110" y2="105" stroke="currentColor" strokeWidth="1" strokeOpacity="0.4" />
             <line x1="59" y1="125" x2="111" y2="125" stroke="currentColor" strokeWidth="1" strokeOpacity="0.4" />
-            {/* Side Taper Adjustment Thumb Lever */}
             <path d="M54 55 L42 62 L45 75 L55 70" stroke="currentColor" strokeWidth="1.4" fill="#141413" />
-            {/* Power Switch & LED Battery Gauge */}
             <rect x="78" y="142" width="14" height="18" rx="3" stroke="currentColor" strokeWidth="1.2" />
             <line x1="85" y1="146" x2="85" y2="154" stroke="currentColor" strokeWidth="1.5" />
           </svg>
           <div className="absolute -bottom-2 left-2 flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.25em] text-[#C7A66A]">
             <span className="w-1 h-1 rounded-full bg-[#C7A66A]" />
-            <span>[CLIPPER // 7200 RPM MAGNETIC]</span>
+            <span>[TÔNG ĐƠ // ĐỘNG CƠ TỪ TÍNH 7200 RPM]</span>
           </div>
         </div>
       </motion.div>
@@ -175,22 +158,17 @@ export default function GallerySection() {
       >
         <div className="relative p-4 sm:p-6">
           <svg width="190" height="150" viewBox="0 0 190 150" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-32 h-24 sm:w-44 sm:h-36 text-[#C7A66A]">
-            {/* Polished Wooden Handle (Scales) */}
             <path d="M45 95 C65 110, 115 125, 165 120 C172 118, 175 112, 170 108 C125 102, 80 88, 55 78 Z" stroke="currentColor" strokeWidth="1.4" fill="#141413" />
-            {/* Exposed Straight Razor Blade */}
             <path d="M45 80 L95 35 C115 18, 145 15, 160 22 L150 55 C135 50, 105 52, 58 88 Z" stroke="currentColor" strokeWidth="1.4" />
-            {/* Razor Edge Line & Hollow Ground Bevel */}
             <path d="M98 38 C116 22, 142 20, 155 26" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
             <path d="M68 76 C98 56, 125 45, 145 48" stroke="currentColor" strokeWidth="0.8" strokeDasharray="3 2" strokeOpacity="0.6" />
-            {/* Monkey Tail Tang & Jimps Grip */}
             <path d="M45 80 C35 88, 22 92, 15 85 C12 78, 20 72, 35 72 L45 80" stroke="currentColor" strokeWidth="1.2" />
-            {/* Pivot Pin Brass Rivet */}
             <circle cx="48" cy="84" r="3.5" fill="#141413" stroke="currentColor" strokeWidth="1.5" />
             <circle cx="48" cy="84" r="1.5" fill="currentColor" />
           </svg>
           <div className="absolute -bottom-2 left-2 flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.25em] text-[#C7A66A]">
             <span className="w-1 h-1 rounded-full bg-[#C7A66A]" />
-            <span>[RAZOR // 5/8" CARBON HOLLOW GROUND]</span>
+            <span>[DAO CẠO // THÉP CARBON MÀI VÁT HOLLOW]</span>
           </div>
         </div>
       </motion.div>
@@ -204,18 +182,16 @@ export default function GallerySection() {
           <svg width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-20 h-20 sm:w-24 sm:h-24 text-[#F4F0E8]">
             <circle cx="55" cy="55" r="48" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" strokeOpacity="0.4" />
             <circle cx="55" cy="55" r="42" stroke="currentColor" strokeWidth="1.2" />
-            {/* Dial Hour & Minute Ticks */}
             <line x1="55" y1="17" x2="55" y2="23" stroke="#C7A66A" strokeWidth="2" />
             <line x1="55" y1="87" x2="55" y2="93" stroke="#C7A66A" strokeWidth="2" />
             <line x1="17" y1="55" x2="23" y2="55" stroke="#C7A66A" strokeWidth="2" />
             <line x1="87" y1="55" x2="93" y2="55" stroke="#C7A66A" strokeWidth="2" />
-            {/* Hands at 45-Min Cadence */}
             <line x1="55" y1="55" x2="55" y2="28" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
             <line x1="55" y1="55" x2="28" y2="55" stroke="#C7A66A" strokeWidth="1.8" strokeLinecap="round" />
             <circle cx="55" cy="55" r="3" fill="#C7A66A" />
           </svg>
           <span className="block font-mono text-[8px] uppercase tracking-[0.2em] text-[#A7A39B] mt-1 text-center">
-            [45-MIN FOCUS CADENCE]
+            [NHỊP ĐỘ 45 PHÚT CHUYÊN SÂU]
           </span>
         </div>
       </motion.div>
@@ -227,19 +203,16 @@ export default function GallerySection() {
       >
         <div className="relative p-4">
           <svg width="120" height="130" viewBox="0 0 120 130" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-20 h-24 sm:w-28 sm:h-32 text-[#C7A66A]">
-            {/* Faceted Heavy Glass Flacon */}
             <path d="M40 45 L80 45 L90 110 C90 115, 85 120, 80 120 L40 120 C35 120, 30 115, 30 110 Z" stroke="currentColor" strokeWidth="1.4" />
-            {/* Internal Liquid Level & Facet Reflections */}
             <line x1="33" y1="75" x2="87" y2="75" stroke="currentColor" strokeWidth="1" strokeDasharray="3 2" strokeOpacity="0.5" />
             <line x1="60" y1="45" x2="60" y2="120" stroke="currentColor" strokeWidth="0.8" strokeOpacity="0.3" />
-            {/* Vintage Atomizer Pump Nozzle & Bulb */}
             <rect x="50" y="32" width="20" height="13" stroke="currentColor" strokeWidth="1.2" />
             <path d="M50 38 L30 38 L25 35" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             <ellipse cx="98" cy="38" rx="14" ry="10" stroke="currentColor" strokeWidth="1.4" fill="#141413" />
             <path d="M70 38 L84 38" stroke="currentColor" strokeWidth="1.4" />
           </svg>
           <span className="block font-mono text-[8px] uppercase tracking-[0.2em] text-[#A7A39B] mt-1 text-center">
-            [BAY RUM &amp; TONIC ELIXIR]
+            [TINH DẦU &amp; TONIC BAY RUM]
           </span>
         </div>
       </motion.div>
@@ -248,26 +221,26 @@ export default function GallerySection() {
       {/* MASSIVE KINETIC TYPOGRAPHY COMPOSITION (Floating in Space) */}
       {/* ============================================================ */}
       <div className="max-w-7xl mx-auto w-full my-auto py-20 sm:py-28 relative z-20 flex flex-col justify-center gap-12 sm:gap-20 md:gap-28">
-        {/* Line 01: THE SPACE. */}
+        {/* Line 01: KHÔNG GIAN. */}
         <motion.div
           style={{ x: line1X }}
           className="flex flex-col items-start"
         >
           <div className="flex items-center gap-4 mb-2 sm:mb-4">
             <span className="text-[10px] sm:text-xs font-mono font-bold tracking-[0.3em] text-[#C7A66A]">
-              PHASE 01 // SANCTUARY
+              PHASE 01 // KHÔNG GIAN RIÊNG TƯ
             </span>
             <div className="w-12 sm:w-24 h-[1px] bg-[#C7A66A]/40" />
           </div>
-          <h2 className="text-[13vw] sm:text-[11vw] md:text-[9.5vw] font-black uppercase tracking-tight text-[#F4F0E8] leading-[0.88] hover:text-[#C7A66A] transition-colors duration-500">
-            THE SPACE.
+          <h2 className="text-[12vw] sm:text-[10vw] md:text-[8.5vw] font-black uppercase tracking-tight text-[#F4F0E8] leading-[0.88] hover:text-[#C7A66A] transition-colors duration-500">
+            KHÔNG GIAN.
           </h2>
           <p className="text-xs sm:text-sm font-mono text-[#A7A39B] tracking-widest mt-2 max-w-sm">
-            PRIVATE 1-ON-1 STUDIO ENVIRONMENT DESIGNED FOR TOTAL FOCUS.
+            STUDIO CÁ NHÂN 1-ON-1 TẬP TRUNG TỐI ĐA CHO DIỆN MẠO CỦA BẠN.
           </p>
         </motion.div>
 
-        {/* Line 02: THE CRAFT. (Offset Center-Right) */}
+        {/* Line 02: TAY NGHỀ. (Offset Center-Right) */}
         <motion.div
           style={{ x: line2X }}
           className="flex flex-col items-start sm:items-center pl-6 sm:pl-0"
@@ -275,19 +248,19 @@ export default function GallerySection() {
           <div className="flex items-center gap-4 mb-2 sm:mb-4 sm:self-center">
             <div className="w-8 sm:w-16 h-[1px] bg-[#C7A66A]/40" />
             <span className="text-[10px] sm:text-xs font-mono font-bold tracking-[0.3em] text-[#C7A66A]">
-              PHASE 02 // DISCIPLINE
+              PHASE 02 // TAY NGHỀ ĐIÊU LUYỆN
             </span>
             <div className="w-8 sm:w-16 h-[1px] bg-[#C7A66A]/40" />
           </div>
-          <h2 className="text-[13vw] sm:text-[11vw] md:text-[9.5vw] font-black uppercase tracking-tight text-[#F4F0E8] leading-[0.88] hover:text-[#C7A66A] transition-colors duration-500">
-            THE CRAFT.
+          <h2 className="text-[12vw] sm:text-[10vw] md:text-[8.5vw] font-black uppercase tracking-tight text-[#F4F0E8] leading-[0.88] hover:text-[#C7A66A] transition-colors duration-500">
+            TAY NGHỀ.
           </h2>
           <p className="text-xs sm:text-sm font-mono text-[#A7A39B] tracking-widest mt-2 text-left sm:text-center max-w-sm">
-            JAPANESE STEEL SHEARS AND MAGNETIC CLIPPERS TAILORED TO GRAIN.
+            KÉO THÉP NHẬT VÀ TÔNG ĐƠ TỪ TÍNH ĐI ĐÚNG CHIỀU TÓC MỌC.
           </p>
         </motion.div>
 
-        {/* Line 03: THE DETAIL. (Offset Far-Right) */}
+        {/* Line 03: CHI TIẾT. (Offset Far-Right) */}
         <motion.div
           style={{ x: line3X }}
           className="flex flex-col items-start sm:items-end pr-0 sm:pr-6 md:pr-12"
@@ -295,14 +268,14 @@ export default function GallerySection() {
           <div className="flex items-center gap-4 mb-2 sm:mb-4 sm:self-end">
             <div className="w-12 sm:w-24 h-[1px] bg-[#C7A66A]/40" />
             <span className="text-[10px] sm:text-xs font-mono font-bold tracking-[0.3em] text-[#C7A66A]">
-              PHASE 03 // EXECUTION
+              PHASE 03 // CHI TIẾT HOÀN HẢO
             </span>
           </div>
-          <h2 className="text-[13vw] sm:text-[11vw] md:text-[9.5vw] font-black uppercase tracking-tight text-[#F4F0E8] leading-[0.88] hover:text-[#C7A66A] transition-colors duration-500">
-            THE DETAIL.
+          <h2 className="text-[12vw] sm:text-[10vw] md:text-[8.5vw] font-black uppercase tracking-tight text-[#F4F0E8] leading-[0.88] hover:text-[#C7A66A] transition-colors duration-500">
+            CHI TIẾT.
           </h2>
           <p className="text-xs sm:text-sm font-mono text-[#A7A39B] tracking-widest mt-2 text-left sm:text-right max-w-sm">
-            HOT TOWEL ESSENTIALS AND RAZOR-SHARP FINISHES THAT ENDURE.
+            KHĂN NÓNG TINH DẦU VÀ NHỮNG ĐƯỜNG CẠO CHẤN SẮC NÉT BỀN LÂU.
           </p>
         </motion.div>
       </div>
@@ -311,10 +284,10 @@ export default function GallerySection() {
       <div className="max-w-7xl mx-auto w-full pt-8 border-t border-[rgba(244,240,232,0.12)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-[10px] font-mono uppercase tracking-[0.25em] text-[#A7A39B] relative z-20">
         <div className="flex items-center gap-3">
           <span className="w-2 h-2 rounded-full bg-[#C7A66A]" />
-          <span>SPEC // BESPOKE GROOMING PROTOCOL</span>
+          <span>QUY CHUẨN // QUY TRÌNH CHĂM SÓC DIỆN MẠO ĐẶC QUYỀN</span>
         </div>
-        <span>[PRECISION // TECHNIQUE // RITUAL]</span>
-        <span>SCROLL TO PROCEED ↓</span>
+        <span>[CHUẨN XÁC // KỸ THUẬT // TẬN TÂM]</span>
+        <span>CUỘN XUỐNG ĐỂ TIẾP TỤC ↓</span>
       </div>
     </section>
   );

@@ -1,4 +1,3 @@
-import { MessageSquare, Phone } from 'lucide-react';
 import { barberProfile } from '../../../data/barber.ts';
 import Button from '../../ui/Button.tsx';
 import Magnet from '../../ui/Magnet.tsx';
@@ -6,26 +5,29 @@ import FadeIn from '../../ui/FadeIn.tsx';
 
 export default function BookingSection() {
   return (
-    <section id="contact" className="py-28 sm:py-36 md:py-48 px-5 sm:px-8 md:px-10 lg:px-12 bg-[#0B0B0A] text-center min-h-[70vh] flex flex-col justify-center items-center border-t border-[rgba(244,240,232,0.12)]">
-      <div className="max-w-4xl mx-auto flex flex-col items-center">
+    <section id="contact" className="py-28 sm:py-36 md:py-48 px-5 sm:px-8 md:px-10 lg:px-12 bg-[#0B0B0A] relative overflow-hidden">
+      {/* Background Spotlight */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#C7A66A]/05 rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="max-w-4xl mx-auto text-center relative z-10">
         <FadeIn>
-          <p className="eyebrow mb-4">07 / BOOK YOUR NEXT CUT</p>
-          <h2 className="display-heading text-[12vw] sm:text-[9vw] md:text-[7.5vw] mb-6">
-            READY FOR A BETTER CUT?
+          <p className="eyebrow mb-4">07 / ĐẶT LỊCH HẸN NGAY</p>
+          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-[#F4F0E8] mb-8 leading-[0.95]">
+            SẴN SÀNG CHO MỘT DIỆN MẠO MỚI?
           </h2>
-          <p className="body-editorial max-w-lg mb-12">
-            Choose your style, pick your time, and let the barber handle the rest.
+          <p className="body-editorial max-w-xl mx-auto mb-12">
+            Chọn phong cách bạn muốn, hẹn trước khung giờ phù hợp và để Master Barber chăm sóc trọn vẹn phần còn lại.
           </p>
         </FadeIn>
 
-        {/* Primary Booking CTA with Magnet */}
-        <FadeIn delay={0.2} className="mb-10">
-          <Magnet strength={14}>
+        {/* Primary Magnetic CTA */}
+        <FadeIn delay={0.2} className="flex justify-center mb-16">
+          <Magnet strength={18}>
             <Button
               href={barberProfile.booking.primaryUrl}
               variant="primary"
               size="lg"
-              className="shadow-2xl shadow-[#C7A66A]/20"
+              className="px-10 sm:px-14 py-5 text-base sm:text-lg shadow-2xl shadow-[#C7A66A]/20"
             >
               {barberProfile.booking.primaryLabel}
             </Button>
@@ -33,18 +35,26 @@ export default function BookingSection() {
         </FadeIn>
 
         {/* Secondary Direct Channels */}
-        <FadeIn delay={0.35} className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-          {barberProfile.booking.secondaryChannels.map((sec) => (
-            <a
-              key={sec.channel}
-              href={sec.url}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#141413] border border-[rgba(244,240,232,0.15)] text-xs font-semibold uppercase tracking-wider text-[#F4F0E8] hover:text-[#C7A66A] hover:border-[#C7A66A] transition-colors"
-            >
-              {sec.channel === 'phone' ? <Phone className="w-3.5 h-3.5" /> : <MessageSquare className="w-3.5 h-3.5" />}
-              {sec.label}
-            </a>
-          ))}
-        </FadeIn>
+        {barberProfile.booking.secondaryChannels && (
+          <FadeIn delay={0.3} className="pt-10 border-t border-[rgba(244,240,232,0.12)]">
+            <span className="text-xs uppercase tracking-widest text-[#A7A39B] block mb-6">
+              HOẶC LIÊN HỆ TRỰC TIẾP QUA CÁC KÊNH
+            </span>
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
+              {barberProfile.booking.secondaryChannels.map((channel, i) => (
+                <Button
+                  key={i}
+                  href={channel.url}
+                  variant="outline"
+                  size="sm"
+                  className="rounded-full text-xs font-bold uppercase tracking-wider"
+                >
+                  {channel.label}
+                </Button>
+              ))}
+            </div>
+          </FadeIn>
+        )}
       </div>
     </section>
   );

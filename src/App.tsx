@@ -37,12 +37,12 @@ export default function App() {
           direction="left"
           speedSeconds={32}
           items={[
-            'PRECISION SKIN FADES',
-            'BESPOKE GROOMING',
-            'MODERN TEXTURED CROPS',
-            'CUSTOM PERMS',
-            'TIMELESS CLASSICS',
-            'BEARD SCULPTING',
+            'FADE CHUYÊN SÂU SẮC NÉT',
+            'CẮT TÓC THIẾT KẾ CÁ NHÂN HÓA',
+            'TEXTURED CROP HIỆN ĐẠI',
+            'UỐN PHỒNG CHUẨN FORM',
+            'CLASSIC QUÝ ÔNG LỊCH LÃM',
+            'TẠO KIỂU RÂU ĐẲNG CẤP',
           ]}
         />
 
@@ -55,12 +55,12 @@ export default function App() {
           direction="right"
           speedSeconds={38}
           items={[
-            'THE CHAIR EXPERIENCE',
-            '1-ON-1 ATTENTION',
-            'JAPANESE STEEL SHEARS',
-            'HOT TOWEL RITUAL',
-            'PREMIUM GROOMING',
-            'YOUR STYLE SIGNATURE',
+            'TRẢI NGHIỆM GHẾ CẮT 1-ON-1',
+            'TẬP TRUNG TỐI ĐA CHO BẠN',
+            'KÉO CẮT THỦ CÔNG NHẬT BẢN',
+            'LIỆU TRÌNH KHĂN NÓNG THẢO MỘC',
+            'SẢN PHẨM DƯỠNG CAO CẤP',
+            'ĐỊNH HÌNH DẤU ẤN PHONG CÁCH',
           ]}
         />
 

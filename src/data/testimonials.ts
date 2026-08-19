@@ -2,27 +2,30 @@ import { Testimonial } from '../types/index.ts';
 
 export const testimonialsData: Testimonial[] = [
   {
-    id: '1',
-    quote: "Best fade I've had in years. The attention to detail is insane.",
-    clientName: '-- [CLIENT_NAME]',
+    id: 'test-1',
+    quote:
+      'Đường fade mượt mà và sắc nét nhất mình từng cắt. Không gian studio riêng tư 1-1 cực kỳ tập trung, thư giãn và chuyên nghiệp.',
+    clientName: 'Anh Hoàng Tuấn',
     rating: 5,
-    service: 'Skin Fade + Beard',
+    service: 'Cắt Fade Chuyên Sâu',
     isPlaceholder: true,
   },
   {
-    id: '2',
-    quote: 'Consistently sharp cuts every single visit. Great atmosphere and genuine craft.',
-    clientName: '-- [CLIENT_NAME]',
+    id: 'test-2',
+    quote:
+      'Kỹ thuật cắt kéo rất tỉ mỉ và hiểu chất tóc. Tóc sau khi gội ở nhà vẫn giữ form chuẩn và cực kỳ dễ vuốt sáp. Rất đáng giá.',
+    clientName: 'Anh Minh Long',
     rating: 5,
-    service: 'Classic Haircut',
+    service: 'Cắt Tóc Thiết Kế',
     isPlaceholder: true,
   },
   {
-    id: '3',
-    quote: 'Takes the time to understand your hair texture and style. Highly recommended.',
-    clientName: '-- [CLIENT_NAME]',
+    id: 'test-3',
+    quote:
+      'Trải nghiệm ủ khăn nóng và cạo viền cực kỳ thư giãn. Master Barber tư vấn nhiệt tình, đúng dáng mặt và phong cách.',
+    clientName: 'Anh Quốc Bảo',
     rating: 5,
-    service: 'Textured Crop',
+    service: 'Cắt Tóc & Tạo Kiểu Râu',
     isPlaceholder: true,
   },
 ];

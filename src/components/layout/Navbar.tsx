@@ -63,7 +63,6 @@ export default function Navbar() {
           behavior: 'smooth',
         });
 
-        // Update URL hash without instant jumping
         window.history.pushState(null, '', href);
       } else if (href === '#') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -91,13 +90,13 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8 lg:gap-10" aria-label="Main Navigation">
+        <nav className="hidden md:flex items-center gap-8 lg:gap-10" aria-label="Menu chính">
           {navigationData.map((item) => (
             <a
               key={item.href}
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
-              className="text-xs lg:text-sm font-medium uppercase tracking-[0.18em] text-[#F4F0E8] hover:text-[#C7A66A] transition-colors cursor-pointer"
+              className="text-xs lg:text-sm font-semibold uppercase tracking-[0.18em] text-[#F4F0E8] hover:text-[#C7A66A] transition-colors cursor-pointer"
             >
               {item.label}
             </a>
@@ -107,7 +106,7 @@ export default function Navbar() {
         {/* Desktop CTA Button */}
         <div className="hidden md:block">
           <Button href={barberProfile.booking.primaryUrl} variant="pill" size="sm">
-            Book Now
+            Đặt Lịch Ngay
           </Button>
         </div>
 
@@ -117,7 +116,7 @@ export default function Navbar() {
           onClick={() => setIsMobileMenuOpen(true)}
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-menu"
-          aria-label="Open Navigation Menu"
+          aria-label="Mở menu điều hướng"
           className="md:hidden p-2 text-[#F4F0E8] hover:text-[#C7A66A] transition-colors cursor-pointer"
         >
           <Menu className="w-6 h-6" />
@@ -130,7 +129,7 @@ export default function Navbar() {
           id="mobile-menu"
           role="dialog"
           aria-modal="true"
-          aria-label="Mobile Navigation Menu"
+          aria-label="Menu điều hướng di động"
           className="fixed inset-0 z-50 bg-[#0B0B0A] flex flex-col justify-between p-6 sm:p-10"
         >
           <div className="flex items-center justify-between border-b border-[rgba(244,240,232,0.12)] pb-6">
@@ -139,14 +138,14 @@ export default function Navbar() {
             </span>
             <button
               onClick={closeMenu}
-              aria-label="Close Navigation Menu"
+              aria-label="Đóng menu"
               className="p-2 text-[#F4F0E8] hover:text-[#C7A66A] transition-colors cursor-pointer"
             >
               <X className="w-7 h-7" />
             </button>
           </div>
 
-          <nav className="flex flex-col gap-6 my-auto" aria-label="Mobile Menu Links">
+          <nav className="flex flex-col gap-6 my-auto" aria-label="Danh mục menu">
             {navigationData.map((item, idx) => (
               <a
                 key={item.href}
@@ -167,7 +166,7 @@ export default function Navbar() {
               size="md"
               onClick={closeMenu}
             >
-              Book An Appointment
+              Đặt Lịch Hẹn Ngay
             </Button>
             <p className="text-center text-[10px] uppercase tracking-widest text-[#A7A39B]">
               {barberProfile.city} • {barberProfile.phone}

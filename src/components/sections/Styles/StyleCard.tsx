@@ -53,7 +53,7 @@ export default function StyleCard({
         ref={imageRef}
         role="button"
         tabIndex={0}
-        aria-label={`View haircut style: ${item.title}`}
+        aria-label={`Xem kiểu tóc: ${item.title}`}
         onClick={(e) => onOpenLightbox(index, e)}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -78,7 +78,7 @@ export default function StyleCard({
           }
           transition={{
             duration: 0.95,
-            ease: [0.16, 1, 0.3, 1], // luxury editorial easing
+            ease: [0.16, 1, 0.3, 1],
           }}
           className="w-full h-full"
         >
@@ -94,12 +94,12 @@ export default function StyleCard({
         {/* Subtle Dark Gradient Scrim on Image Hover */}
         <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none" />
 
-        {/* Desktop Subtle "VIEW ↗" Badge */}
+        {/* Desktop Subtle "XEM ẢNH ↗" Badge */}
         {!isReduced && isFinePointer && (
           <div className="pointer-events-none absolute bottom-5 right-5 z-20 hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-[#0B0B0A]/85 backdrop-blur-md border border-[#C7A66A]/70 text-[#F4F0E8] shadow-2xl opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all">
             <Eye className="w-3.5 h-3.5 text-[#C7A66A]" />
             <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#F4F0E8]">
-              VIEW ↗
+              XEM ẢNH ↗
             </span>
           </div>
         )}
@@ -139,12 +139,12 @@ export default function StyleCard({
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#C7A66A]/60" />
               <span className="hidden sm:inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-[#A7A39B]">
-                SIGNATURE CRAFT
+                TÁC PHẨM ĐẶC QUYỀN
               </span>
             </div>
 
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#A7A39B] group-hover:text-[#C7A66A] transition-colors">
-              <span>PLATE {formattedNumber} OF {String(total).padStart(2, '0')}</span>
+              <span>BẢN MẪU {formattedNumber} TRÊN {String(total).padStart(2, '0')}</span>
               <div className="p-1 rounded-full border border-transparent group-hover:border-[#C7A66A]/40 group-hover:bg-[#C7A66A]/10 transition-all">
                 <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </div>
@@ -220,7 +220,7 @@ export default function StyleCard({
 
           <div className="flex items-center gap-2 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-[#C7A66A] bg-[#141413] border border-[#C7A66A]/20 px-3.5 py-1.5 rounded-full shrink-0 self-start sm:self-auto">
             <Sparkles className="w-3 h-3 text-[#C7A66A]" />
-            <span>BESPOKE FINISH</span>
+            <span>HOÀN THIỆN CAO CẤP</span>
           </div>
         </motion.div>
       </div>

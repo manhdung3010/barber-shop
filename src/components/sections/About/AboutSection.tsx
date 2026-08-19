@@ -20,7 +20,7 @@ export default function AboutSection() {
     <section id="about" className="py-24 sm:py-32 md:py-40 px-5 sm:px-8 md:px-10 lg:px-12 bg-[#0B0B0A]">
       <div className="max-w-7xl mx-auto">
         <FadeIn>
-          <p className="eyebrow mb-3">03 / THE BARBER</p>
+          <p className="eyebrow mb-3">03 / MASTER BARBER</p>
           <h2 className="display-heading mb-12 sm:mb-16">
             {barberProfile.bioHeadline}
           </h2>
@@ -76,14 +76,14 @@ export default function AboutSection() {
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
             <div>
               <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#C7A66A] mb-2">
-                <Sparkles className="w-3.5 h-3.5" /> STUDIO RITUAL
+                <Sparkles className="w-3.5 h-3.5" /> QUY TRÌNH TẠI GHẾ CẮT
               </span>
               <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold uppercase tracking-tight text-[#F4F0E8]">
-                THE CHAIR EXPERIENCE
+                TRẢI NGHIỆM CHĂM SÓC 1-ON-1
               </h3>
             </div>
             <p className="text-xs sm:text-sm text-[#A7A39B] max-w-md font-light">
-              Every appointment follows a refined, four-stage ritual designed for precision, relaxation, and individual attention.
+              Mỗi buổi hẹn là một quy trình 4 giai đoạn chuẩn mực mang lại sự chuẩn xác, thư giãn và chăm chút diện mạo tối đa.
             </p>
           </div>
 
