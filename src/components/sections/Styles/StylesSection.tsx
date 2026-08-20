@@ -1,8 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { stylesData } from '../../../data/styles.ts';
-import { barberProfile } from '../../../data/barber.ts';
 import StyleCard from './StyleCard.tsx';
-import BeforeAfterSlider from '../../ui/BeforeAfterSlider.tsx';
 import Lightbox from '../../ui/Lightbox.tsx';
 import FadeIn from '../../ui/FadeIn.tsx';
 
@@ -25,7 +23,7 @@ export default function StylesSection() {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <FadeIn className="text-center mb-16 sm:mb-24 md:mb-32">
-          <p className="eyebrow mb-3">01 / BỘ SƯU TẬP KIỂU TÓC</p>
+          <p className="plate-meta mb-3">01 // BỘ SƯU TẬP KIỂU TÓC</p>
           <h2 className="display-heading max-w-4xl mx-auto mb-6">
             TÁC PHẨM THAY LỜI NÓI.
           </h2>
@@ -33,13 +31,6 @@ export default function StylesSection() {
             Khám phá lookbook các mẫu tóc fade sắc nét, tỉa layer texture và phom dáng thiết kế riêng tại ghế cắt.
           </p>
         </FadeIn>
-
-        {/* Interactive Before & After Transformation Slider Showcase */}
-        {barberProfile.showBeforeAfter && barberProfile.beforeAfter && (
-          <FadeIn delay={0.1} className="mb-28 sm:mb-36 md:mb-48 max-w-5xl mx-auto">
-            <BeforeAfterSlider data={barberProfile.beforeAfter} />
-          </FadeIn>
-        )}
 
         {/* Vertically Scrolling Editorial Portfolio Flow */}
         <div className="flex flex-col space-y-28 sm:space-y-36 md:space-y-48">

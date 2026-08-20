@@ -46,9 +46,9 @@ export default function StyleCard({
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-5xl mx-auto flex flex-col group select-none"
+      className="relative w-full max-w-4xl mx-auto flex flex-col group select-none"
     >
-      {/* 1. LARGE DOMINANT IMAGE COMPOSITION WITH EDITORIAL MASK REVEAL */}
+      {/* 1. LARGE DOMINANT IMAGE COMPOSITION (4/3 Mobile -> 3/2 Desktop) */}
       <div
         ref={imageRef}
         role="button"
@@ -61,20 +61,20 @@ export default function StyleCard({
             onOpenLightbox(index, e as unknown as React.MouseEvent<HTMLElement>);
           }
         }}
-        className="relative w-full aspect-[16/10] sm:aspect-[16/9] md:aspect-[21/9] rounded-[24px] sm:rounded-[36px] md:rounded-[44px] overflow-hidden border border-[rgba(244,240,232,0.14)] group-hover:border-[#C7A66A]/50 transition-all duration-700 bg-[#121211] shadow-2xl cursor-pointer"
+        className="relative w-full aspect-[4/3] sm:aspect-[3/2] max-h-[75vh] rounded-[24px] sm:rounded-[36px] md:rounded-[44px] overflow-hidden border border-[rgba(244,240,232,0.14)] group-hover:border-[#C7A66A]/50 transition-all duration-700 bg-[#121211] shadow-2xl cursor-pointer"
       >
         <motion.div
           initial={
             isReduced
               ? { opacity: 1, scale: 1 }
-              : { clipPath: 'inset(0 0 100% 0)', opacity: 0, scale: 1.06 }
+              : { clipPath: 'inset(0 0 100% 0)', opacity: 0, scale: 1.05 }
           }
           animate={
             isReduced
               ? { opacity: 1, scale: 1 }
               : isImageInView
               ? { clipPath: 'inset(0 0 0% 0)', opacity: 1, scale: 1 }
-              : { clipPath: 'inset(0 0 100% 0)', opacity: 0, scale: 1.06 }
+              : { clipPath: 'inset(0 0 100% 0)', opacity: 0, scale: 1.05 }
           }
           transition={{
             duration: 0.95,
@@ -85,7 +85,7 @@ export default function StyleCard({
           <EditorialImage
             src={item.image}
             alt={item.alt}
-            aspectRatio="16/9"
+            aspectRatio="3/2"
             watermarkLabel={item.category}
             imageClassName="group-hover:scale-[1.03] transition-transform duration-700 ease-out"
           />
@@ -105,7 +105,7 @@ export default function StyleCard({
         )}
       </div>
 
-      {/* 2. ENHANCED EDITORIAL METADATA & TYPOGRAPHY WITH LUXURY MOTION */}
+      {/* 2. ENHANCED EDITORIAL METADATA & TYPOGRAPHY WITH OVERFLOW-SAFE CLEARANCE */}
       <div ref={textRef} className="relative pt-6 sm:pt-8 md:pt-10 flex flex-col">
         {/* Large Decorative Watermark Plate Number in Background */}
         <div
@@ -115,7 +115,7 @@ export default function StyleCard({
           {formattedNumber}
         </div>
 
-        {/* Category & Plate Number Eyebrow with Animated Expanding Hairline Divider */}
+        {/* Category & Plate Number Eyebrow with Animated Hairline Divider */}
         <div className="flex flex-col mb-4 sm:mb-6">
           <motion.div
             initial={isReduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
@@ -134,8 +134,8 @@ export default function StyleCard({
             className="flex items-center justify-between pb-3"
           >
             <div className="flex items-center gap-3">
-              <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-[0.25em] text-[#C7A66A]">
-                {formattedNumber} / {item.category.toUpperCase()}
+              <span className="plate-meta">
+                {formattedNumber} // {item.category.toUpperCase()}
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#C7A66A]/60" />
               <span className="hidden sm:inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-[#A7A39B]">
@@ -144,7 +144,7 @@ export default function StyleCard({
             </div>
 
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#A7A39B] group-hover:text-[#C7A66A] transition-colors">
-              <span>BẢN MẪU {formattedNumber} TRÊN {String(total).padStart(2, '0')}</span>
+              <span>BẢN MẪU {formattedNumber} / {String(total).padStart(2, '0')}</span>
               <div className="p-1 rounded-full border border-transparent group-hover:border-[#C7A66A]/40 group-hover:bg-[#C7A66A]/10 transition-all">
                 <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </div>
@@ -171,19 +171,19 @@ export default function StyleCard({
           />
         </div>
 
-        {/* Masked Title Reveal with Kinetic Hover Shift & Scroll Parallax */}
+        {/* Overflow-Safe Title Reveal with Kinetic Hover Shift & Scroll Parallax */}
         <motion.div
           style={{ y: titleParallax }}
-          className="overflow-hidden mb-3 sm:mb-4"
+          className="mb-3 sm:mb-4 py-1"
         >
           <motion.div
-            initial={isReduced ? { y: 0, opacity: 1 } : { y: '100%', opacity: 0 }}
+            initial={isReduced ? { y: 0, opacity: 1 } : { y: 16, opacity: 0 }}
             animate={
               isReduced
                 ? { y: 0, opacity: 1 }
                 : isTextInView
                 ? { y: 0, opacity: 1 }
-                : { y: '100%', opacity: 0 }
+                : { y: 16, opacity: 0 }
             }
             transition={{
               duration: 0.75,
@@ -191,7 +191,7 @@ export default function StyleCard({
               ease: [0.16, 1, 0.3, 1],
             }}
           >
-            <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-[#F4F0E8] group-hover:text-[#C7A66A] group-hover:translate-x-2 transition-all duration-300 leading-[0.98]">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-[#F4F0E8] group-hover:text-[#C7A66A] group-hover:translate-x-2 transition-all duration-300 leading-[1.08]">
               {item.title}
             </h3>
           </motion.div>

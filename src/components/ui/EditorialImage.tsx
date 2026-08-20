@@ -3,7 +3,7 @@ import { useState, ImgHTMLAttributes } from 'react';
 interface EditorialImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   src: string;
   alt: string;
-  aspectRatio?: '4/5' | '3/4' | '16/9' | '1/1' | 'auto';
+  aspectRatio?: '4/5' | '3/4' | '16/9' | '3/2' | '4/3' | '1/1' | 'auto';
   priority?: boolean;
   watermarkLabel?: string;
   className?: string;
@@ -27,6 +27,8 @@ export default function EditorialImage({
     '4/5': 'aspect-[4/5]',
     '3/4': 'aspect-[3/4]',
     '16/9': 'aspect-[16/9]',
+    '3/2': 'aspect-[3/2]',
+    '4/3': 'aspect-[4/3]',
     '1/1': 'aspect-square',
     'auto': '',
   }[aspectRatio];
