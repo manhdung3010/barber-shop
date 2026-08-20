@@ -140,7 +140,7 @@ export default function GallerySection() {
           style={{ x: line1X }}
           className="flex flex-col items-start max-w-2xl"
         >
-          <div className="flex items-center gap-3 mb-3 sm:mb-4">
+          <div className="flex items-center gap-3 mb-6 sm:mb-8 md:mb-10">
             <span className="text-xs font-mono font-bold tracking-[0.25em] text-[#C7A66A]">
               01 // KHÔNG GIAN RIÊNG TƯ
             </span>
@@ -161,7 +161,7 @@ export default function GallerySection() {
           style={{ x: line2X }}
           className="flex flex-col items-start sm:items-center max-w-2xl sm:mx-auto text-left sm:text-center"
         >
-          <div className="flex items-center gap-3 mb-3 sm:mb-4 sm:self-center">
+          <div className="flex items-center gap-3 mb-6 sm:mb-8 md:mb-10 sm:self-center">
             <div className="hidden sm:block w-8 sm:w-16 h-[1px] bg-[#C7A66A]/40" />
             <span className="text-xs font-mono font-bold tracking-[0.25em] text-[#C7A66A]">
               02 // TAY NGHỀ ĐIÊU LUYỆN
@@ -183,7 +183,7 @@ export default function GallerySection() {
           style={{ x: line3X }}
           className="flex flex-col items-start sm:items-end max-w-2xl sm:ml-auto text-left sm:text-right"
         >
-          <div className="flex items-center gap-3 mb-3 sm:mb-4 sm:self-end">
+          <div className="flex items-center gap-3 mb-6 sm:mb-8 md:mb-10 sm:self-end">
             <div className="w-8 sm:w-16 h-[1px] bg-[#C7A66A]/40" />
             <span className="text-xs font-mono font-bold tracking-[0.25em] text-[#C7A66A]">
               03 // CHI TIẾT HOÀN HẢO
