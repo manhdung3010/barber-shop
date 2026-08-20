@@ -11,8 +11,8 @@ export default function BookingSection() {
 
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <FadeIn>
-          <p className="eyebrow mb-4">07 / ĐẶT LỊCH HẸN NGAY</p>
-          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-[#F4F0E8] mb-8 leading-[0.95]">
+          <p className="plate-meta mb-4">07 // ĐẶT LỊCH HẸN NGAY</p>
+          <h2 className="display-heading text-[#F4F0E8] mb-8">
             SẴN SÀNG CHO MỘT DIỆN MẠO MỚI?
           </h2>
           <p className="body-editorial max-w-xl mx-auto mb-12">
