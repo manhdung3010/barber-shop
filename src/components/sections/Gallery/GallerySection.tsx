@@ -14,28 +14,28 @@ export default function GallerySection() {
   });
 
   // Extended Smooth Kinetic Typography Parallaxes along X-axis
-  const rawLine1X = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-80, 100]);
-  const rawLine2X = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [100, -80]);
-  const rawLine3X = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-70, 90]);
+  const rawLine1X = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-60, 60]);
+  const rawLine2X = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [60, -60]);
+  const rawLine3X = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-50, 50]);
 
-  // Silky Smooth Physics-based Spring Easing for Scroll Motion
-  const springConfig = { damping: 22, stiffness: 90, mass: 0.6 };
+  // Silky Smooth Physics-based Spring Easing for Scroll Motion without lag or jitter
+  const springConfig = { damping: 32, stiffness: 140, mass: 0.15, restDelta: 0.001 };
   const line1X = useSpring(rawLine1X, springConfig);
   const line2X = useSpring(rawLine2X, springConfig);
   const line3X = useSpring(rawLine3X, springConfig);
 
-  // Floating Objects Parallaxes & Subtle Rotations
-  const obj1Y = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [70, -70]);
-  const obj1Rot = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-4, 6]);
+  // Floating Objects Parallaxes & Subtle Rotations (smooth, subtle)
+  const obj1Y = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [40, -40]);
+  const obj1Rot = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-3, 4]);
 
-  const obj2Y = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [90, -60]);
-  const obj2Rot = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [3, -3]);
+  const obj2Y = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [50, -35]);
+  const obj2Rot = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [2, -2]);
 
-  const obj3Y = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-25, 80]);
-  const obj3Rot = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [6, -5]);
+  const obj3Y = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-15, 45]);
+  const obj3Rot = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [4, -3]);
 
-  const obj4Y = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [60, -90]);
-  const obj4Rot = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-6, 5]);
+  const obj4Y = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [35, -50]);
+  const obj4Rot = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-4, 3]);
 
   return (
     <section
@@ -144,7 +144,7 @@ export default function GallerySection() {
         {/* Chapter 01: KHÔNG GIAN. */}
         <motion.div
           style={{ x: line1X }}
-          className="group flex flex-col items-start max-w-2xl"
+          className="group flex flex-col items-start max-w-2xl transform-gpu will-change-transform"
         >
           <div className="flex items-center gap-3 mb-3 sm:mb-4">
             <span className="text-xs font-mono font-bold tracking-[0.25em] text-[#C7A66A]">
@@ -154,19 +154,15 @@ export default function GallerySection() {
           </div>
 
           <motion.h2
-            animate={
-              isReduced
-                ? undefined
-                : {
-                    x: [0, 20, 0, -14, 0],
-                  }
-            }
+            initial={isReduced ? { opacity: 1 } : { opacity: 0, x: -30 }}
+            whileInView={isReduced ? { opacity: 1 } : { opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{
-              duration: 3.8,
-              repeat: Infinity,
-              ease: [0.45, 0.05, 0.55, 0.95],
+              duration: 0.8,
+              ease: [0.16, 1, 0.3, 1],
             }}
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] transition-colors duration-500 mb-3 sm:mb-4 cursor-default select-none"
+            whileHover={isReduced ? undefined : { x: 10 }}
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] transition-colors duration-300 mb-3 sm:mb-4 cursor-default select-none inline-block"
           >
             KHÔNG GIAN.
           </motion.h2>
@@ -179,7 +175,7 @@ export default function GallerySection() {
         {/* Chapter 02: TAY NGHỀ. (Centered/Offset) */}
         <motion.div
           style={{ x: line2X }}
-          className="group flex flex-col items-start sm:items-center max-w-2xl sm:mx-auto text-left sm:text-center"
+          className="group flex flex-col items-start sm:items-center max-w-2xl sm:mx-auto text-left sm:text-center transform-gpu will-change-transform"
         >
           <div className="flex items-center gap-3 mb-3 sm:mb-4 sm:self-center">
             <div className="hidden sm:block w-8 sm:w-16 h-[1px] bg-[#C7A66A]/40" />
@@ -190,20 +186,16 @@ export default function GallerySection() {
           </div>
 
           <motion.h2
-            animate={
-              isReduced
-                ? undefined
-                : {
-                    x: [0, -18, 0, 16, 0],
-                  }
-            }
+            initial={isReduced ? { opacity: 1 } : { opacity: 0, scale: 0.96 }}
+            whileInView={isReduced ? { opacity: 1 } : { opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{
-              duration: 4.2,
-              repeat: Infinity,
-              ease: [0.45, 0.05, 0.55, 0.95],
-              delay: 0.4,
+              duration: 0.8,
+              ease: [0.16, 1, 0.3, 1],
+              delay: 0.1,
             }}
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] transition-colors duration-500 mb-3 sm:mb-4 cursor-default select-none"
+            whileHover={isReduced ? undefined : { scale: 1.03 }}
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] transition-colors duration-300 mb-3 sm:mb-4 cursor-default select-none inline-block"
           >
             TAY NGHỀ.
           </motion.h2>
@@ -216,7 +208,7 @@ export default function GallerySection() {
         {/* Chapter 03: CHI TIẾT. (Right-aligned) */}
         <motion.div
           style={{ x: line3X }}
-          className="group flex flex-col items-start sm:items-end max-w-2xl sm:ml-auto text-left sm:text-right"
+          className="group flex flex-col items-start sm:items-end max-w-2xl sm:ml-auto text-left sm:text-right transform-gpu will-change-transform"
         >
           <div className="flex items-center gap-3 mb-3 sm:mb-4 sm:self-end">
             <div className="w-8 sm:w-16 h-[1px] bg-[#C7A66A]/40" />
@@ -226,20 +218,16 @@ export default function GallerySection() {
           </div>
 
           <motion.h2
-            animate={
-              isReduced
-                ? undefined
-                : {
-                    x: [0, 16, 0, -18, 0],
-                  }
-            }
+            initial={isReduced ? { opacity: 1 } : { opacity: 0, x: 30 }}
+            whileInView={isReduced ? { opacity: 1 } : { opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{
-              duration: 4.0,
-              repeat: Infinity,
-              ease: [0.45, 0.05, 0.55, 0.95],
-              delay: 0.8,
+              duration: 0.8,
+              ease: [0.16, 1, 0.3, 1],
+              delay: 0.15,
             }}
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] transition-colors duration-500 mb-3 sm:mb-4 cursor-default select-none"
+            whileHover={isReduced ? undefined : { x: -10 }}
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] transition-colors duration-300 mb-3 sm:mb-4 cursor-default select-none inline-block"
           >
             CHI TIẾT.
           </motion.h2>
