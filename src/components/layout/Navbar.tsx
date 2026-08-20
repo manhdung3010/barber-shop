@@ -103,24 +103,29 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Desktop CTA Button */}
-        <div className="hidden md:block">
-          <Button href={barberProfile.booking.primaryUrl} variant="pill" size="sm">
+        {/* Right Action: Desktop Pill CTA + Mobile Quick Trigger */}
+        <div className="flex items-center gap-3 sm:gap-4">
+          <Button
+            href={barberProfile.booking.primaryUrl}
+            variant="pill"
+            size="sm"
+            className="hidden sm:inline-flex"
+          >
             Đặt Lịch Ngay
           </Button>
-        </div>
 
-        {/* Mobile Hamburger Button */}
-        <button
-          ref={menuTriggerRef}
-          onClick={() => setIsMobileMenuOpen(true)}
-          aria-expanded={isMobileMenuOpen}
-          aria-controls="mobile-menu"
-          aria-label="Mở menu điều hướng"
-          className="md:hidden p-2 text-[#F4F0E8] hover:text-[#C7A66A] transition-colors cursor-pointer"
-        >
-          <Menu className="w-6 h-6" />
-        </button>
+          {/* Mobile Hamburger Button */}
+          <button
+            ref={menuTriggerRef}
+            onClick={() => setIsMobileMenuOpen(true)}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
+            aria-label="Mở menu điều hướng"
+            className="md:hidden p-2 text-[#F4F0E8] hover:text-[#C7A66A] transition-colors cursor-pointer"
+          >
+            <Menu className="w-6 h-6" />
+          </button>
+        </div>
       </div>
 
       {/* Mobile Fullscreen Menu Dialog */}

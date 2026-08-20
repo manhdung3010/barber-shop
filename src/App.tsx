@@ -10,6 +10,7 @@ import LocationSection from './components/sections/Location/LocationSection.tsx'
 import BookingSection from './components/sections/Booking/BookingSection.tsx';
 import Footer from './components/layout/Footer.tsx';
 import MarqueeTicker from './components/ui/MarqueeTicker.tsx';
+import PlateProgress from './components/ui/PlateProgress.tsx';
 import { barberProfile } from './data/barber.ts';
 import { generateBarberShopJsonLd } from './utils/seo.ts';
 
@@ -27,8 +28,9 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0B0B0A] text-[#F4F0E8] flex flex-col selection:bg-[#C7A66A] selection:text-[#0B0B0A] overflow-x-clip">
+    <div className="min-h-screen bg-[#0B0B0A] text-[#F4F0E8] flex flex-col selection:bg-[#C7A66A] selection:text-[#0B0B0A] overflow-x-clip relative">
       <Navbar />
+      <PlateProgress />
       <main>
         <HeroSection />
         
