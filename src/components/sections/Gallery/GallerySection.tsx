@@ -13,10 +13,10 @@ export default function GallerySection() {
     offset: ['start end', 'end start'],
   });
 
-  // Subtle Kinetic Typography Parallaxes
-  const line1X = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [24, -24]);
-  const line2X = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-24, 24]);
-  const line3X = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [16, -16]);
+  // Enhanced Smooth Kinetic Typography Parallaxes along X-axis
+  const line1X = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-45, 55]);
+  const line2X = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [55, -45]);
+  const line3X = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-40, 50]);
 
   // Floating Objects Parallaxes & Subtle Rotations
   const obj1Y = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [60, -60]);
@@ -138,7 +138,7 @@ export default function GallerySection() {
         {/* Chapter 01: KHÔNG GIAN. */}
         <motion.div
           style={{ x: line1X }}
-          className="flex flex-col items-start max-w-2xl"
+          className="group flex flex-col items-start max-w-2xl"
         >
           <div className="flex items-center gap-3 mb-6 sm:mb-8 md:mb-10">
             <span className="text-xs font-mono font-bold tracking-[0.25em] text-[#C7A66A]">
@@ -147,7 +147,7 @@ export default function GallerySection() {
             <div className="w-8 sm:w-16 h-[1px] bg-[#C7A66A]/40" />
           </div>
 
-          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] hover:text-[#C7A66A] transition-colors duration-300 mb-4 sm:mb-5">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] group-hover:translate-x-3 transition-all duration-500 mb-4 sm:mb-5">
             KHÔNG GIAN.
           </h2>
 
@@ -159,7 +159,7 @@ export default function GallerySection() {
         {/* Chapter 02: TAY NGHỀ. (Centered/Offset) */}
         <motion.div
           style={{ x: line2X }}
-          className="flex flex-col items-start sm:items-center max-w-2xl sm:mx-auto text-left sm:text-center"
+          className="group flex flex-col items-start sm:items-center max-w-2xl sm:mx-auto text-left sm:text-center"
         >
           <div className="flex items-center gap-3 mb-6 sm:mb-8 md:mb-10 sm:self-center">
             <div className="hidden sm:block w-8 sm:w-16 h-[1px] bg-[#C7A66A]/40" />
@@ -169,7 +169,7 @@ export default function GallerySection() {
             <div className="w-8 sm:w-16 h-[1px] bg-[#C7A66A]/40" />
           </div>
 
-          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] hover:text-[#C7A66A] transition-colors duration-300 mb-4 sm:mb-5">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] group-hover:translate-x-3 transition-all duration-500 mb-4 sm:mb-5">
             TAY NGHỀ.
           </h2>
 
@@ -181,7 +181,7 @@ export default function GallerySection() {
         {/* Chapter 03: CHI TIẾT. (Right-aligned) */}
         <motion.div
           style={{ x: line3X }}
-          className="flex flex-col items-start sm:items-end max-w-2xl sm:ml-auto text-left sm:text-right"
+          className="group flex flex-col items-start sm:items-end max-w-2xl sm:ml-auto text-left sm:text-right"
         >
           <div className="flex items-center gap-3 mb-6 sm:mb-8 md:mb-10 sm:self-end">
             <div className="w-8 sm:w-16 h-[1px] bg-[#C7A66A]/40" />
@@ -190,7 +190,7 @@ export default function GallerySection() {
             </span>
           </div>
 
-          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] hover:text-[#C7A66A] transition-colors duration-300 mb-4 sm:mb-5">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] group-hover:-translate-x-3 transition-all duration-500 mb-4 sm:mb-5">
             CHI TIẾT.
           </h2>
 
