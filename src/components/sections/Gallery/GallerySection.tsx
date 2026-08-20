@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useReducedMotion } from '../../../hooks/useReducedMotion.ts';
 import FadeIn from '../../ui/FadeIn.tsx';
 
@@ -13,22 +13,28 @@ export default function GallerySection() {
     offset: ['start end', 'end start'],
   });
 
-  // Enhanced Smooth Kinetic Typography Parallaxes along X-axis
-  const line1X = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-45, 55]);
-  const line2X = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [55, -45]);
-  const line3X = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-40, 50]);
+  // Extended Smooth Kinetic Typography Parallaxes along X-axis
+  const rawLine1X = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-80, 100]);
+  const rawLine2X = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [100, -80]);
+  const rawLine3X = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-70, 90]);
+
+  // Silky Smooth Physics-based Spring Easing for Scroll Motion
+  const springConfig = { damping: 22, stiffness: 90, mass: 0.6 };
+  const line1X = useSpring(rawLine1X, springConfig);
+  const line2X = useSpring(rawLine2X, springConfig);
+  const line3X = useSpring(rawLine3X, springConfig);
 
   // Floating Objects Parallaxes & Subtle Rotations
-  const obj1Y = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [60, -60]);
+  const obj1Y = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [70, -70]);
   const obj1Rot = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-4, 6]);
 
-  const obj2Y = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [80, -50]);
+  const obj2Y = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [90, -60]);
   const obj2Rot = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [3, -3]);
 
-  const obj3Y = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-20, 70]);
+  const obj3Y = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-25, 80]);
   const obj3Rot = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [6, -5]);
 
-  const obj4Y = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [50, -80]);
+  const obj4Y = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [60, -90]);
   const obj4Rot = useTransform(scrollYProgress, [0, 1], isReduced ? [0, 0] : [-6, 5]);
 
   return (
@@ -152,13 +158,13 @@ export default function GallerySection() {
               isReduced
                 ? undefined
                 : {
-                    x: [0, 14, 0, -8, 0],
+                    x: [0, 20, 0, -14, 0],
                   }
             }
             transition={{
-              duration: 6.5,
+              duration: 3.8,
               repeat: Infinity,
-              ease: 'easeInOut',
+              ease: [0.45, 0.05, 0.55, 0.95],
             }}
             className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] transition-colors duration-500 mb-4 sm:mb-5 cursor-default select-none"
           >
@@ -188,14 +194,14 @@ export default function GallerySection() {
               isReduced
                 ? undefined
                 : {
-                    x: [0, -12, 0, 10, 0],
+                    x: [0, -18, 0, 16, 0],
                   }
             }
             transition={{
-              duration: 7.5,
+              duration: 4.2,
               repeat: Infinity,
-              ease: 'easeInOut',
-              delay: 0.8,
+              ease: [0.45, 0.05, 0.55, 0.95],
+              delay: 0.4,
             }}
             className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] transition-colors duration-500 mb-4 sm:mb-5 cursor-default select-none"
           >
@@ -224,14 +230,14 @@ export default function GallerySection() {
               isReduced
                 ? undefined
                 : {
-                    x: [0, 10, 0, -12, 0],
+                    x: [0, 16, 0, -18, 0],
                   }
             }
             transition={{
-              duration: 7,
+              duration: 4.0,
               repeat: Infinity,
-              ease: 'easeInOut',
-              delay: 1.6,
+              ease: [0.45, 0.05, 0.55, 0.95],
+              delay: 0.8,
             }}
             className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] transition-colors duration-500 mb-4 sm:mb-5 cursor-default select-none"
           >
