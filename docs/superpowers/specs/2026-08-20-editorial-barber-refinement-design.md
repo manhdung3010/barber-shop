@@ -1,6 +1,12 @@
 # Luxury Editorial Barber Web — System Refinement & Architecture Design
 
-> **Core Philosophy / Design Principle #1**: *"Do not add visual complexity to compensate for weak hierarchy. First make the typography, spacing, scale and narrative work without animation. Then use motion only to amplify what already works."*
+> **Core Philosophy / Design Principle #1**: 
+> *"Do not add visual complexity to compensate for weak hierarchy. First make the typography, spacing, scale and narrative work without animation. Then use motion only to amplify what already works."*
+> 
+> **Cardinal Rules**:
+> 1. *Do not solve a hierarchy problem by adding animation.*
+> 2. *Do not solve typography bugs with margin/padding hacks.*
+> 3. *Do not solve UX friction by adding unnecessary interaction.*
 
 ---
 
@@ -39,16 +45,23 @@ Every typography and layout change must be traceable to an identified root cause
 | `Plate / Mono` | Technical Numbers & Timestamps | `JetBrains Mono` (700 Bold) | `clamp(0.6875rem, 0.8vw, 0.8125rem)` | `1.20` to `1.35` | `0.2em` to `0.28em` |
 | `Price / Label` | Service Pricing & Sub-labels | `Be Vietnam Pro` (700/800 Bold) | `clamp(1.125rem, 1.8vw, 1.75rem)` | `1.10` | `normal` / `0.05em` |
 
-### 2.3 Vietnamese Diacritics Safety & Mandatory Test Strings
-Display typography and headlines must be explicitly tested against complex uppercase Vietnamese tone marks (`Đ, Ế, Ắ, Ộ, Ử, Ỗ, Ậ, Ẵ`):
-* `ĐỊNH HÌNH PHONG CÁCH`
-* `KHẲNG ĐỊNH BẢN SẮC`
-* `TẠO KIỂU TRAU CHUỐT`
-* `HƠN CẢ MỘT LẦN CẮT TÓC`
-* `CẮT TÓC THIẾT KẾ & TỈA LAYER`
-* `FADE CHUYÊN SÂU & RÂU`
+### 2.3 Font Loading Stability & Metrics Safety
+* **Webfont Metrics Verification**: Verify critical display fonts load without unexpected layout reflow. Validate typography after webfont loading, not merely fallback rendering.
+* **Layout Shift Prevention on Font Load**: Avoid font swapping that alters headline/container geometry after first paint. Critical typography must preserve stable width and vertical metrics during loading.
+* **Vietnamese Diacritics Mandatory Test Strings**: Display typography and headlines must be explicitly tested against complex uppercase Vietnamese tone marks (`Đ, Ế, Ắ, Ộ, Ử, Ỗ, Ậ, Ẵ`):
+  * `ĐỊNH HÌNH PHONG CÁCH`
+  * `KHẲNG ĐỊNH BẢN SẮC`
+  * `TẠO KIỂU TRAU CHUỐT`
+  * `HƠN CẢ MỘT LẦN CẮT TÓC`
+  * `CẮT TÓC THIẾT KẾ & TỈA LAYER`
+  * `FADE CHUYÊN SÂU & RÂU`
 
-### 2.4 Animation Clipping Protection
+### 2.4 Forced Line Break Rule
+* **Do not introduce `<br>` solely to fix responsive wrapping.**
+* Explicit line breaks are permitted ONLY when they represent intentional editorial art direction.
+* All explicit line breaks must remain visually sound across the entire supported viewport range without causing awkward premature fragmentation on intermediate screen widths.
+
+### 2.5 Animation Clipping Protection
 **Do not use `overflow: hidden` on the typography element itself for reveal animations.**
 Use a dedicated parent wrapper whose vertical bounds are intentionally larger than the rendered glyph box:
 ```text
@@ -76,7 +89,7 @@ wrapper (clipping bounds with top/bottom glyph clearance)
 02 — ATELIER SERVICE MENU
 │   ├── Luxury Dark Atelier Rows (#0B0B0A + Hairline Dividers)
 │   ├── Plate Number · Service Name · Specs/Duration · Gold Price
-│   ├── Anchored Stable Image Preview (Zero-reflow, no cursor attachment)
+│   ├── Anchored Stable Image Preview (Zero-reflow, overlay positioned, reserved bounds)
 │   ├── Mobile Inline Expansion (No gated interaction)
 │   └── Single Primary Booking CTA at Menu Bottom (One CTA = One Decision)
 │
@@ -116,7 +129,11 @@ wrapper (clipping bounds with top/bottom glyph clearance)
 
 ### 4.2 Interaction Rules
 * **Interaction Enhances, Never Gates**: All essential information (prices, descriptions, hours, contact) is readable without requiring hover or tap.
-* **Zero Reflow**: Hovering service rows activates an anchored overlay container within the menu geometry without shifting or jumping surrounding layout elements.
+* **Preview Geometry & Zero Reflow**:
+  * Preview activation must preserve the original service-row geometry.
+  * Preview must use overlay/layered positioning rather than increasing row height.
+  * Hover state must not trigger layout reflow.
+  * Image loading must reserve its visual bounds before rendering.
 
 ---
 
@@ -126,7 +143,7 @@ wrapper (clipping bounds with top/bottom glyph clearance)
 * **Scroll Drivers**: Use `IntersectionObserver` or performant scroll progress bindings rather than unthrottled continuous window listeners.
 * **Asset Loading**: All service preview images and below-the-fold media must be lazy-loaded.
 * **Reduced Motion**: Full support for `prefers-reduced-motion: reduce` (instantly renders final states, disables continuous tickers and parallax).
-* **Layout Shift Budget**: Cumulative Layout Shift (CLS) = 0.
+* **Layout Shift Budget**: No intentional layout shift caused by fonts, images, hover previews, animations, or responsive state changes. Target CLS = 0 for the implemented page interactions.
 
 ---
 
@@ -134,7 +151,7 @@ wrapper (clipping bounds with top/bottom glyph clearance)
 
 ```mermaid
 graph TD
-    P0[Phase 0: Existing UI Audit & Root-Cause Analysis] --> P1[Phase 1: Typography System & Vietnamese Glyph Safety]
+    P0[Phase 0: Existing UI Audit & Root-Cause Analysis] --> P1[Phase 1: Typography System, Glyph Safety & Font Stability]
     P1 --> P2[Phase 2: Layout Containers & Spacing Scale]
     P2 --> P3[Phase 3: Information Hierarchy & Token Audit]
     P3 --> P4[Phase 4: Atelier Service Menu & Stable Zero-Reflow Preview]
@@ -146,10 +163,10 @@ graph TD
 ```
 
 * **Phase 0 — Existing UI Audit**: Inspect all existing components, font loading, Tailwind theme tokens, line-height declarations, and log exact root causes of collisions.
-* **Phase 1 — Typography**: Establish 5-level token scale, implement safe line-height formulas, and verify Vietnamese glyph collision clearance.
-* **Phase 2 — Containers & Spacing**: Standardize page containers (`max-width: 1400px`), eliminate arbitrary margins, configure haircut card viewport scale.
+* **Phase 1 — Typography**: Establish 5-level token scale, implement safe line-height formulas, verify font loading stability, enforce forced line break rules, and verify Vietnamese glyph collision clearance.
+* **Phase 2 — Containers & Spacing**: Standardize page containers (`max-width: 1400px`), eliminate arbitrary margins, configure haircut card viewport scale with max-height/contain protection.
 * **Phase 3 — Information Hierarchy**: Rebalance text opacities, weights, and Plate semantics (`JetBrains Mono` strictly for technical metadata).
-* **Phase 4 — Atelier Menu**: Build dark luxury service rows with stable anchored preview, mobile inline expansion, and single footer CTA.
+* **Phase 4 — Atelier Menu**: Build dark luxury service rows with zero-reflow anchored preview (overlay geometry), mobile inline expansion, and single footer CTA.
 * **Phase 5 — Haircut Archive**: Refine continuous scroll discovery, implement 4-phase sequential reveal with dedicated overflow-safe animation wrappers.
 * **Phase 6 — Craft & Experience**: Polish 3-chapter craftsmanship narrative (`01 SPACE`, `02 CRAFT`, `03 DETAIL`) and visual silence breathing moments.
 * **Phase 7 — Navigation**: Implement desktop rail and mobile compact plate progress indicator.
@@ -161,7 +178,7 @@ graph TD
 ## 7. Acceptance Criteria & Validation Gates
 
 1. **A. Zero Typography Collision**: No ascender/descender collision, no glyph clipping across any viewport on all test strings (`ĐỊNH HÌNH PHONG CÁCH`, `KHẲNG ĐỊNH BẢN SẮC`, `CẮT TÓC THIẾT KẾ`, `FADE CHUYÊN SÂU`).
-2. **B. No Layout Shift (CLS = 0)**: Hovering service rows, scrolling, and revealing cards must not shift surrounding layout.
+2. **B. No Layout Shift**: Hovering service rows, scrolling, font loading, and revealing cards must not shift surrounding layout.
 3. **C. No Interaction Dependency**: Essential service descriptions, prices, and specs remain 100% accessible without hover or tap.
 4. **D. Reduced Motion Compliance**: All animations gracefully fall back to clean static states when `prefers-reduced-motion` is enabled.
 5. **E. Responsive Validation Gate**: Visually verified and collision-free at:
