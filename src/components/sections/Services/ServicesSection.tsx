@@ -1,29 +1,23 @@
-import { useState } from 'react';
+import { useRef } from 'react';
+import { useScroll } from 'framer-motion';
 import { servicesData } from '../../../data/services.ts';
-import { barberProfile } from '../../../data/barber.ts';
-import AtelierServiceRow from './AtelierServiceRow.tsx';
-import AtelierPreview from './AtelierPreview.tsx';
-import Button from '../../ui/Button.tsx';
-import Magnet from '../../ui/Magnet.tsx';
+import ServiceCard from './ServiceCard.tsx';
 import FadeIn from '../../ui/FadeIn.tsx';
 
 export default function ServicesSection() {
-  const [activePreview, setActivePreview] = useState<{
-    image: string | null;
-    title: string | null;
-  }>({
-    image: null,
-    title: null,
-  });
+  const containerRef = useRef<HTMLElement>(null);
 
-  const handleHover = (image: string | null, title: string | null) => {
-    setActivePreview({ image, title });
-  };
+  // Measure scroll progress across the whole services stacking container
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end end'],
+  });
 
   return (
     <section
       id="services"
-      className="relative py-24 sm:py-32 md:py-40 px-5 sm:px-8 md:px-12 bg-[#0B0B0A]"
+      ref={containerRef}
+      className="relative py-24 sm:py-32 md:py-40 px-4 sm:px-8 md:px-12 bg-[#0B0B0A]"
     >
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}
@@ -37,41 +31,28 @@ export default function ServicesSection() {
           </p>
         </FadeIn>
 
-        {/* Atelier Service Menu Container with Zero-Reflow Anchored Preview */}
-        <div className="relative border-t border-[rgba(244,240,232,0.12)]">
-          <AtelierPreview
-            activeImage={activePreview.image}
-            activeTitle={activePreview.title}
-          />
+        {/* Sticky Stacking Cards Container */}
+        <div className="flex flex-col w-full relative">
+          {servicesData.map((service, index) => {
+            const targetScale = 1 - (servicesData.length - index) * 0.035;
+            const range: [number, number] = [
+              index * (1 / servicesData.length),
+              1,
+            ];
 
-          <div className="flex flex-col w-full">
-            {servicesData.map((service, index) => (
-              <AtelierServiceRow
+            return (
+              <ServiceCard
                 key={service.id}
                 service={service}
                 index={index}
-                onHover={handleHover}
+                total={servicesData.length}
+                progress={scrollYProgress}
+                range={range}
+                targetScale={targetScale}
               />
-            ))}
-          </div>
+            );
+          })}
         </div>
-
-        {/* Single Decisive Booking CTA at Menu Bottom (One CTA = One Decision) */}
-        <FadeIn delay={0.2} className="mt-14 sm:mt-18 flex flex-col items-center justify-center text-center">
-          <Magnet strength={14}>
-            <Button
-              href={barberProfile.booking.primaryUrl}
-              variant="primary"
-              size="lg"
-              className="px-10 sm:px-14 py-4 sm:py-5 text-sm sm:text-base font-bold shadow-xl shadow-[#C7A66A]/20"
-            >
-              {barberProfile.booking.primaryLabel}
-            </Button>
-          </Magnet>
-          <p className="text-[11px] font-mono uppercase tracking-widest text-[#A7A39B] mt-4">
-            KHÔNG GIAN RIÊNG TƯ · PHỤC VỤ 1-ON-1 · HẸN TRƯỚC
-          </p>
-        </FadeIn>
       </div>
     </section>
   );
