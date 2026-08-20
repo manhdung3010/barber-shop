@@ -79,40 +79,54 @@ export default function Navbar() {
           : 'bg-[#0B0B0A]/30 backdrop-blur-sm py-6 sm:py-8'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 lg:px-12 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-12 flex items-center justify-between gap-3 sm:gap-6">
         {/* Brand Logo */}
         <a
           href="#"
           onClick={(e) => handleNavClick(e, '#')}
-          className="text-lg sm:text-xl md:text-2xl font-extrabold uppercase tracking-wider text-[#F4F0E8] hover:text-[#C7A66A] transition-colors"
+          className="text-sm sm:text-lg md:text-xl font-extrabold uppercase tracking-wider text-[#F4F0E8] hover:text-[#C7A66A] transition-colors whitespace-nowrap shrink-0"
         >
           {barberProfile.shopName}
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8 lg:gap-10" aria-label="Menu chính">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8 2xl:gap-10 shrink-0" aria-label="Menu chính">
           {navigationData.map((item) => (
             <a
               key={item.href}
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
-              className="text-xs lg:text-sm font-semibold uppercase tracking-[0.18em] text-[#F4F0E8] hover:text-[#C7A66A] transition-colors cursor-pointer"
+              className="text-xs font-semibold uppercase tracking-[0.15em] text-[#F4F0E8] hover:text-[#C7A66A] transition-colors cursor-pointer whitespace-nowrap"
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        {/* Right Action: Desktop Pill CTA + Mobile Quick Trigger */}
-        <div className="flex items-center gap-3 sm:gap-4">
-          <Button
-            href={barberProfile.booking.primaryUrl}
-            variant="pill"
-            size="sm"
-            className="hidden sm:inline-flex"
-          >
-            Đặt Lịch Ngay
-          </Button>
+        {/* Right Action: Compact Button on Mobile & Full Pill on Desktop */}
+        <div className="flex items-center gap-2 sm:gap-3.5 shrink-0">
+          {/* Mobile Small Compact Pill Button */}
+          <div className="sm:hidden">
+            <Button
+              href={barberProfile.booking.primaryUrl}
+              variant="pill"
+              className="px-3 py-1 text-[10px] tracking-wider font-bold whitespace-nowrap"
+            >
+              Đặt Lịch
+            </Button>
+          </div>
+
+          {/* Desktop Full Button */}
+          <div className="hidden sm:block">
+            <Button
+              href={barberProfile.booking.primaryUrl}
+              variant="pill"
+              size="sm"
+              className="px-5 py-2 text-xs tracking-wider whitespace-nowrap"
+            >
+              Đặt Lịch Ngay
+            </Button>
+          </div>
 
           {/* Mobile Hamburger Button */}
           <button
@@ -121,9 +135,9 @@ export default function Navbar() {
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"
             aria-label="Mở menu điều hướng"
-            className="md:hidden p-2 text-[#F4F0E8] hover:text-[#C7A66A] transition-colors cursor-pointer"
+            className="lg:hidden p-1.5 text-[#F4F0E8] hover:text-[#C7A66A] transition-colors cursor-pointer shrink-0"
           >
-            <Menu className="w-6 h-6" />
+            <Menu className="w-5 h-5" />
           </button>
         </div>
       </div>

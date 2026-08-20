@@ -43,7 +43,7 @@ export default function Button({
       'bg-[#1C1C1A] text-[#F4F0E8] border border-[rgba(244,240,232,0.15)] hover:bg-[#252522] active:scale-[0.98]',
   }[variant];
 
-  const combinedClass = `inline-flex items-center justify-center uppercase font-medium rounded-full transition-all duration-200 cursor-pointer select-none text-center ${sizeClasses} ${variantClasses} ${className}`;
+  const combinedClass = `inline-flex items-center justify-center uppercase font-medium rounded-full transition-all duration-200 cursor-pointer select-none text-center whitespace-nowrap ${sizeClasses} ${variantClasses} ${className}`;
 
   if ('href' in props && props.href) {
     return (
