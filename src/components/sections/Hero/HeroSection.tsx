@@ -18,33 +18,33 @@ export default function HeroSection() {
         aria-hidden="true"
       />
 
-      {/* Top Header Eyebrow */}
-      <div className="max-w-7xl mx-auto w-full relative z-10">
-        <FadeIn delay={0.1}>
-          <p className="plate-meta text-center md:text-left mb-4 sm:mb-6">
-            00 // {barberProfile.shopName.toUpperCase()} · TIỆM BARBER CÁ NHÂN CAO CẤP
-          </p>
-        </FadeIn>
+      {/* Unified Hero Grid Composition: All Narrative & Image in Same Cohesive Section */}
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center my-auto py-6 sm:py-10 relative z-10">
+        {/* Left Column: Eyebrow + Headline + Subtitle + Action CTAs Grouped Seamlessly */}
+        <div className="lg:col-span-7 flex flex-col items-start text-left">
+          {/* Eyebrow Plate */}
+          <FadeIn delay={0.1}>
+            <p className="plate-meta mb-3 sm:mb-4">
+              00 // {barberProfile.shopName.toUpperCase()} · TIỆM BARBER CÁ NHÂN CAO CẤP
+            </p>
+          </FadeIn>
 
-        {/* Hero Dominant Headline */}
-        <FadeIn delay={0.2} y={35}>
-          <h1 className="hero-heading text-center md:text-left">
-            {barberProfile.heroHeadline}
-          </h1>
-        </FadeIn>
-      </div>
+          {/* Hero Dominant Headline */}
+          <FadeIn delay={0.2} y={20}>
+            <h1 className="hero-heading text-left mb-4 sm:mb-6">
+              {barberProfile.heroHeadline}
+            </h1>
+          </FadeIn>
 
-      {/* Middle Composition: Image & Supporting Copy & Dual CTA */}
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center my-8 md:my-12 relative z-10">
-        {/* Supporting Copy & CTAs */}
-        <div className="md:col-span-6 flex flex-col items-center md:items-start text-center md:text-left order-2 md:order-1">
-          <FadeIn delay={0.35}>
-            <p className="body-editorial max-w-lg mb-8">
+          {/* Supporting Copy directly below headline */}
+          <FadeIn delay={0.3}>
+            <p className="body-editorial max-w-xl text-left mb-8 sm:mb-10">
               {barberProfile.heroSupportingText}
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.45} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+          {/* Action CTAs directly below copy */}
+          <FadeIn delay={0.4} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <Magnet strength={10}>
               <Button
                 href={barberProfile.booking.primaryUrl}
@@ -66,10 +66,10 @@ export default function HeroSection() {
           </FadeIn>
         </div>
 
-        {/* Hero High-Priority Image with Subtle Halo */}
-        <div className="md:col-span-6 flex justify-center md:justify-end order-1 md:order-2 relative">
+        {/* Right Column: Master Barber Hero Artwork */}
+        <div className="lg:col-span-5 flex justify-center lg:justify-end relative">
           <div className="absolute -inset-4 bg-gradient-to-r from-[#C7A66A]/10 to-transparent rounded-[36px] blur-2xl -z-10 pointer-events-none" />
-          <ImageReveal delay={0.3} className="w-[280px] sm:w-[340px] md:w-[400px] lg:w-[460px] rounded-[24px] sm:rounded-[32px] shadow-2xl border border-[rgba(244,240,232,0.12)]">
+          <ImageReveal delay={0.35} className="w-full max-w-[320px] sm:max-w-[380px] lg:max-w-[420px] rounded-[24px] sm:rounded-[32px] shadow-2xl border border-[rgba(244,240,232,0.12)]">
             <EditorialImage
               src={barberProfile.heroImage.src}
               alt={barberProfile.heroImage.alt}
@@ -84,13 +84,13 @@ export default function HeroSection() {
 
       {/* Hero Bottom Metadata Row */}
       <div className="max-w-7xl mx-auto w-full pt-6 border-t border-[rgba(244,240,232,0.12)] flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] text-[#A7A39B] relative z-10">
-        <FadeIn delay={0.55}>
+        <FadeIn delay={0.5}>
           <span>{barberProfile.city}, {barberProfile.country}</span>
         </FadeIn>
-        <FadeIn delay={0.6}>
+        <FadeIn delay={0.55}>
           <span className="text-[#C7A66A]">{hoursSummary}</span>
         </FadeIn>
-        <FadeIn delay={0.65}>
+        <FadeIn delay={0.6}>
           <span>EST. {barberProfile.establishedYear}</span>
         </FadeIn>
       </div>
