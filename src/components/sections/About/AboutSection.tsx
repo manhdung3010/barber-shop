@@ -19,11 +19,23 @@ export default function AboutSection() {
   return (
     <section id="about" className="py-24 sm:py-32 md:py-40 px-5 sm:px-8 md:px-10 lg:px-12 bg-[#0B0B0A]">
       <div className="max-w-7xl mx-auto">
-        <FadeIn>
-          <p className="eyebrow mb-3">03 / MASTER BARBER</p>
-          <h2 className="display-heading mb-12 sm:mb-16">
-            {barberProfile.bioHeadline}
+        {/* 03: The Experience / Visual Silence Breathing Moment */}
+        <FadeIn className="text-center py-16 sm:py-24 md:py-32 mb-16 sm:mb-24 border-b border-[rgba(244,240,232,0.12)]">
+          <p className="plate-meta mb-4">03 // TRẢI NGHIỆM ĐẶC QUYỀN</p>
+          <h2 className="display-heading max-w-4xl mx-auto mb-6 text-[#F4F0E8]">
+            HƠN CẢ MỘT LẦN CẮT TÓC.
           </h2>
+          <p className="body-editorial max-w-lg mx-auto">
+            Không chỉ là một mái tóc chuẩn form. Đó là cách bạn bước ra khỏi ghế cắt với sự tự tin và diện mạo lịch lãm nhất.
+          </p>
+        </FadeIn>
+
+        {/* Master Barber Story Header */}
+        <FadeIn>
+          <p className="plate-meta mb-3">03.1 // MASTER BARBER</p>
+          <h3 className="display-heading mb-12 sm:mb-16">
+            {barberProfile.bioHeadline}
+          </h3>
         </FadeIn>
 
         {/* Top Story & Barber Portrait with 3D Tilt */}

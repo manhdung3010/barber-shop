@@ -53,12 +53,12 @@ export default function GallerySection() {
       <div className="max-w-7xl mx-auto w-full relative z-20">
         <FadeIn className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[rgba(244,240,232,0.12)] pb-6 gap-3">
           <div className="flex items-center gap-3">
-            <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-[0.25em] text-[#C7A66A]">
-              04 / TUYÊN NGÔN NGHỆ THUẬT
+            <span className="plate-meta">
+              04 // CRAFT / SPACE · TAY NGHỀ & KHÔNG GIAN
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-[#C7A66A]/60" />
             <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-[#A7A39B]">
-              QUY CHUẨN KIẾN TRÚC
+              BẰNG CHỨNG THỦ CÔNG
             </span>
           </div>
 
