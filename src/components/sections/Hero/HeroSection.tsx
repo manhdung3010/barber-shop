@@ -21,25 +21,25 @@ export default function HeroSection() {
       {/* Top Header Eyebrow */}
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <FadeIn delay={0.1}>
-          <p className="eyebrow text-center md:text-left mb-4 sm:mb-6">
-            {barberProfile.shopName} / TIỆM BARBER CÁ NHÂN CAO CẤP
+          <p className="plate-meta text-center md:text-left mb-4 sm:mb-6">
+            00 // {barberProfile.shopName.toUpperCase()} · TIỆM BARBER CÁ NHÂN CAO CẤP
           </p>
         </FadeIn>
 
         {/* Hero Dominant Headline */}
         <FadeIn delay={0.2} y={35}>
-          <h1 className="hero-heading text-[12vw] sm:text-[10vw] md:text-[8.5vw] lg:text-[7.2vw] text-center md:text-left">
+          <h1 className="hero-heading text-center md:text-left">
             {barberProfile.heroHeadline}
           </h1>
         </FadeIn>
       </div>
 
       {/* Middle Composition: Image & Supporting Copy & Dual CTA */}
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center my-6 md:my-10 relative z-10">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center my-8 md:my-12 relative z-10">
         {/* Supporting Copy & CTAs */}
         <div className="md:col-span-6 flex flex-col items-center md:items-start text-center md:text-left order-2 md:order-1">
           <FadeIn delay={0.35}>
-            <p className="body-editorial max-w-md mb-8">
+            <p className="body-editorial max-w-lg mb-8">
               {barberProfile.heroSupportingText}
             </p>
           </FadeIn>
@@ -50,7 +50,7 @@ export default function HeroSection() {
                 href={barberProfile.booking.primaryUrl}
                 variant="primary"
                 size="md"
-                className="w-full sm:w-auto shadow-xl shadow-[#C7A66A]/15"
+                className="w-full sm:w-auto shadow-xl shadow-[#C7A66A]/15 font-bold"
               >
                 {barberProfile.booking.primaryLabel}
               </Button>
@@ -61,7 +61,7 @@ export default function HeroSection() {
               size="md"
               className="w-full sm:w-auto"
             >
-              Xem Kiểu Tóc
+              Xem Kiểu Tóc ↓
             </Button>
           </FadeIn>
         </div>
@@ -83,15 +83,15 @@ export default function HeroSection() {
       </div>
 
       {/* Hero Bottom Metadata Row */}
-      <div className="max-w-7xl mx-auto w-full pt-6 border-t border-[rgba(244,240,232,0.12)] flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] sm:text-xs uppercase tracking-widest text-[#A7A39B] relative z-10">
+      <div className="max-w-7xl mx-auto w-full pt-6 border-t border-[rgba(244,240,232,0.12)] flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] text-[#A7A39B] relative z-10">
         <FadeIn delay={0.55}>
           <span>{barberProfile.city}, {barberProfile.country}</span>
         </FadeIn>
         <FadeIn delay={0.6}>
-          <span>{hoursSummary}</span>
+          <span className="text-[#C7A66A]">{hoursSummary}</span>
         </FadeIn>
         <FadeIn delay={0.65}>
-          <span>THÀNH LẬP NĂM {barberProfile.establishedYear}</span>
+          <span>EST. {barberProfile.establishedYear}</span>
         </FadeIn>
       </div>
     </section>
