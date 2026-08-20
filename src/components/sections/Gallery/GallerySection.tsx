@@ -134,7 +134,7 @@ export default function GallerySection() {
       {/* ============================================================ */}
       {/* STRUCTURED 3-CHAPTER EDITORIAL TYPOGRAPHY WITH SAFE BOUNDS   */}
       {/* ============================================================ */}
-      <div className="max-w-6xl mx-auto w-full relative z-20 flex flex-col gap-20 sm:gap-28 md:gap-36 my-auto py-8 sm:py-12">
+      <div className="max-w-6xl mx-auto w-full relative z-20 flex flex-col gap-24 sm:gap-32 md:gap-44 my-auto py-10 sm:py-16">
         {/* Chapter 01: KHÔNG GIAN. */}
         <motion.div
           style={{ x: line1X }}
@@ -147,11 +147,11 @@ export default function GallerySection() {
             <div className="w-8 sm:w-16 h-[1px] bg-[#C7A66A]/40" />
           </div>
 
-          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.08] hover:text-[#C7A66A] transition-colors duration-300 mb-3">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] hover:text-[#C7A66A] transition-colors duration-300 mb-4 sm:mb-5">
             KHÔNG GIAN.
           </h2>
 
-          <p className="text-sm sm:text-base font-light text-[#A7A39B] leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg font-light text-[#A7A39B] leading-relaxed">
             Studio cá nhân 1-on-1 với ghế cắt thủy lực Takara, âm học tĩnh lặng và hệ thống ánh sáng chuyên dụng tôn vinh từng chi tiết tóc.
           </p>
         </motion.div>
@@ -169,11 +169,11 @@ export default function GallerySection() {
             <div className="w-8 sm:w-16 h-[1px] bg-[#C7A66A]/40" />
           </div>
 
-          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.08] hover:text-[#C7A66A] transition-colors duration-300 mb-3">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] hover:text-[#C7A66A] transition-colors duration-300 mb-4 sm:mb-5">
             TAY NGHỀ.
           </h2>
 
-          <p className="text-sm sm:text-base font-light text-[#A7A39B] leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg font-light text-[#A7A39B] leading-relaxed">
             Kéo thép Hitachi Cobalt Nhật Bản và tông đơ từ tính đi chuẩn xác theo hướng mọc tự nhiên của sợi tóc, giữ phom bền bỉ sau nhiều tuần.
           </p>
         </motion.div>
@@ -190,11 +190,11 @@ export default function GallerySection() {
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.08] hover:text-[#C7A66A] transition-colors duration-300 mb-3">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] hover:text-[#C7A66A] transition-colors duration-300 mb-4 sm:mb-5">
             CHI TIẾT.
           </h2>
 
-          <p className="text-sm sm:text-base font-light text-[#A7A39B] leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg font-light text-[#A7A39B] leading-relaxed">
             Nghi thức khăn nóng thảo mộc, đường dao cạo mài vát bén ngọt và các sản phẩm dưỡng chuyên biệt hoàn thiện diện mạo phong độ đỉnh cao.
           </p>
         </motion.div>
