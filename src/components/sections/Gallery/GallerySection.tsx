@@ -41,7 +41,7 @@ export default function GallerySection() {
     <section
       id="gallery"
       ref={sectionRef}
-      className="relative py-28 sm:py-36 md:py-44 px-5 sm:px-8 md:px-12 bg-[#0B0B0A] text-[#F4F0E8] overflow-hidden select-none flex flex-col justify-between"
+      className="relative py-14 sm:py-18 md:py-24 px-4 sm:px-6 md:px-8 bg-[#0B0B0A] text-[#F4F0E8] overflow-hidden select-none flex flex-col justify-between"
     >
       {/* Background Architectural Grid Lines & Crosshairs */}
       <div className="absolute inset-0 pointer-events-none opacity-15" aria-hidden="true">
@@ -53,8 +53,8 @@ export default function GallerySection() {
       </div>
 
       {/* Top Header Eyebrow & Technical Coordinates */}
-      <div className="max-w-7xl mx-auto w-full relative z-20 mb-16 sm:mb-24">
-        <FadeIn className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[rgba(244,240,232,0.12)] pb-6 gap-3">
+      <div className="max-w-7xl mx-auto w-full relative z-20 mb-8 sm:mb-12">
+        <FadeIn className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[rgba(244,240,232,0.12)] pb-4 sm:pb-5 gap-3">
           <div className="flex items-center gap-3">
             <span className="plate-meta">
               04 // CRAFT / SPACE · TAY NGHỀ & KHÔNG GIAN
@@ -140,13 +140,13 @@ export default function GallerySection() {
       {/* ============================================================ */}
       {/* STRUCTURED 3-CHAPTER EDITORIAL TYPOGRAPHY WITH SAFE BOUNDS   */}
       {/* ============================================================ */}
-      <div className="max-w-6xl mx-auto w-full relative z-20 flex flex-col gap-24 sm:gap-32 md:gap-44 my-auto py-10 sm:py-16">
+      <div className="max-w-6xl mx-auto w-full relative z-20 flex flex-col gap-12 sm:gap-16 md:gap-20 my-auto py-6 sm:py-8">
         {/* Chapter 01: KHÔNG GIAN. */}
         <motion.div
           style={{ x: line1X }}
           className="group flex flex-col items-start max-w-2xl"
         >
-          <div className="flex items-center gap-3 mb-6 sm:mb-8 md:mb-10">
+          <div className="flex items-center gap-3 mb-3 sm:mb-4">
             <span className="text-xs font-mono font-bold tracking-[0.25em] text-[#C7A66A]">
               01 // KHÔNG GIAN RIÊNG TƯ
             </span>
@@ -166,7 +166,7 @@ export default function GallerySection() {
               repeat: Infinity,
               ease: [0.45, 0.05, 0.55, 0.95],
             }}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] transition-colors duration-500 mb-4 sm:mb-5 cursor-default select-none"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] transition-colors duration-500 mb-3 sm:mb-4 cursor-default select-none"
           >
             KHÔNG GIAN.
           </motion.h2>
@@ -181,7 +181,7 @@ export default function GallerySection() {
           style={{ x: line2X }}
           className="group flex flex-col items-start sm:items-center max-w-2xl sm:mx-auto text-left sm:text-center"
         >
-          <div className="flex items-center gap-3 mb-6 sm:mb-8 md:mb-10 sm:self-center">
+          <div className="flex items-center gap-3 mb-3 sm:mb-4 sm:self-center">
             <div className="hidden sm:block w-8 sm:w-16 h-[1px] bg-[#C7A66A]/40" />
             <span className="text-xs font-mono font-bold tracking-[0.25em] text-[#C7A66A]">
               02 // TAY NGHỀ ĐIÊU LUYỆN
@@ -203,7 +203,7 @@ export default function GallerySection() {
               ease: [0.45, 0.05, 0.55, 0.95],
               delay: 0.4,
             }}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] transition-colors duration-500 mb-4 sm:mb-5 cursor-default select-none"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] transition-colors duration-500 mb-3 sm:mb-4 cursor-default select-none"
           >
             TAY NGHỀ.
           </motion.h2>
@@ -218,7 +218,7 @@ export default function GallerySection() {
           style={{ x: line3X }}
           className="group flex flex-col items-start sm:items-end max-w-2xl sm:ml-auto text-left sm:text-right"
         >
-          <div className="flex items-center gap-3 mb-6 sm:mb-8 md:mb-10 sm:self-end">
+          <div className="flex items-center gap-3 mb-3 sm:mb-4 sm:self-end">
             <div className="w-8 sm:w-16 h-[1px] bg-[#C7A66A]/40" />
             <span className="text-xs font-mono font-bold tracking-[0.25em] text-[#C7A66A]">
               03 // CHI TIẾT HOÀN HẢO
@@ -239,7 +239,7 @@ export default function GallerySection() {
               ease: [0.45, 0.05, 0.55, 0.95],
               delay: 0.8,
             }}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] transition-colors duration-500 mb-4 sm:mb-5 cursor-default select-none"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] transition-colors duration-500 mb-3 sm:mb-4 cursor-default select-none"
           >
             CHI TIẾT.
           </motion.h2>
@@ -251,7 +251,7 @@ export default function GallerySection() {
       </div>
 
       {/* Bottom Technical Measurement Annotation Line */}
-      <div className="max-w-7xl mx-auto w-full pt-8 mt-12 sm:mt-16 border-t border-[rgba(244,240,232,0.12)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-[10px] font-mono uppercase tracking-[0.25em] text-[#A7A39B] relative z-20">
+      <div className="max-w-7xl mx-auto w-full pt-6 mt-8 sm:mt-10 border-t border-[rgba(244,240,232,0.12)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[10px] font-mono uppercase tracking-[0.25em] text-[#A7A39B] relative z-20">
         <div className="flex items-center gap-3">
           <span className="w-2 h-2 rounded-full bg-[#C7A66A]" />
           <span>QUY CHUẨN // QUY TRÌNH CHĂM SÓC DIỆN MẠO ĐẶC QUYỀN</span>

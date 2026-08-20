@@ -28,7 +28,7 @@ export default function MarqueeTicker({
 
   if (isReduced) {
     return (
-      <div className={`overflow-x-auto py-6 border-y border-[rgba(244,240,232,0.12)] bg-[#0E0E0D] ${className}`}>
+      <div className={`overflow-x-auto py-3.5 sm:py-4 border-y border-[rgba(244,240,232,0.12)] bg-[#0E0E0D] ${className}`}>
         <div className="flex items-center gap-8 px-6 whitespace-nowrap">
           {items.map((item, idx) => (
             <span key={idx} className="text-xs sm:text-sm font-extrabold uppercase tracking-[0.25em] text-[#C7A66A]">
@@ -44,7 +44,7 @@ export default function MarqueeTicker({
 
   return (
     <div
-      className={`relative overflow-hidden py-5 sm:py-7 border-y border-[rgba(244,240,232,0.12)] bg-[#0B0B0A] select-none ${className}`}
+      className={`relative overflow-hidden py-3.5 sm:py-4.5 border-y border-[rgba(244,240,232,0.12)] bg-[#0B0B0A] select-none ${className}`}
       aria-hidden="true"
     >
       {/* Edge gradient masks */}

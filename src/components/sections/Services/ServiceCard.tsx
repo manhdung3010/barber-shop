@@ -36,7 +36,7 @@ export default function ServiceCard({
   return (
     <div
       ref={containerRef}
-      className="sticky top-0 w-full flex items-center justify-center mb-12 sm:mb-16 last:mb-0"
+      className="sticky top-0 w-full flex items-center justify-center mb-8 sm:mb-10 last:mb-0"
       style={{
         top: topOffset,
       }}
@@ -46,10 +46,10 @@ export default function ServiceCard({
           scale: isReduced ? 1 : scale,
           transformOrigin: 'top center',
         }}
-        className="w-full min-h-[58vh] sm:min-h-[62vh] md:min-h-[66vh] rounded-[28px] sm:rounded-[36px] md:rounded-[44px] bg-[#141413] text-[#F4F0E8] border border-[rgba(244,240,232,0.14)] shadow-[0_-15px_50px_rgba(0,0,0,0.7)] p-6 sm:p-10 md:p-12 lg:p-14 flex flex-col justify-between relative overflow-hidden group hover:border-[#C7A66A]/40 transition-colors duration-500"
+        className="w-full min-h-0 sm:min-h-[48vh] md:min-h-[52vh] rounded-[24px] sm:rounded-[32px] md:rounded-[40px] bg-[#141413] text-[#F4F0E8] border border-[rgba(244,240,232,0.14)] shadow-[0_-15px_50px_rgba(0,0,0,0.7)] p-5 sm:p-7 md:p-9 lg:p-10 flex flex-col justify-between relative overflow-hidden group hover:border-[#C7A66A]/40 transition-colors duration-500"
       >
         {/* Card Header: Plate Number + Category + Duration */}
-        <div className="flex items-center justify-between border-b border-[rgba(244,240,232,0.12)] pb-4 sm:pb-6 z-10">
+        <div className="flex items-center justify-between border-b border-[rgba(244,240,232,0.12)] pb-3 sm:pb-4 z-10">
           <div className="flex items-center gap-3 sm:gap-4">
             <span className="plate-meta">
               {formattedNumber} // {String(total).padStart(2, '0')}
@@ -61,7 +61,7 @@ export default function ServiceCard({
           </div>
 
           {service.duration && (
-            <div className="flex items-center gap-1.5 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-[#C7A66A] bg-[#C7A66A]/10 px-3.5 py-1.5 rounded-full border border-[#C7A66A]/20">
+            <div className="flex items-center gap-1.5 text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-[#C7A66A] bg-[#C7A66A]/10 px-3 py-1 rounded-full border border-[#C7A66A]/20">
               <Clock className="w-3.5 h-3.5 text-[#C7A66A]" />
               <span>{service.duration}</span>
             </div>
@@ -69,19 +69,19 @@ export default function ServiceCard({
         </div>
 
         {/* Middle Editorial Showcase: Big Headline, Story, and Visual Artwork */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center my-6 sm:my-8 flex-1 z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center my-4 sm:my-6 flex-1 z-10">
           {/* Left Column: Typography & Description */}
           <div className="lg:col-span-7 flex flex-col justify-center">
-            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] font-bold text-[#C7A66A] mb-2">
+            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] font-bold text-[#C7A66A] mb-1.5">
               <Sparkles className="w-3.5 h-3.5" />
               <span>DỊCH VỤ THIẾT KẾ</span>
             </div>
 
-            <h3 className="section-item-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#F4F0E8] mb-4 sm:mb-6 leading-[1.08] group-hover:text-[#C7A66A] transition-colors">
+            <h3 className="section-item-title text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black uppercase tracking-tight text-[#F4F0E8] mb-3 sm:mb-4 leading-[1.08] group-hover:text-[#C7A66A] transition-colors">
               {service.name}
             </h3>
 
-            <p className="text-sm sm:text-base md:text-lg font-light text-[#A7A39B] leading-relaxed max-w-xl mb-6">
+            <p className="text-sm sm:text-base md:text-lg font-light text-[#A7A39B] leading-relaxed max-w-xl mb-4">
               {service.description}
             </p>
 
@@ -100,7 +100,7 @@ export default function ServiceCard({
           {/* Right Column: High-End Stylized Graphic Card */}
           {service.image && (
             <div className="lg:col-span-5 hidden sm:flex justify-center lg:justify-end">
-              <div className="w-full max-w-[320px] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-[rgba(244,240,232,0.12)] bg-[#0B0B0A]">
+              <div className="w-full max-w-[280px] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-[rgba(244,240,232,0.12)] bg-[#0B0B0A]">
                 <img
                   src={service.image}
                   alt={service.name}
@@ -113,7 +113,7 @@ export default function ServiceCard({
         </div>
 
         {/* Card Footer: Pricing & Action CTA */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 sm:pt-6 border-t border-[rgba(244,240,232,0.12)] z-10">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 sm:pt-4 border-t border-[rgba(244,240,232,0.12)] z-10">
           <div className="flex items-baseline gap-3">
             <span className="text-xs font-semibold uppercase tracking-widest text-[#A7A39B]">
               CHI PHÍ

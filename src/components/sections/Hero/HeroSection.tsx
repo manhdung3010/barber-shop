@@ -11,7 +11,7 @@ export default function HeroSection() {
     .join(' • ');
 
   return (
-    <section id="hero" className="relative min-h-[100svh] flex flex-col justify-between pt-28 sm:pt-36 pb-8 md:pb-12 px-5 sm:px-8 md:px-10 lg:px-12 overflow-x-clip bg-[#0B0B0A]">
+    <section id="hero" className="relative min-h-[100svh] flex flex-col justify-between pt-24 sm:pt-28 pb-6 md:pb-8 px-4 sm:px-6 md:px-8 lg:px-10 overflow-x-clip bg-[#0B0B0A]">
       {/* Subtle Ambient Radial Aura Glow in Background */}
       <div
         className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[750px] h-[500px] sm:h-[750px] rounded-full bg-gradient-to-tr from-[#C7A66A]/10 via-[#96743A]/05 to-transparent blur-[120px] animate-pulse-slow"
@@ -19,26 +19,26 @@ export default function HeroSection() {
       />
 
       {/* Unified Hero Grid Composition: All Narrative & Image in Same Cohesive Section */}
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center my-auto py-6 sm:py-10 relative z-10">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center my-auto py-4 sm:py-6 relative z-10">
         {/* Left Column: Eyebrow + Headline + Subtitle + Action CTAs Grouped Seamlessly */}
         <div className="lg:col-span-7 flex flex-col items-start text-left">
           {/* Eyebrow Plate */}
           <FadeIn delay={0.1}>
-            <p className="plate-meta mb-3 sm:mb-4">
+            <p className="plate-meta mb-2.5 sm:mb-3">
               00 // {barberProfile.shopName.toUpperCase()} · TIỆM BARBER CÁ NHÂN CAO CẤP
             </p>
           </FadeIn>
 
           {/* Hero Dominant Headline */}
           <FadeIn delay={0.2} y={20}>
-            <h1 className="hero-heading text-left mb-4 sm:mb-6">
+            <h1 className="hero-heading text-left mb-3 sm:mb-5">
               {barberProfile.heroHeadline}
             </h1>
           </FadeIn>
 
           {/* Supporting Copy directly below headline */}
           <FadeIn delay={0.3}>
-            <p className="body-editorial max-w-xl text-left mb-8 sm:mb-10">
+            <p className="body-editorial max-w-xl text-left mb-6 sm:mb-8">
               {barberProfile.heroSupportingText}
             </p>
           </FadeIn>
@@ -69,7 +69,7 @@ export default function HeroSection() {
         {/* Right Column: Master Barber Hero Artwork */}
         <div className="lg:col-span-5 flex justify-center lg:justify-end relative">
           <div className="absolute -inset-4 bg-gradient-to-r from-[#C7A66A]/10 to-transparent rounded-[36px] blur-2xl -z-10 pointer-events-none" />
-          <ImageReveal delay={0.35} className="w-full max-w-[320px] sm:max-w-[380px] lg:max-w-[420px] rounded-[24px] sm:rounded-[32px] shadow-2xl border border-[rgba(244,240,232,0.12)]">
+          <ImageReveal delay={0.35} className="w-full max-w-[300px] sm:max-w-[360px] lg:max-w-[400px] rounded-[24px] sm:rounded-[32px] shadow-2xl border border-[rgba(244,240,232,0.12)]">
             <EditorialImage
               src={barberProfile.heroImage.src}
               alt={barberProfile.heroImage.alt}
@@ -83,7 +83,7 @@ export default function HeroSection() {
       </div>
 
       {/* Hero Bottom Metadata Row */}
-      <div className="max-w-7xl mx-auto w-full pt-6 border-t border-[rgba(244,240,232,0.12)] flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] text-[#A7A39B] relative z-10">
+      <div className="max-w-7xl mx-auto w-full pt-4 sm:pt-5 border-t border-[rgba(244,240,232,0.12)] flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] text-[#A7A39B] relative z-10">
         <FadeIn delay={0.5}>
           <span>{barberProfile.city}, {barberProfile.country}</span>
         </FadeIn>

@@ -106,7 +106,7 @@ export default function StyleCard({
       </div>
 
       {/* 2. ENHANCED EDITORIAL METADATA & TYPOGRAPHY WITH OVERFLOW-SAFE CLEARANCE */}
-      <div ref={textRef} className="relative pt-6 sm:pt-8 md:pt-10 flex flex-col">
+      <div ref={textRef} className="relative pt-4 sm:pt-6 flex flex-col">
         {/* Large Decorative Watermark Plate Number in Background */}
         <div
           className="absolute right-0 top-2 font-mono font-black text-7xl sm:text-8xl md:text-9xl text-white/[0.03] pointer-events-none select-none tracking-tighter"
@@ -116,7 +116,7 @@ export default function StyleCard({
         </div>
 
         {/* Category & Plate Number Eyebrow with Animated Hairline Divider */}
-        <div className="flex flex-col mb-4 sm:mb-6">
+        <div className="flex flex-col mb-3 sm:mb-4">
           <motion.div
             initial={isReduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
             animate={
@@ -131,7 +131,7 @@ export default function StyleCard({
               delay: 0.1,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="flex items-center justify-between pb-3"
+            className="flex items-center justify-between pb-2 sm:pb-2.5"
           >
             <div className="flex items-center gap-3">
               <span className="plate-meta">
@@ -174,7 +174,7 @@ export default function StyleCard({
         {/* Overflow-Safe Title Reveal with Kinetic Hover Shift & Scroll Parallax */}
         <motion.div
           style={{ y: titleParallax }}
-          className="mb-3 sm:mb-4 py-1"
+          className="mb-1 sm:mb-2 py-1"
         >
           <motion.div
             initial={isReduced ? { y: 0, opacity: 1 } : { y: 16, opacity: 0 }}
@@ -191,7 +191,7 @@ export default function StyleCard({
               ease: [0.16, 1, 0.3, 1],
             }}
           >
-            <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-[#F4F0E8] group-hover:text-[#C7A66A] group-hover:translate-x-2 transition-all duration-300 leading-[1.08]">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#F4F0E8] group-hover:text-[#C7A66A] group-hover:translate-x-2 transition-all duration-300 leading-[1.08]">
               {item.title}
             </h3>
           </motion.div>

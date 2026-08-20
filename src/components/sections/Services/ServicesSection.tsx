@@ -14,16 +14,12 @@ export default function ServicesSection() {
   });
 
   return (
-    <section
-      id="services"
-      ref={containerRef}
-      className="relative py-24 sm:py-32 md:py-40 px-4 sm:px-8 md:px-12 bg-[#0B0B0A]"
-    >
+    <section id="services" ref={containerRef} className="relative py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 bg-[#0B0B0A]">
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}
-        <FadeIn className="text-center mb-16 sm:mb-20 md:mb-24">
-          <p className="plate-meta mb-3">02 // DỊCH VỤ & BẢNG GIÁ</p>
-          <h2 className="display-heading text-[#F4F0E8] mb-4">
+        <FadeIn className="text-center mb-8 sm:mb-12 md:mb-14">
+          <p className="plate-meta mb-2.5 sm:mb-3">02 // DỊCH VỤ & BẢNG GIÁ</p>
+          <h2 className="display-heading text-[#F4F0E8] mb-3 sm:mb-4">
             CẮT. TẠO KIỂU. TRAU CHUỐT.
           </h2>
           <p className="body-editorial max-w-xl mx-auto">

@@ -14,7 +14,7 @@ export const barberProfile: BarberProfile = {
     src: '/images/barber/barber.svg',
     alt: 'Chân dung Master Barber [BARBER_NAME]',
   },
-  bioHeadline: 'HƠN CẢ MỘT LẦN CẮT TÓC.',
+  bioHeadline: 'NGƯỜI ĐỒNG HÀNH CÙNG DIỆN MẠO CỦA BẠN.',
   bioParagraphs: [
     'Tôi là [BARBER_NAME], một thợ cắt tóc cá nhân tập trung vào những đường cắt sắc nét, kỹ thuật fade hiện đại và kiểu tóc thực sự phù hợp với từng khuôn mặt.',
     'Mỗi buổi hẹn đều bắt đầu từ việc thấu hiểu cấu trúc xương đầu, chất tóc, phong cách sống và hình ảnh bạn muốn thể hiện.',

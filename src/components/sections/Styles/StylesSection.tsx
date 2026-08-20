@@ -18,22 +18,22 @@ export default function StylesSection() {
   return (
     <section
       id="styles"
-      className="py-24 sm:py-32 md:py-40 px-5 sm:px-8 md:px-12 bg-[#0B0B0A]"
+      className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 bg-[#0B0B0A]"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <FadeIn className="text-center mb-16 sm:mb-24 md:mb-32">
-          <p className="plate-meta mb-3">01 // BỘ SƯU TẬP KIỂU TÓC</p>
-          <h2 className="display-heading max-w-4xl mx-auto mb-6">
+        <FadeIn className="text-center mb-8 sm:mb-12 md:mb-14">
+          <p className="plate-meta mb-2.5 sm:mb-3">01 // BỘ SƯU TẬP KIỂU TÓC</p>
+          <h2 className="display-heading max-w-3xl mx-auto mb-4 sm:mb-5">
             TÁC PHẨM THAY LỜI NÓI.
           </h2>
-          <p className="body-editorial max-w-xl mx-auto">
+          <p className="body-editorial max-w-lg mx-auto">
             Khám phá lookbook các mẫu tóc fade sắc nét, tỉa layer texture và phom dáng thiết kế riêng tại ghế cắt.
           </p>
         </FadeIn>
 
         {/* Vertically Scrolling Editorial Portfolio Flow */}
-        <div className="flex flex-col space-y-28 sm:space-y-36 md:space-y-48">
+        <div className="flex flex-col space-y-12 sm:space-y-16 md:space-y-20">
           {stylesData.map((item, index) => (
             <StyleCard
               key={item.id}

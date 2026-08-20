@@ -27,8 +27,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="py-16 sm:py-20 px-5 sm:px-8 md:px-10 lg:px-12 border-t border-[rgba(244,240,232,0.12)] bg-[#0B0B0A] text-[#F4F0E8]">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+    <footer className="py-10 sm:py-12 px-4 sm:px-6 md:px-8 lg:px-10 border-t border-[rgba(244,240,232,0.12)] bg-[#0B0B0A] text-[#F4F0E8]">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
         {/* Brand & Tagline */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
           <a
