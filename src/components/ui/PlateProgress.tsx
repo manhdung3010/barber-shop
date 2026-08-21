@@ -14,8 +14,9 @@ const PLATES: PlateItem[] = [
   { id: 'about', number: '03', label: 'EXP' },
   { id: 'gallery', number: '04', label: 'CRAFT' },
   { id: 'proof', number: '05', label: 'PROOF' },
-  { id: 'location', number: '06', label: 'LOCATION' },
-  { id: 'contact', number: '07', label: 'BOOK' },
+  { id: 'faq', number: '06', label: 'FAQ' },
+  { id: 'location', number: '07', label: 'LOCATION' },
+  { id: 'contact', number: '08', label: 'BOOK' },
 ];
 
 export default function PlateProgress() {

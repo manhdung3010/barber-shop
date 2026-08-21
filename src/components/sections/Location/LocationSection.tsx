@@ -9,7 +9,7 @@ export default function LocationSection() {
     <section id="location" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 lg:px-10 bg-[#0B0B0A]">
       <div className="max-w-7xl mx-auto">
         <FadeIn>
-          <p className="plate-meta mb-2.5 sm:mb-3">06 // ĐỊA CHỈ STUDIO</p>
+          <p className="plate-meta mb-2.5 sm:mb-3">07 // ĐỊA CHỈ STUDIO</p>
           <h2 className="display-heading mb-6 sm:mb-8">
             MỜI BẠN GHÉ THĂM GHẾ CẮT.
           </h2>

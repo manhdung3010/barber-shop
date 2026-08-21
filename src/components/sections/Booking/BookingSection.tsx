@@ -12,7 +12,7 @@ export default function BookingSection() {
 
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <FadeIn>
-          <p className="plate-meta mb-2.5 sm:mb-3">07 // ĐẶT LỊCH HẸN NGAY</p>
+          <p className="plate-meta mb-2.5 sm:mb-3">08 // ĐẶT LỊCH HẸN NGAY</p>
           <h2 className="display-heading text-[#F4F0E8] mb-4 sm:mb-6">
             SẴN SÀNG CHO MỘT DIỆN MẠO MỚI?
           </h2>

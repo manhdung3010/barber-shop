@@ -5,6 +5,7 @@ export const navigationData: NavigationItem[] = [
   { label: 'Dịch Vụ', href: '#services' },
   { label: 'Giới Thiệu', href: '#about' },
   { label: 'Không Gian', href: '#gallery' },
+  { label: 'Hỏi Đáp', href: '#faq' },
   { label: 'Địa Chỉ', href: '#location' },
   { label: 'Đặt Lịch', href: '#contact' },
 ];

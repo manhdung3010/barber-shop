@@ -5,6 +5,7 @@ import ServicesSection from '../src/components/sections/Services/ServicesSection
 import AboutSection from '../src/components/sections/About/AboutSection';
 import GallerySection from '../src/components/sections/Gallery/GallerySection';
 import TestimonialsSection from '../src/components/sections/Testimonials/TestimonialsSection';
+import FAQSection from '../src/components/sections/FAQ/FAQSection';
 import LocationSection from '../src/components/sections/Location/LocationSection';
 import BookingSection from '../src/components/sections/Booking/BookingSection';
 import Footer from '../src/components/layout/Footer';
@@ -53,6 +54,7 @@ export default function HomePage() {
 
         <GallerySection />
         <TestimonialsSection />
+        <FAQSection />
         <LocationSection />
         <BookingSection />
       </main>
