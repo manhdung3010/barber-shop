@@ -33,7 +33,7 @@ services:
       - ADMIN_DEFAULT_PASSWORD=${ADMIN_DEFAULT_PASSWORD}
       - NEXTAUTH_URL=${NEXTAUTH_URL}
     ports:
-      - '3000:3000'
+      - '5050:3000'
     volumes:
       # Mount uploaded images volume directly into host project folder
       - ./public/images/uploads:/app/public/images/uploads
