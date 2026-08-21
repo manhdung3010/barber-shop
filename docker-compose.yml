@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_DB: sownbarber_db
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: sownbarberpass
+      POSTGRES_PASSWORD: dbpassSownBarber2026SecureY7q
     ports:
       - '5433:5432'
     volumes:
@@ -28,7 +28,7 @@ services:
     container_name: sownbarber_web
     restart: unless-stopped
     environment:
-      - DATABASE_URL=postgresql://postgres:sownbarberpass@db:5432/sownbarber_db?schema=public
+      - DATABASE_URL=postgresql://postgres:dbpassSownBarber2026SecureY7q@db:5432/sownbarber_db?schema=public
       - JWT_SECRET=sown-barbershop-super-secret-jwt-key-2026
       - ADMIN_DEFAULT_PASSWORD=sownbarber2026
       - NEXTAUTH_URL=http://localhost:3000

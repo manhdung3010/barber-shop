@@ -5,3 +5,5 @@ dist-ssr
 .superpowers
 .DS_Store
 .next
+.env
+.env.*
