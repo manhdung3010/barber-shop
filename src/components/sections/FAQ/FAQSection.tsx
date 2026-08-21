@@ -7,7 +7,12 @@ import { barberProfile } from '../../../data/barber';
 import FadeIn from '../../ui/FadeIn';
 import Button from '../../ui/Button';
 
-export default function FAQSection() {
+interface FAQSectionProps {
+  data?: { id: string; question: string; answer: string }[];
+}
+
+export default function FAQSection({ data }: FAQSectionProps) {
+  const list = data && data.length > 0 ? data : faqData;
   const [openId, setOpenId] = useState<string | null>('faq-1');
 
   const toggleFAQ = (id: string) => {
@@ -35,8 +40,8 @@ export default function FAQSection() {
         </FadeIn>
 
         {/* FAQ Accordion List */}
-        <div className="space-y-3.5 sm:space-y-4">
-          {faqData.map((item, index) => {
+        <div className="space-y-3.5 sm:space-y-4 mb-10 sm:mb-12">
+          {list.map((item, index) => {
             const isOpen = openId === item.id;
 
             return (

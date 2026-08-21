@@ -5,8 +5,15 @@ import { testimonialsData } from '../../../data/testimonials';
 import BeforeAfterSlider from '../../ui/BeforeAfterSlider';
 import FadeIn from '../../ui/FadeIn';
 
-export default function TestimonialsSection() {
-  if (!barberProfile.showTestimonials || testimonialsData.length === 0) {
+import { Testimonial } from '../../../types/index';
+
+interface TestimonialsSectionProps {
+  data?: Testimonial[];
+}
+
+export default function TestimonialsSection({ data }: TestimonialsSectionProps) {
+  const list = data && data.length > 0 ? data : testimonialsData;
+  if (!barberProfile.showTestimonials || list.length === 0) {
     return null;
   }
 
@@ -41,7 +48,7 @@ export default function TestimonialsSection() {
 
           {/* Testimonial Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-            {testimonialsData.map((item, index) => {
+            {list.map((item, index) => {
               const initial = item.clientName.replace(/^Anh\s+/i, '').charAt(0) || 'K';
 
               return (

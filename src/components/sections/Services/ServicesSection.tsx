@@ -5,7 +5,14 @@ import { servicesData } from '../../../data/services';
 import ServiceCard from './ServiceCard';
 import FadeIn from '../../ui/FadeIn';
 
-export default function ServicesSection() {
+import { Service } from '../../../types/index';
+
+interface ServicesSectionProps {
+  data?: Service[];
+}
+
+export default function ServicesSection({ data }: ServicesSectionProps) {
+  const list = data && data.length > 0 ? data : servicesData;
   const containerRef = useRef<HTMLElement>(null);
 
   // Measure scroll progress across the whole services stacking container
@@ -30,10 +37,10 @@ export default function ServicesSection() {
 
         {/* Sticky Stacking Cards Container */}
         <div className="flex flex-col w-full relative">
-          {servicesData.map((service, index) => {
-            const targetScale = 1 - (servicesData.length - index) * 0.035;
+          {list.map((service, index) => {
+            const targetScale = 1 - (list.length - index) * 0.035;
             const range: [number, number] = [
-              index * (1 / servicesData.length),
+              index * (1 / list.length),
               1,
             ];
 
@@ -42,7 +49,7 @@ export default function ServicesSection() {
                 key={service.id}
                 service={service}
                 index={index}
-                total={servicesData.length}
+                total={list.length}
                 progress={scrollYProgress}
                 range={range}
                 targetScale={targetScale}

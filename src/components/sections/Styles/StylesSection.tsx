@@ -5,7 +5,14 @@ import StyleCard from './StyleCard';
 import Lightbox from '../../ui/Lightbox';
 import FadeIn from '../../ui/FadeIn';
 
-export default function StylesSection() {
+import { StyleItem } from '../../../types/index';
+
+interface StylesSectionProps {
+  data?: StyleItem[];
+}
+
+export default function StylesSection({ data }: StylesSectionProps) {
+  const list = data && data.length > 0 ? data : stylesData;
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [activeStyleIndex, setActiveStyleIndex] = useState(0);
   const lastTriggerRef = useRef<HTMLElement | null>(null);
@@ -19,14 +26,14 @@ export default function StylesSection() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
   const categories = [
-    { id: 'all', label: 'Tất Cả', count: stylesData.length },
-    { id: 'fade', label: 'Fade Sắc Nét', count: stylesData.filter((s) => s.category === 'fade').length },
-    { id: 'textured', label: 'Texture / Layer', count: stylesData.filter((s) => s.category === 'textured').length },
-    { id: 'classic', label: 'Classic Quý Ông', count: stylesData.filter((s) => s.category === 'classic').length },
-    { id: 'long_beard', label: 'Layer Dài & Râu', count: stylesData.filter((s) => s.category === 'long' || s.category === 'beard').length },
+    { id: 'all', label: 'Tất Cả', count: list.length },
+    { id: 'fade', label: 'Fade Sắc Nét', count: list.filter((s) => s.category === 'fade').length },
+    { id: 'textured', label: 'Texture / Layer', count: list.filter((s) => s.category === 'textured').length },
+    { id: 'classic', label: 'Classic Quý Ông', count: list.filter((s) => s.category === 'classic').length },
+    { id: 'long_beard', label: 'Layer Dài & Râu', count: list.filter((s) => s.category === 'long' || s.category === 'beard').length },
   ];
 
-  const filteredStyles = stylesData.filter((item) => {
+  const filteredStyles = list.filter((item) => {
     if (activeCategory === 'all') return true;
     if (activeCategory === 'long_beard') return item.category === 'long' || item.category === 'beard';
     return item.category === activeCategory;
@@ -89,7 +96,7 @@ export default function StylesSection() {
       {/* Shared Accessible Fullscreen Lightbox */}
       <Lightbox
         isOpen={lightboxOpen}
-        items={stylesData.map((s) => ({
+        items={list.map((s) => ({
           id: s.id,
           title: s.title,
           alt: s.alt,
@@ -97,8 +104,8 @@ export default function StylesSection() {
         }))}
         currentIndex={activeStyleIndex}
         onClose={() => setLightboxOpen(false)}
-        onPrev={() => setActiveStyleIndex((prev) => (prev > 0 ? prev - 1 : stylesData.length - 1))}
-        onNext={() => setActiveStyleIndex((prev) => (prev < stylesData.length - 1 ? prev + 1 : 0))}
+        onPrev={() => setActiveStyleIndex((prev) => (prev > 0 ? prev - 1 : list.length - 1))}
+        onNext={() => setActiveStyleIndex((prev) => (prev < list.length - 1 ? prev + 1 : 0))}
         triggerRef={lastTriggerRef}
       />
     </section>

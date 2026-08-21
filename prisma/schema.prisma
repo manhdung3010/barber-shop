@@ -1,0 +1,108 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  passwordHash String
+  name         String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model ShopProfile {
+  id                 String   @id @default("default-profile")
+  shopName           String   @default("Sown Barbershop")
+  name               String   @default("Nguyễn Sơn")
+  logo               String   @default("/images/logo.jpg")
+  tagline            String   @default("ĐỊNH HÌNH PHONG CÁCH. KHẲNG ĐỊNH BẢN SẮC.")
+  heroHeadline       String   @default("ĐỊNH HÌNH PHONG CÁCH. KHẲNG ĐỊNH BẢN SẮC.")
+  heroSupportingText String   @default("Cắt tóc thiết kế cá nhân hóa, fade sắc nét, uốn định hình và chăm sóc diện mạo phái mạnh chuẩn gu tại Tĩnh Gia, Nghi Sơn, Thanh Hóa.")
+  heroImage          String   @default("/images/hero/hero.jpg")
+  heroImageAlt       String   @default("Biểu tượng nhận diện Sown Barbershop")
+  barberImage        String   @default("/images/barber/barber.jpg")
+  barberImageAlt     String   @default("Chân dung Master Barber Nguyễn Sơn")
+  bioHeadline        String   @default("TẬN TÂM TRÊN TỪNG ĐƯỜNG KÉO TẠI SOWN BARBER.")
+  bioParagraphs      String   @default("[\"Tôi là Nguyễn Sơn (Sown Barber), thợ cắt tóc cá nhân với hơn 7 năm kinh nghiệm gắn bó cùng nghề tạo mẫu tóc nam tại TX. Nghi Sơn, Thanh Hóa.\",\"Tại Sown Barbershop, mỗi vị khách khi bước lên ghế cắt đều được tư vấn kỹ lưỡng dựa trên cấu trúc xương đầu, chất tóc và phong cách sống riêng biệt.\",\"Mục tiêu lớn nhất là mang lại cho bạn một mái tóc sắc nét, dễ sấy tạo kiểu tại nhà và phong độ tự tin nhất khi bước ra khỏi tiệm.\"]")
+  phone              String   @default("098 744 3091")
+  address            String   @default("32 Đường Lương Chí, TDP 4, P. Hải Hòa (Tĩnh Gia)")
+  city               String   @default("TX. Nghi Sơn, Thanh Hóa")
+  country            String   @default("Việt Nam")
+  establishedYear    String   @default("2018")
+  openingHours       String   @default("[{\"label\":\"THỨ 2 — THỨ 7\",\"value\":\"08:30 — 20:00\"},{\"label\":\"CHỦ NHẬT\",\"value\":\"08:30 — 18:30\"}]")
+  stats              String   @default("[{\"value\":\"7+\",\"numericValue\":7,\"suffix\":\"+\",\"label\":\"NĂM KINH NGHIỆM\"},{\"value\":\"6500+\",\"numericValue\":6500,\"suffix\":\"+\",\"label\":\"LƯỢT KHÁCH HÀNG\"},{\"value\":\"30+\",\"numericValue\":30,\"suffix\":\"+\",\"label\":\"KIỂU TÓC THIẾT KẾ\"},{\"value\":\"99%\",\"numericValue\":99,\"suffix\":\"%\",\"label\":\"ĐỘ HÀI LÒNG\"}]")
+  socials            String   @default("{\"facebook\":\"https://www.facebook.com/nguyen.bellerin.1\",\"zalo\":\"https://zalo.me/0987443091\",\"messenger\":\"https://www.facebook.com/nguyen.bellerin.1\",\"googleMaps\":\"https://www.bing.com/maps/default.aspx?v=2&pc=FACEBK&mid=8100&where1=32%20%C4%91%C6%B0%E1%BB%9Dng%20L%C6%B0%C6%A1ng%20Ch%C3%AD%20-%20TDP%204%20-%20P.%20T%C4%A9nh%20Gia%20-%20Thanh%20Ho%C3%A1%2C%20Thanh%20H%C3%B3a%2C%20Vietnam\"}")
+  booking            String   @default("{\"primaryChannel\":\"zalo\",\"primaryUrl\":\"https://zalo.me/0987443091\",\"primaryLabel\":\"ĐẶT LỊCH QUA ZALO\"}")
+  beforeAfter        String   @default("{\"beforeImage\":\"/images/transformations/before.jpg\",\"afterImage\":\"/images/transformations/after.jpg\",\"title\":\"Low Skin Taper Fade & Textured Crop\",\"category\":\"BIẾN HÌNH DIỆN MẠO\",\"description\":\"Từ mái tóc dài mất nếp thành kiểu tóc Low Taper Fade sắc sảo kết hợp tầng layer texture chuẩn phom hiện đại.\"}")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model ServiceItem {
+  id            String   @id @default(cuid())
+  name          String
+  categoryLabel String?
+  description   String
+  price         String
+  duration      String
+  image         String
+  features      String   @default("[]") // JSON string array
+  order         Int      @default(0)
+  active        Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model StyleItem {
+  id          String   @id @default(cuid())
+  title       String
+  category    String   // 'fade' | 'textured' | 'classic' | 'long' | 'beard'
+  description String
+  image       String
+  alt         String
+  order       Int      @default(0)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model GalleryItem {
+  id            String   @id @default(cuid())
+  title         String
+  alt           String
+  image         String
+  layoutVariant String   @default("standard") // 'featured' | 'wide' | 'standard' | 'tall'
+  order         Int      @default(0)
+  active        Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model TestimonialItem {
+  id         String   @id @default(cuid())
+  quote      String
+  clientName String
+  avatar     String?
+  rating     Int      @default(5)
+  service    String?
+  order      Int      @default(0)
+  active     Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model FAQItem {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
