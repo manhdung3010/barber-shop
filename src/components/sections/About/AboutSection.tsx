@@ -32,8 +32,8 @@ export default function AboutSection() {
 
         {/* Master Barber Story Header */}
         <FadeIn>
-          <p className="plate-meta mb-2.5 sm:mb-3">03.1 // MASTER BARBER</p>
-          <h3 className="display-heading mb-6 sm:mb-8">
+          <p className="plate-meta mb-2 sm:mb-2.5">03.1 // MASTER BARBER</p>
+          <h3 className="font-display font-black uppercase tracking-tight text-[#F4F0E8] text-[clamp(1rem,2.25vw,2.35rem)] leading-tight mb-6 sm:mb-8 whitespace-normal md:whitespace-nowrap">
             {barberProfile.bioHeadline}
           </h3>
         </FadeIn>

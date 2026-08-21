@@ -1,18 +1,36 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
   <defs>
-    <radialGradient id="srvGlow1" cx="50%" cy="50%" r="60%">
-      <stop offset="0%" stop-color="#1E1E1C"/>
-      <stop offset="80%" stop-color="#0B0B0A"/>
+    <radialGradient id="srvGlow1" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#24221D"/>
+      <stop offset="100%" stop-color="#0B0B0A"/>
     </radialGradient>
-    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#E5C88F"/>
-      <stop offset="100%" stop-color="#96743A"/>
+    <linearGradient id="goldGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F4E2BE"/>
+      <stop offset="50%" stop-color="#C7A66A"/>
+      <stop offset="100%" stop-color="#8F7138"/>
     </linearGradient>
   </defs>
-  <rect width="600" height="400" rx="16" fill="url(#srvGlow1)"/>
-  <rect x="15" y="15" width="570" height="370" rx="12" fill="none" stroke="rgba(199,166,106,0.2)" stroke-width="1.5"/>
-  <circle cx="300" cy="180" r="80" fill="#141413" stroke="url(#gold)" stroke-width="2"/>
-  <path d="M250 160 Q300 110 350 160 Q330 210 270 210 Z" fill="url(#gold)"/>
-  <text x="300" y="310" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="12" font-weight="700" letter-spacing="4" fill="#C7A66A">TAILORED CUT</text>
-  <text x="300" y="340" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="20" font-weight="900" letter-spacing="2" fill="#F4F0E8">CLASSIC HAIRCUT</text>
+  
+  <rect width="600" height="400" rx="20" fill="url(#srvGlow1)"/>
+  <rect x="16" y="16" width="568" height="368" rx="16" fill="none" stroke="rgba(199,166,106,0.25)" stroke-width="1.5"/>
+  
+  <!-- Outer Badge Ring -->
+  <circle cx="300" cy="170" r="75" fill="#141413" stroke="url(#goldGrad1)" stroke-width="2.5" stroke-dasharray="4 2"/>
+  <circle cx="300" cy="170" r="62" fill="#0B0B0A" stroke="rgba(244,240,232,0.1)" stroke-width="1"/>
+
+  <!-- Crossed Barber Scissors Icon -->
+  <!-- Left Blade & Handle -->
+  <path d="M260 215 C250 215 242 205 246 195 C250 185 262 185 268 193 L298 165 L335 125" fill="none" stroke="url(#goldGrad1)" stroke-width="4.5" stroke-linecap="round"/>
+  <circle cx="254" cy="202" r="9" fill="none" stroke="url(#goldGrad1)" stroke-width="3"/>
+  
+  <!-- Right Blade & Handle -->
+  <path d="M340 215 C350 215 358 205 354 195 C350 185 338 185 332 193 L302 165 L265 125" fill="none" stroke="url(#goldGrad1)" stroke-width="4.5" stroke-linecap="round"/>
+  <circle cx="346" cy="202" r="9" fill="none" stroke="url(#goldGrad1)" stroke-width="3"/>
+  
+  <!-- Pivot Screw -->
+  <circle cx="300" cy="165" r="4.5" fill="#C7A66A" stroke="#0B0B0A" stroke-width="1.5"/>
+
+  <!-- Typography Labels -->
+  <text x="300" y="295" text-anchor="middle" font-family="'Be Vietnam Pro', system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="4" fill="#C7A66A">TAILORED CUT &amp; WASH</text>
+  <text x="300" y="328" text-anchor="middle" font-family="'Be Vietnam Pro', system-ui, sans-serif" font-size="18" font-weight="900" letter-spacing="2" fill="#F4F0E8">CẮT TÓC THIẾT KẾ</text>
 </svg>

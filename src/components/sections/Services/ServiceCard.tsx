@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useTransform, MotionValue } from 'framer-motion';
-import { ArrowUpRight, Clock, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Clock, Scissors, Layers, Flame, Waves, Droplets, Sparkles } from 'lucide-react';
 import { Service } from '../../../types/index.ts';
 import { barberProfile } from '../../../data/barber.ts';
 import { useReducedMotion } from '../../../hooks/useReducedMotion.ts';
@@ -13,6 +13,23 @@ interface ServiceCardProps {
   progress: MotionValue<number>;
   range: [number, number];
   targetScale: number;
+}
+
+function getServiceIcon(id: string) {
+  switch (id) {
+    case 'haircut':
+      return <Scissors className="w-3.5 h-3.5 text-[#C7A66A]" />;
+    case 'fade':
+      return <Layers className="w-3.5 h-3.5 text-[#C7A66A]" />;
+    case 'haircut-beard':
+      return <Flame className="w-3.5 h-3.5 text-[#C7A66A]" />;
+    case 'perm':
+      return <Waves className="w-3.5 h-3.5 text-[#C7A66A]" />;
+    case 'styling':
+      return <Droplets className="w-3.5 h-3.5 text-[#C7A66A]" />;
+    default:
+      return <Sparkles className="w-3.5 h-3.5 text-[#C7A66A]" />;
+  }
 }
 
 export default function ServiceCard({
@@ -73,8 +90,8 @@ export default function ServiceCard({
           {/* Left Column: Typography & Description */}
           <div className="lg:col-span-7 flex flex-col justify-center">
             <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] font-bold text-[#C7A66A] mb-1.5">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>DỊCH VỤ THIẾT KẾ</span>
+              {getServiceIcon(service.id)}
+              <span>{service.categoryLabel || 'DỊCH VỤ THIẾT KẾ'}</span>
             </div>
 
             <h3 className="section-item-title text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black uppercase tracking-tight text-[#F4F0E8] mb-3 sm:mb-4 leading-[1.08] group-hover:text-[#C7A66A] transition-colors">
@@ -85,16 +102,27 @@ export default function ServiceCard({
               {service.description}
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 text-xs font-semibold uppercase tracking-wider text-[#A7A39B]">
-              <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C7A66A]" />
-                Tư Vấn Tỉ Lệ Khuôn Mặt
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C7A66A]" />
-                Cạo Chấn Viền Sắc Nét
-              </span>
-            </div>
+            {service.features && service.features.length > 0 ? (
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs font-semibold uppercase tracking-wider text-[#A7A39B]">
+                {service.features.map((feat, i) => (
+                  <span key={i} className="flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#C7A66A]" />
+                    {feat}
+                  </span>
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-wrap items-center gap-4 text-xs font-semibold uppercase tracking-wider text-[#A7A39B]">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C7A66A]" />
+                  Tư Vấn Tỉ Lệ Khuôn Mặt
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C7A66A]" />
+                  Cạo Chấn Viền Sắc Nét
+                </span>
+              </div>
+            )}
           </div>
 
           {/* Right Column: High-End Stylized Graphic Card */}

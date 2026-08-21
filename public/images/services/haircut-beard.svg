@@ -1,20 +1,34 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
   <defs>
-    <radialGradient id="srvGlow3" cx="50%" cy="50%" r="60%">
-      <stop offset="0%" stop-color="#1E1E1C"/>
-      <stop offset="80%" stop-color="#0B0B0A"/>
+    <radialGradient id="srvGlow3" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#24221D"/>
+      <stop offset="100%" stop-color="#0B0B0A"/>
     </radialGradient>
-    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#E5C88F"/>
-      <stop offset="100%" stop-color="#96743A"/>
+    <linearGradient id="goldGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F4E2BE"/>
+      <stop offset="50%" stop-color="#C7A66A"/>
+      <stop offset="100%" stop-color="#8F7138"/>
     </linearGradient>
   </defs>
-  <rect width="600" height="400" rx="16" fill="url(#srvGlow3)"/>
-  <rect x="15" y="15" width="570" height="370" rx="12" fill="none" stroke="rgba(199,166,106,0.2)" stroke-width="1.5"/>
-  <circle cx="300" cy="180" r="80" fill="#141413" stroke="url(#gold)" stroke-width="2"/>
-  <!-- Hair + Beard Combo -->
-  <path d="M260 150 Q300 110 340 150" fill="none" stroke="url(#gold)" stroke-width="3" stroke-linecap="round"/>
-  <path d="M260 190 Q300 240 340 190" fill="url(#gold)"/>
-  <text x="300" y="310" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="12" font-weight="700" letter-spacing="4" fill="#C7A66A">COMPLETE GROOMING</text>
-  <text x="300" y="340" text-anchor="middle" font-family="'Manrope', sans-serif" font-size="20" font-weight="900" letter-spacing="2" fill="#F4F0E8">HAIRCUT + BEARD SHAPING</text>
+  
+  <rect width="600" height="400" rx="20" fill="url(#srvGlow3)"/>
+  <rect x="16" y="16" width="568" height="368" rx="16" fill="none" stroke="rgba(199,166,106,0.25)" stroke-width="1.5"/>
+  
+  <!-- Outer Badge Ring -->
+  <circle cx="300" cy="170" r="75" fill="#141413" stroke="url(#goldGrad3)" stroke-width="2.5" stroke-dasharray="4 2"/>
+  <circle cx="300" cy="170" r="62" fill="#0B0B0A" stroke="rgba(244,240,232,0.1)" stroke-width="1"/>
+
+  <!-- Hot Towel Steam Waves & Straight Razor -->
+  <!-- Steaming warm towel vapors -->
+  <path d="M285 130 Q280 145 285 160" fill="none" stroke="url(#goldGrad3)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M300 125 Q295 142 300 160" fill="none" stroke="url(#goldGrad3)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M315 130 Q310 145 315 160" fill="none" stroke="url(#goldGrad3)" stroke-width="2.5" stroke-linecap="round"/>
+  
+  <!-- Straight Razor Blade Curve -->
+  <path d="M260 185 Q300 170 340 185 L335 200 Q300 185 265 200 Z" fill="url(#goldGrad3)" opacity="0.9"/>
+  <circle cx="265" cy="192" r="3" fill="#141413"/>
+
+  <!-- Typography Labels -->
+  <text x="300" y="295" text-anchor="middle" font-family="'Be Vietnam Pro', system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="4" fill="#C7A66A">HOT TOWEL &amp; BEARD SHAVE</text>
+  <text x="300" y="328" text-anchor="middle" font-family="'Be Vietnam Pro', system-ui, sans-serif" font-size="18" font-weight="900" letter-spacing="2" fill="#F4F0E8">COMBO KHĂN NÓNG &amp; CẠO RÂU</text>
 </svg>

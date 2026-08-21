@@ -20,31 +20,45 @@ export default function HeroSection() {
 
       {/* Unified Hero Grid Composition: All Narrative & Image in Same Cohesive Section */}
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center my-auto py-4 sm:py-6 relative z-10">
-        {/* Left Column: Eyebrow + Headline + Subtitle + Action CTAs Grouped Seamlessly */}
+        {/* Left Column: Eyebrow + Headline + Mobile Artwork + Subtitle + Action CTAs */}
         <div className="lg:col-span-7 flex flex-col items-start text-left">
           {/* Eyebrow Plate */}
           <FadeIn delay={0.1}>
-            <p className="plate-meta mb-2.5 sm:mb-3">
+            <p className="plate-meta mb-2 sm:mb-3">
               00 // {barberProfile.shopName.toUpperCase()} · TIỆM BARBER CÁ NHÂN CAO CẤP
             </p>
           </FadeIn>
 
           {/* Hero Dominant Headline */}
           <FadeIn delay={0.2} y={20}>
-            <h1 className="hero-heading text-left mb-3 sm:mb-5">
+            <h1 className="hero-heading text-left mb-3 sm:mb-4">
               {barberProfile.heroHeadline}
             </h1>
           </FadeIn>
 
-          {/* Supporting Copy directly below headline */}
+          {/* Mobile Featured Artwork Card (Visible immediately on mobile) */}
+          <FadeIn delay={0.25} className="lg:hidden w-full flex justify-center my-3.5 sm:my-5">
+            <div className="w-full max-w-[260px] sm:max-w-[300px] rounded-[20px] sm:rounded-[24px] shadow-2xl overflow-hidden border border-[rgba(244,240,232,0.14)] relative">
+              <EditorialImage
+                src={barberProfile.heroImage.src}
+                alt={barberProfile.heroImage.alt}
+                aspectRatio="3/4"
+                priority={true}
+                watermarkLabel="SOWN BARBERSHOP"
+                imageClassName="hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+          </FadeIn>
+
+          {/* Supporting Copy directly below headline/mobile artwork */}
           <FadeIn delay={0.3}>
-            <p className="body-editorial max-w-xl text-left mb-6 sm:mb-8">
+            <p className="body-editorial max-w-xl text-left mb-5 sm:mb-7">
               {barberProfile.heroSupportingText}
             </p>
           </FadeIn>
 
           {/* Action CTAs directly below copy */}
-          <FadeIn delay={0.4} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+          <FadeIn delay={0.4} className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
             <Magnet strength={10}>
               <Button
                 href={barberProfile.booking.primaryUrl}
@@ -66,14 +80,14 @@ export default function HeroSection() {
           </FadeIn>
         </div>
 
-        {/* Right Column: Master Barber Hero Artwork */}
-        <div className="lg:col-span-5 flex justify-center lg:justify-end relative">
+        {/* Right Column: Desktop Only Hero Artwork */}
+        <div className="hidden lg:flex lg:col-span-5 justify-center lg:justify-end relative">
           <div className="absolute -inset-4 bg-gradient-to-r from-[#C7A66A]/10 to-transparent rounded-[36px] blur-2xl -z-10 pointer-events-none" />
-          <ImageReveal delay={0.35} className="w-full max-w-[300px] sm:max-w-[360px] lg:max-w-[400px] rounded-[24px] sm:rounded-[32px] shadow-2xl border border-[rgba(244,240,232,0.12)]">
+          <ImageReveal delay={0.35} className="w-full max-w-[360px] xl:max-w-[400px] rounded-[28px] sm:rounded-[32px] shadow-2xl border border-[rgba(244,240,232,0.12)]">
             <EditorialImage
               src={barberProfile.heroImage.src}
               alt={barberProfile.heroImage.alt}
-              aspectRatio="4/5"
+              aspectRatio="3/4"
               priority={true}
               watermarkLabel="SIGNATURE CRAFT"
               imageClassName="hover:scale-105 transition-transform duration-700"

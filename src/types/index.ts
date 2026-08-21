@@ -25,6 +25,7 @@ export interface ProcessStep {
 export interface BarberProfile {
   name: string;
   shopName: string;
+  logo?: string;
   tagline: string;
   heroHeadline: string;
   heroSupportingText: string;
@@ -70,10 +71,12 @@ export interface BarberProfile {
 export interface Service {
   id: string;
   name: string;
+  categoryLabel?: string;
   description: string;
   price: string;
   duration?: string;
   image?: string;
+  features?: string[];
 }
 
 export type StyleCategory = 'fade' | 'textured' | 'classic' | 'long' | 'beard';
