@@ -4,7 +4,6 @@ import Link from 'next/link';
 import {
   Scissors,
   Sparkles,
-  Image,
   Star,
   HelpCircle,
   Settings,
@@ -18,7 +17,6 @@ export default function AdminDashboardPage() {
   const [stats, setStats] = useState({
     servicesCount: 5,
     stylesCount: 7,
-    galleryCount: 6,
     testimonialsCount: 3,
     faqCount: 6,
   });
@@ -28,15 +26,13 @@ export default function AdminDashboardPage() {
     Promise.all([
       fetch('/api/admin/services').then((r) => r.json()),
       fetch('/api/admin/styles').then((r) => r.json()),
-      fetch('/api/admin/gallery').then((r) => r.json()),
       fetch('/api/admin/testimonials').then((r) => r.json()),
       fetch('/api/admin/faq').then((r) => r.json()),
     ])
-      .then(([services, styles, gallery, testimonials, faq]) => {
+      .then(([services, styles, testimonials, faq]) => {
         setStats({
           servicesCount: services.services?.length || 5,
           stylesCount: styles.styles?.length || 7,
-          galleryCount: gallery.gallery?.length || 6,
           testimonialsCount: testimonials.testimonials?.length || 3,
           faqCount: faq.faqs?.length || 6,
         });
@@ -61,14 +57,7 @@ export default function AdminDashboardPage() {
       icon: Sparkles,
       color: '#D8B87A',
     },
-    {
-      title: 'Không Gian & Kỹ Nghệ',
-      desc: 'Bộ ảnh 6 khung hình không gian tiệm và dụng cụ',
-      count: `${stats.galleryCount} Bức Ảnh`,
-      href: '/admin/gallery',
-      icon: Image,
-      color: '#A7A39B',
-    },
+
     {
       title: 'Đánh Giá Khách Hàng',
       desc: 'Cảm nhận khách hàng, số sao và ảnh đại diện',

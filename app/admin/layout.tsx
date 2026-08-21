@@ -6,7 +6,6 @@ import {
   LayoutDashboard,
   Scissors,
   Sparkles,
-  Image,
   Star,
   HelpCircle,
   Settings,
@@ -21,12 +20,12 @@ const NAV_ITEMS = [
   { label: 'Tổng Quan', href: '/admin', icon: LayoutDashboard },
   { label: 'Dịch Vụ & Giá', href: '/admin/services', icon: Scissors },
   { label: 'Bộ Sưu Tập Tóc', href: '/admin/styles', icon: Sparkles },
-  { label: 'Không Gian Tiệm', href: '/admin/gallery', icon: Image },
   { label: 'Đánh Giá Khách', href: '/admin/testimonials', icon: Star },
   { label: 'Câu Hỏi FAQ', href: '/admin/faq', icon: HelpCircle },
   { label: 'Thông Tin Tiệm', href: '/admin/profile', icon: Settings },
   { label: 'Thư Viện Ảnh', href: '/admin/media', icon: FolderOpen },
 ];
+
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

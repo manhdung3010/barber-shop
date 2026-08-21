@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { FolderOpen, Upload, Copy, Check, Filter, Search } from 'lucide-react';
+import { FolderOpen, Upload, Copy, Check, Search, Trash2 } from 'lucide-react';
 
 interface MediaFile {
   name: string;
@@ -14,10 +14,8 @@ export default function AdminMediaPage() {
   const [media, setMedia] = useState<MediaFile[]>([]);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
-  const [selectedFolder, setSelectedFolder] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [copiedUrl, setCopiedUrl] = useState<string | null>(null);
-  const [targetFolder, setTargetFolder] = useState<string>('uploads');
 
   const fetchMedia = async () => {
     try {
@@ -46,7 +44,7 @@ export default function AdminMediaPage() {
         const file = files[i];
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('folder', targetFolder);
+        formData.append('folder', 'uploads');
 
         await fetch('/api/upload', {
           method: 'POST',
@@ -67,14 +65,33 @@ export default function AdminMediaPage() {
     setTimeout(() => setCopiedUrl(null), 2000);
   };
 
-  const folders = ['all', ...Array.from(new Set(media.map((m) => m.folder)))];
+  const handleDelete = async (url: string) => {
+    if (!confirm('Bạn có chắc chắn muốn xóa tệp ảnh này không? Hành động này không thể hoàn tác.')) {
+      return;
+    }
+
+    try {
+      const res = await fetch(`/api/admin/media?url=${encodeURIComponent(url)}`, {
+        method: 'DELETE',
+      });
+      if (res.ok) {
+        // Remove from local state
+        setMedia((prev) => prev.filter((m) => m.url !== url));
+      } else {
+        const data = await res.json();
+        alert(data.error || 'Lỗi khi xóa ảnh');
+      }
+    } catch (err) {
+      console.error('Error deleting media:', err);
+      alert('Không thể kết nối đến máy chủ');
+    }
+  };
 
   const filteredMedia = media.filter((item) => {
-    const matchesFolder = selectedFolder === 'all' || item.folder === selectedFolder;
-    const matchesSearch =
+    return (
       item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.url.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesFolder && matchesSearch;
+      item.url.toLowerCase().includes(searchQuery.toLowerCase())
+    );
   });
 
   return (
@@ -87,24 +104,12 @@ export default function AdminMediaPage() {
             <span>Thư Viện Ảnh Dự Án (Media Library)</span>
           </h1>
           <p className="text-xs sm:text-sm text-[#A7A39B] mt-1 font-light">
-            Toàn bộ ảnh được lưu trực tiếp tại thư mục <code>public/images/</code> của dự án
+            Toàn bộ ảnh được lưu trữ và đồng bộ hóa trực tiếp trong dự án
           </p>
         </div>
 
         {/* Upload Button */}
         <div className="flex items-center gap-3">
-          <select
-            value={targetFolder}
-            onChange={(e) => setTargetFolder(e.target.value)}
-            className="px-3 py-2 bg-[#1A1A18] border border-[rgba(244,240,232,0.12)] rounded-xl text-xs font-mono text-[#F4F0E8] outline-none"
-          >
-            <option value="uploads">Thư mục: uploads</option>
-            <option value="styles">Thư mục: styles</option>
-            <option value="services">Thư mục: services</option>
-            <option value="gallery">Thư mục: gallery</option>
-            <option value="testimonials">Thư mục: testimonials</option>
-          </select>
-
           <label className="px-5 py-2.5 rounded-xl font-mono text-xs font-bold uppercase tracking-wider bg-[#C7A66A] text-[#0B0B0A] hover:bg-[#D8B87A] transition-colors flex items-center gap-2 shrink-0 cursor-pointer shadow-lg shadow-[#C7A66A]/20">
             <Upload className="w-4 h-4" />
             <span>{uploading ? 'Đang tải lên...' : 'Tải Ảnh Mới Lên'}</span>
@@ -120,28 +125,13 @@ export default function AdminMediaPage() {
         </div>
       </div>
 
-      {/* Filter & Search Bar */}
+      {/* Search Bar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 rounded-2xl bg-[#121211] border border-[rgba(244,240,232,0.08)]">
-        {/* Folder Tabs */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-2 md:pb-0">
-          <Filter className="w-4 h-4 text-[#A7A39B] shrink-0 mr-1" />
-          {folders.map((f) => (
-            <button
-              key={f}
-              onClick={() => setSelectedFolder(f)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold uppercase tracking-wider transition-colors shrink-0 ${
-                selectedFolder === f
-                  ? 'bg-[#C7A66A] text-[#0B0B0A]'
-                  : 'bg-[#1A1A18] text-[#A7A39B] hover:text-[#F4F0E8]'
-              }`}
-            >
-              {f}
-            </button>
-          ))}
-        </div>
-
+        <span className="text-xs font-mono text-[#A7A39B] uppercase tracking-wider">
+          Tổng số ảnh: {filteredMedia.length}
+        </span>
         {/* Search Input */}
-        <div className="relative w-full md:w-64">
+        <div className="relative w-full md:w-80">
           <Search className="w-4 h-4 text-[#A7A39B] absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
@@ -156,11 +146,11 @@ export default function AdminMediaPage() {
       {/* Media Grid */}
       {loading ? (
         <div className="py-20 text-center text-[#A7A39B] font-mono text-sm">
-          Đang quét thư viện ảnh dự án...
+          Đang quét thư viện ảnh...
         </div>
       ) : filteredMedia.length === 0 ? (
         <div className="py-20 text-center text-[#A7A39B] font-mono text-sm">
-          Không tìm thấy tệp ảnh nào phù hợp.
+          Không tìm thấy tệp ảnh nào.
         </div>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
@@ -176,9 +166,6 @@ export default function AdminMediaPage() {
                     alt={file.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <span className="absolute top-1.5 left-1.5 px-2 py-0.5 rounded bg-[#0B0B0A]/80 text-[9px] font-mono text-[#C7A66A]">
-                    {file.folder}
-                  </span>
                 </div>
 
                 <p className="text-[11px] font-mono font-bold text-[#F4F0E8] truncate mb-0.5" title={file.name}>
@@ -189,10 +176,10 @@ export default function AdminMediaPage() {
                 </p>
               </div>
 
-              <div className="pt-2 mt-2 border-t border-[rgba(244,240,232,0.06)] flex items-center justify-between">
+              <div className="pt-2 mt-2 border-t border-[rgba(244,240,232,0.06)] flex items-center gap-2">
                 <button
                   onClick={() => handleCopy(file.url)}
-                  className="w-full flex items-center justify-center gap-1.5 py-1 px-2 rounded-lg bg-[#1A1A18] hover:bg-[#C7A66A] text-[#A7A39B] hover:text-[#0B0B0A] text-[10px] font-mono font-bold transition-colors cursor-pointer"
+                  className="flex-1 flex items-center justify-center gap-1.5 py-1 px-2 rounded-lg bg-[#1A1A18] hover:bg-[#C7A66A] text-[#A7A39B] hover:text-[#0B0B0A] text-[10px] font-mono font-bold transition-colors cursor-pointer"
                   title="Sao chép đường dẫn"
                 >
                   {copiedUrl === file.url ? (
@@ -207,6 +194,13 @@ export default function AdminMediaPage() {
                     </>
                   )}
                 </button>
+                <button
+                  onClick={() => handleDelete(file.url)}
+                  className="p-1 px-2 rounded-lg bg-red-950/20 hover:bg-red-600/20 text-red-400 hover:text-red-300 border border-red-500/20 transition-colors cursor-pointer"
+                  title="Xóa hình ảnh"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                </button>
               </div>
             </div>
           ))}
@@ -215,3 +209,4 @@ export default function AdminMediaPage() {
     </div>
   );
 }
+

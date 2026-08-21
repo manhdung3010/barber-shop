@@ -7,9 +7,7 @@ import ImageReveal from '../../ui/ImageReveal';
 import EditorialImage from '../../ui/EditorialImage';
 
 export default function HeroSection() {
-  const hoursSummary = barberProfile.openingHours
-    .map((h) => `${h.label} / ${h.value}`)
-    .join(' • ');
+
 
   return (
     <section id="hero" className="relative min-h-[100svh] flex flex-col justify-between pt-24 sm:pt-28 pb-6 md:pb-8 px-4 sm:px-6 md:px-8 lg:px-10 overflow-x-clip bg-[#0B0B0A]">
@@ -102,8 +100,13 @@ export default function HeroSection() {
         <FadeIn delay={0.5}>
           <span>{barberProfile.city}, {barberProfile.country}</span>
         </FadeIn>
-        <FadeIn delay={0.55}>
-          <span className="text-[#C7A66A]">{hoursSummary}</span>
+        <FadeIn delay={0.55} className="flex flex-col sm:flex-row items-center sm:gap-4 gap-1.5 text-center">
+          {barberProfile.openingHours.map((h, i) => (
+            <div key={i} className="flex items-center gap-1.5 sm:gap-4">
+              {i > 0 && <span className="hidden sm:inline text-[#A7A39B]/40">•</span>}
+              <span className="text-[#C7A66A]">{h.label} / {h.value}</span>
+            </div>
+          ))}
         </FadeIn>
         <FadeIn delay={0.6}>
           <span>EST. {barberProfile.establishedYear}</span>
