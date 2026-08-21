@@ -1,7 +1,8 @@
+'use client';
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { useReducedMotion } from '../../../hooks/useReducedMotion.ts';
-import FadeIn from '../../ui/FadeIn.tsx';
+import { useReducedMotion } from '../../../hooks/useReducedMotion';
+import FadeIn from '../../ui/FadeIn';
 
 export default function GallerySection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -250,3 +251,4 @@ export default function GallerySection() {
     </section>
   );
 }
+

@@ -1,9 +1,10 @@
-import { barberProfile } from '../../../data/barber.ts';
-import Button from '../../ui/Button.tsx';
-import Magnet from '../../ui/Magnet.tsx';
-import FadeIn from '../../ui/FadeIn.tsx';
-import ImageReveal from '../../ui/ImageReveal.tsx';
-import EditorialImage from '../../ui/EditorialImage.tsx';
+'use client';
+import { barberProfile } from '../../../data/barber';
+import Button from '../../ui/Button';
+import Magnet from '../../ui/Magnet';
+import FadeIn from '../../ui/FadeIn';
+import ImageReveal from '../../ui/ImageReveal';
+import EditorialImage from '../../ui/EditorialImage';
 
 export default function HeroSection() {
   const hoursSummary = barberProfile.openingHours
@@ -111,3 +112,4 @@ export default function HeroSection() {
     </section>
   );
 }
+

@@ -1,3 +1,4 @@
+'use client';
 import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 
 interface BaseButtonProps {
@@ -59,3 +60,4 @@ export default function Button({
     </button>
   );
 }
+

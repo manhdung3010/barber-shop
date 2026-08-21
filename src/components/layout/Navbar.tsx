@@ -1,18 +1,21 @@
+'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { barberProfile } from '../../data/barber.ts';
-import { navigationData } from '../../data/navigation.ts';
-import Button from '../ui/Button.tsx';
+import { barberProfile } from '../../data/barber';
+import { navigationData } from '../../data/navigation';
+import Button from '../ui/Button';
 
 export default function Navbar() {
+  const [mounted, setMounted] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const menuTriggerRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 40);
     };
@@ -155,7 +158,8 @@ export default function Navbar() {
       </header>
 
       {/* Mobile Fullscreen Menu Dialog rendered via Portal onto document.body */}
-      {typeof document !== 'undefined' &&
+      {mounted &&
+        typeof document !== 'undefined' &&
         createPortal(
           <AnimatePresence>
             {isMobileMenuOpen && (
@@ -237,3 +241,4 @@ export default function Navbar() {
     </>
   );
 }
+

@@ -1,11 +1,12 @@
+'use client';
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Eye, ArrowUpRight, Scissors, CheckCircle2 } from 'lucide-react';
-import { StyleItem } from '../../../types/index.ts';
-import { useReducedMotion } from '../../../hooks/useReducedMotion.ts';
-import { barberProfile } from '../../../data/barber.ts';
-import EditorialImage from '../../ui/EditorialImage.tsx';
-import Button from '../../ui/Button.tsx';
+import { StyleItem } from '../../../types/index';
+import { useReducedMotion } from '../../../hooks/useReducedMotion';
+import { barberProfile } from '../../../data/barber';
+import EditorialImage from '../../ui/EditorialImage';
+import Button from '../../ui/Button';
 
 interface StyleCardProps {
   item: StyleItem;
@@ -138,3 +139,4 @@ export default function StyleCard({
     </motion.div>
   );
 }
+

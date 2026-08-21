@@ -1,8 +1,9 @@
+'use client';
 import React, { useState, useRef } from 'react';
-import { stylesData } from '../../../data/styles.ts';
-import StyleCard from './StyleCard.tsx';
-import Lightbox from '../../ui/Lightbox.tsx';
-import FadeIn from '../../ui/FadeIn.tsx';
+import { stylesData } from '../../../data/styles';
+import StyleCard from './StyleCard';
+import Lightbox from '../../ui/Lightbox';
+import FadeIn from '../../ui/FadeIn';
 
 export default function StylesSection() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -103,3 +104,4 @@ export default function StylesSection() {
     </section>
   );
 }
+

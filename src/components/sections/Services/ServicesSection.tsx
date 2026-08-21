@@ -1,8 +1,9 @@
+'use client';
 import { useRef } from 'react';
 import { useScroll } from 'framer-motion';
-import { servicesData } from '../../../data/services.ts';
-import ServiceCard from './ServiceCard.tsx';
-import FadeIn from '../../ui/FadeIn.tsx';
+import { servicesData } from '../../../data/services';
+import ServiceCard from './ServiceCard';
+import FadeIn from '../../ui/FadeIn';
 
 export default function ServicesSection() {
   const containerRef = useRef<HTMLElement>(null);
@@ -53,3 +54,4 @@ export default function ServicesSection() {
     </section>
   );
 }
+

@@ -1,6 +1,7 @@
+'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useReducedMotion } from '../../hooks/useReducedMotion.ts';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 interface FadeInProps {
   children: React.ReactNode;
@@ -41,3 +42,4 @@ export default function FadeIn({
     </motion.div>
   );
 }
+

@@ -1,6 +1,7 @@
+'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useReducedMotion } from '../../hooks/useReducedMotion.ts';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 interface ImageRevealProps {
   children: React.ReactNode;
@@ -17,18 +18,14 @@ export default function ImageReveal({
 }: ImageRevealProps) {
   const isReduced = useReducedMotion();
 
-  if (isReduced) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 1.05 }}
+      initial={isReduced ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.05 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{
-        duration,
-        delay,
+        duration: isReduced ? 0 : duration,
+        delay: isReduced ? 0 : delay,
         ease: [0.25, 0.1, 0.25, 1],
       }}
       className={`overflow-hidden ${className}`}

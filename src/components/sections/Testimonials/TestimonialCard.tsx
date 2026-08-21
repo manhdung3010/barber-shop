@@ -1,5 +1,6 @@
+'use client';
 import { Star } from 'lucide-react';
-import { Testimonial } from '../../../types/index.ts';
+import { Testimonial } from '../../../types/index';
 
 interface TestimonialCardProps {
   item: Testimonial;
@@ -33,3 +34,4 @@ export default function TestimonialCard({ item }: TestimonialCardProps) {
     </div>
   );
 }
+

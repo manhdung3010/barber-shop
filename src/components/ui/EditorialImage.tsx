@@ -1,3 +1,4 @@
+'use client';
 import { useState, ImgHTMLAttributes } from 'react';
 
 interface EditorialImageProps extends ImgHTMLAttributes<HTMLImageElement> {
@@ -20,7 +21,6 @@ export default function EditorialImage({
   imageClassName = '',
   ...props
 }: EditorialImageProps) {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
   const aspectClass = {
@@ -35,16 +35,11 @@ export default function EditorialImage({
 
   return (
     <div className={`relative overflow-hidden bg-[#141413] ${aspectClass} ${className}`}>
-      {/* Dark Shimmer Skeleton */}
-      {!isLoaded && !hasError && (
-        <div className="absolute inset-0 bg-gradient-to-r from-[#141413] via-[#1c1c1a] to-[#141413] animate-pulse" />
-      )}
-
       {/* Fallback Display if image fails to load */}
       {hasError ? (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#141413] p-4 text-center border border-[rgba(244,240,232,0.08)]">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C7A66A] mb-1">
-            {watermarkLabel || 'STUDIO WORK'}
+            {watermarkLabel || 'SOWN BARBER'}
           </span>
           <span className="text-[11px] text-[#A7A39B] uppercase tracking-wider line-clamp-2 max-w-[200px]">
             {alt}
@@ -55,13 +50,9 @@ export default function EditorialImage({
           src={src}
           alt={alt}
           loading={priority ? 'eager' : 'lazy'}
-          fetchPriority={priority ? 'high' : 'auto'}
           decoding="async"
-          onLoad={() => setIsLoaded(true)}
           onError={() => setHasError(true)}
-          className={`w-full h-full object-cover transition-opacity duration-500 ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
-          } ${imageClassName}`}
+          className={`w-full h-full object-cover transition-opacity duration-300 ${imageClassName}`}
           {...props}
         />
       )}

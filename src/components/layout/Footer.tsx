@@ -1,7 +1,8 @@
+'use client';
 import React from 'react';
 import { ArrowUp, Phone, MessageCircle, ExternalLink } from 'lucide-react';
-import { barberProfile } from '../../data/barber.ts';
-import { navigationData } from '../../data/navigation.ts';
+import { barberProfile } from '../../data/barber';
+import { navigationData } from '../../data/navigation';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -142,3 +143,4 @@ export default function Footer() {
     </footer>
   );
 }
+

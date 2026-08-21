@@ -1,6 +1,7 @@
+'use client';
 import React, { useState, useRef, useCallback } from 'react';
 import { MoveHorizontal } from 'lucide-react';
-import { BeforeAfterData } from '../../types/index.ts';
+import { BeforeAfterData } from '../../types/index';
 
 interface BeforeAfterSliderProps {
   data?: BeforeAfterData;
@@ -147,3 +148,4 @@ export default function BeforeAfterSlider({ data, className = '' }: BeforeAfterS
     </div>
   );
 }
+

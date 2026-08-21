@@ -1,4 +1,4 @@
-import { NavigationItem } from '../types/index.ts';
+import { NavigationItem } from '../types/index';
 
 export const navigationData: NavigationItem[] = [
   { label: 'Kiểu Tóc', href: '#styles' },

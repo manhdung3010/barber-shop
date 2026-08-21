@@ -1,13 +1,14 @@
+'use client';
 import { useState } from 'react';
 import { ChevronDown, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { barberProfile } from '../../../data/barber.ts';
-import { processStepsData } from '../../../data/process.ts';
-import EditorialImage from '../../ui/EditorialImage.tsx';
-import PerspectiveTilt from '../../ui/PerspectiveTilt.tsx';
-import CountUpNumber from '../../ui/CountUpNumber.tsx';
-import FadeIn from '../../ui/FadeIn.tsx';
-import ImageReveal from '../../ui/ImageReveal.tsx';
+import { barberProfile } from '../../../data/barber';
+import { processStepsData } from '../../../data/process';
+import EditorialImage from '../../ui/EditorialImage';
+import PerspectiveTilt from '../../ui/PerspectiveTilt';
+import CountUpNumber from '../../ui/CountUpNumber';
+import FadeIn from '../../ui/FadeIn';
+import ImageReveal from '../../ui/ImageReveal';
 
 export default function AboutSection() {
   const [activeStep, setActiveStep] = useState<number | null>(0);
@@ -157,3 +158,4 @@ export default function AboutSection() {
     </section>
   );
 }
+

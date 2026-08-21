@@ -1,4 +1,4 @@
-import { ProcessStep } from '../types/index.ts';
+import { ProcessStep } from '../types/index';
 
 export const processStepsData: ProcessStep[] = [
   {

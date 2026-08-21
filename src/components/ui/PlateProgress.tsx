@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect } from 'react';
 
 interface PlateItem {
@@ -103,3 +104,4 @@ export default function PlateProgress() {
     </>
   );
 }
+

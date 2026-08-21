@@ -1,4 +1,4 @@
-import { BarberProfile } from '../types/index.ts';
+import { BarberProfile } from '../types/index';
 
 export function generateBarberShopJsonLd(profile: BarberProfile): string {
   const schema: Record<string, unknown> = {

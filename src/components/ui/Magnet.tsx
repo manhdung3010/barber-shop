@@ -1,6 +1,7 @@
+'use client';
 import React, { useRef, useState } from 'react';
-import { useReducedMotion } from '../../hooks/useReducedMotion.ts';
-import { useMediaQuery } from '../../hooks/useMediaQuery.ts';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 interface MagnetProps {
   children: React.ReactNode;
@@ -14,12 +15,8 @@ export default function Magnet({ children, className = '', strength = 12 }: Magn
   const isReduced = useReducedMotion();
   const isFinePointer = useMediaQuery('(hover: hover) and (pointer: fine)');
 
-  if (isReduced || !isFinePointer) {
-    return <div className={className}>{children}</div>;
-  }
-
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return;
+    if (isReduced || !isFinePointer || !ref.current) return;
     const { left, top, width, height } = ref.current.getBoundingClientRect();
     const centerX = left + width / 2;
     const centerY = top + height / 2;
@@ -48,3 +45,4 @@ export default function Magnet({ children, className = '', strength = 12 }: Magn
     </div>
   );
 }
+

@@ -1,4 +1,4 @@
-import { Testimonial } from '../types/index.ts';
+import { Testimonial } from '../types/index';
 
 export const testimonialsData: Testimonial[] = [
   {

@@ -1,8 +1,9 @@
+'use client';
 import { Star } from 'lucide-react';
-import { barberProfile } from '../../../data/barber.ts';
-import { testimonialsData } from '../../../data/testimonials.ts';
-import BeforeAfterSlider from '../../ui/BeforeAfterSlider.tsx';
-import FadeIn from '../../ui/FadeIn.tsx';
+import { barberProfile } from '../../../data/barber';
+import { testimonialsData } from '../../../data/testimonials';
+import BeforeAfterSlider from '../../ui/BeforeAfterSlider';
+import FadeIn from '../../ui/FadeIn';
 
 export default function TestimonialsSection() {
   if (!barberProfile.showTestimonials || testimonialsData.length === 0) {
@@ -101,3 +102,4 @@ export default function TestimonialsSection() {
     </section>
   );
 }
+

@@ -1,5 +1,6 @@
+'use client';
 import { ArrowUpRight } from 'lucide-react';
-import { Service } from '../../../types/index.ts';
+import { Service } from '../../../types/index';
 
 interface ServiceItemProps {
   service: Service;
@@ -56,3 +57,4 @@ export default function ServiceItem({
     </div>
   );
 }
+

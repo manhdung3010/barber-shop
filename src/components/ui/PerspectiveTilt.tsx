@@ -1,6 +1,7 @@
+'use client';
 import React, { useRef, useState } from 'react';
-import { useReducedMotion } from '../../hooks/useReducedMotion.ts';
-import { useMediaQuery } from '../../hooks/useMediaQuery.ts';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 interface PerspectiveTiltProps {
   children: React.ReactNode;
@@ -18,12 +19,8 @@ export default function PerspectiveTilt({
   const isReduced = useReducedMotion();
   const isFinePointer = useMediaQuery('(hover: hover) and (pointer: fine)');
 
-  if (isReduced || !isFinePointer) {
-    return <div className={className}>{children}</div>;
-  }
-
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return;
+    if (isReduced || !isFinePointer || !ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -64,3 +61,4 @@ export default function PerspectiveTilt({
     </div>
   );
 }
+

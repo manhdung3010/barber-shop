@@ -1,4 +1,4 @@
-import { StyleItem } from '../types/index.ts';
+import { StyleItem } from '../types/index';
 
 export const stylesData: StyleItem[] = [
   {

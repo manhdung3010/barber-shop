@@ -1,6 +1,7 @@
+'use client';
 import { useEffect, useRef, useState } from 'react';
 import { useInView, animate } from 'framer-motion';
-import { useReducedMotion } from '../../hooks/useReducedMotion.ts';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 interface CountUpNumberProps {
   value: number;
@@ -48,3 +49,4 @@ export default function CountUpNumber({
     </span>
   );
 }
+

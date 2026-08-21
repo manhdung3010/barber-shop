@@ -1,7 +1,8 @@
+'use client';
 import { MapPin, Clock, Phone, ArrowUpRight } from 'lucide-react';
-import { barberProfile } from '../../../data/barber.ts';
-import Button from '../../ui/Button.tsx';
-import FadeIn from '../../ui/FadeIn.tsx';
+import { barberProfile } from '../../../data/barber';
+import Button from '../../ui/Button';
+import FadeIn from '../../ui/FadeIn';
 
 export default function LocationSection() {
   return (
@@ -132,3 +133,4 @@ export default function LocationSection() {
     </section>
   );
 }
+

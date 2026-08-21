@@ -1,7 +1,8 @@
-import { barberProfile } from '../../../data/barber.ts';
-import Button from '../../ui/Button.tsx';
-import Magnet from '../../ui/Magnet.tsx';
-import FadeIn from '../../ui/FadeIn.tsx';
+'use client';
+import { barberProfile } from '../../../data/barber';
+import Button from '../../ui/Button';
+import Magnet from '../../ui/Magnet';
+import FadeIn from '../../ui/FadeIn';
 
 export default function BookingSection() {
   return (
@@ -59,3 +60,4 @@ export default function BookingSection() {
     </section>
   );
 }
+

@@ -1,18 +1,18 @@
 import { useEffect } from 'react';
-import Navbar from './components/layout/Navbar.tsx';
-import HeroSection from './components/sections/Hero/HeroSection.tsx';
-import StylesSection from './components/sections/Styles/StylesSection.tsx';
-import ServicesSection from './components/sections/Services/ServicesSection.tsx';
-import AboutSection from './components/sections/About/AboutSection.tsx';
-import GallerySection from './components/sections/Gallery/GallerySection.tsx';
-import TestimonialsSection from './components/sections/Testimonials/TestimonialsSection.tsx';
-import LocationSection from './components/sections/Location/LocationSection.tsx';
-import BookingSection from './components/sections/Booking/BookingSection.tsx';
-import Footer from './components/layout/Footer.tsx';
-import MarqueeTicker from './components/ui/MarqueeTicker.tsx';
-import PlateProgress from './components/ui/PlateProgress.tsx';
-import { barberProfile } from './data/barber.ts';
-import { generateBarberShopJsonLd } from './utils/seo.ts';
+import Navbar from './components/layout/Navbar';
+import HeroSection from './components/sections/Hero/HeroSection';
+import StylesSection from './components/sections/Styles/StylesSection';
+import ServicesSection from './components/sections/Services/ServicesSection';
+import AboutSection from './components/sections/About/AboutSection';
+import GallerySection from './components/sections/Gallery/GallerySection';
+import TestimonialsSection from './components/sections/Testimonials/TestimonialsSection';
+import LocationSection from './components/sections/Location/LocationSection';
+import BookingSection from './components/sections/Booking/BookingSection';
+import Footer from './components/layout/Footer';
+import MarqueeTicker from './components/ui/MarqueeTicker';
+import PlateProgress from './components/ui/PlateProgress';
+import { barberProfile } from './data/barber';
+import { generateBarberShopJsonLd } from './utils/seo';
 
 export default function App() {
   useEffect(() => {

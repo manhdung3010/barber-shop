@@ -1,4 +1,4 @@
-import { BarberProfile } from '../types/index.ts';
+import { BarberProfile } from '../types/index';
 
 export const barberProfile: BarberProfile = {
   name: 'Nguyễn Sơn',

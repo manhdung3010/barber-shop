@@ -1,6 +1,7 @@
+'use client';
 import React, { useRef, useState } from 'react';
-import { useReducedMotion } from '../../hooks/useReducedMotion.ts';
-import { useMediaQuery } from '../../hooks/useMediaQuery.ts';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 interface SpotlightGlowProps {
   children: React.ReactNode;
@@ -49,3 +50,4 @@ export default function SpotlightGlow({
     </div>
   );
 }
+

@@ -1,4 +1,5 @@
-import { useReducedMotion } from '../../hooks/useReducedMotion.ts';
+'use client';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 
 interface MarqueeTickerProps {
   items?: string[];
@@ -85,3 +86,4 @@ export default function MarqueeTicker({
     </div>
   );
 }
+

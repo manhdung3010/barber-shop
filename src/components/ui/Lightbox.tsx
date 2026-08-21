@@ -1,6 +1,7 @@
+'use client';
 import React, { useEffect, useRef } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { GalleryItem } from '../../types/index.ts';
+import { GalleryItem } from '../../types/index';
 
 interface LightboxProps {
   isOpen: boolean;
@@ -119,3 +120,4 @@ export default function Lightbox({
     </div>
   );
 }
+

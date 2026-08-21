@@ -1,10 +1,11 @@
+'use client';
 import { useRef } from 'react';
 import { motion, useTransform, MotionValue } from 'framer-motion';
 import { ArrowUpRight, Clock, Scissors, Layers, Flame, Waves, Droplets, Sparkles } from 'lucide-react';
-import { Service } from '../../../types/index.ts';
-import { barberProfile } from '../../../data/barber.ts';
-import { useReducedMotion } from '../../../hooks/useReducedMotion.ts';
-import Button from '../../ui/Button.tsx';
+import { Service } from '../../../types/index';
+import { barberProfile } from '../../../data/barber';
+import { useReducedMotion } from '../../../hooks/useReducedMotion';
+import Button from '../../ui/Button';
 
 interface ServiceCardProps {
   service: Service;
@@ -175,3 +176,4 @@ export default function ServiceCard({
     </div>
   );
 }
+
