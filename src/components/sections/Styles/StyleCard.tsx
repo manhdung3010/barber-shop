@@ -1,10 +1,11 @@
 import React, { useRef } from 'react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
-import { Eye, ArrowUpRight, Sparkles } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
+import { Eye, ArrowUpRight, Scissors, CheckCircle2 } from 'lucide-react';
 import { StyleItem } from '../../../types/index.ts';
 import { useReducedMotion } from '../../../hooks/useReducedMotion.ts';
-import { useMediaQuery } from '../../../hooks/useMediaQuery.ts';
+import { barberProfile } from '../../../data/barber.ts';
 import EditorialImage from '../../ui/EditorialImage.tsx';
+import Button from '../../ui/Button.tsx';
 
 interface StyleCardProps {
   item: StyleItem;
@@ -20,40 +21,32 @@ export default function StyleCard({
   onOpenLightbox,
 }: StyleCardProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
-
-  const isImageInView = useInView(imageRef, { once: true, amount: 0.2 });
-  const isTextInView = useInView(textRef, { once: true, amount: 0.2 });
-
+  const isInView = useInView(containerRef, { once: true, amount: 0.15 });
   const isReduced = useReducedMotion();
-  const isFinePointer = useMediaQuery('(hover: hover) and (pointer: fine)');
-
-  // Subtle typography parallax (title moves slightly slower than image)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'end start'],
-  });
-
-  const titleParallax = useTransform(
-    scrollYProgress,
-    [0, 1],
-    isReduced ? [0, 0] : [-14, 14]
-  );
-
   const formattedNumber = String(index + 1).padStart(2, '0');
 
+  // Custom highlights based on category
+  const highlights = item.category === 'fade'
+    ? ['Đường Fade chuyển tiếp mịn màng', 'Chấn viền sắc nét từng góc cạnh', 'Tạo kiểu sáp mờ chuẩn phom']
+    : item.category === 'textured'
+    ? ['Tỉa layer tạo texture bồng bềnh', 'Mái ngang che khuyết điểm trán', 'Dễ sấy tạo kiểu tại nhà']
+    : item.category === 'classic'
+    ? ['Rẽ ngôi quý ông lịch lãm', 'Độ bóng pomade sang trọng', 'Trau chuốt kéo từng nếp tóc']
+    : ['Tỉa tầng bay bổng tự nhiên', 'Dưỡng ẩm sợi tóc mềm mượt', 'Chấn viền dao cạo sắc bén'];
+
   return (
-    <div
+    <motion.div
       ref={containerRef}
-      className="relative w-full max-w-4xl mx-auto flex flex-col group select-none"
+      initial={isReduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      animate={isReduced || isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      className="relative w-full rounded-[28px] sm:rounded-[36px] bg-[#121211] border border-[rgba(244,240,232,0.1)] hover:border-[#C7A66A]/50 transition-all duration-500 shadow-2xl p-5 sm:p-7 md:p-8 flex flex-col md:flex-row items-center gap-6 sm:gap-8 lg:gap-10 group select-none"
     >
-      {/* 1. LARGE DOMINANT IMAGE COMPOSITION (4/3 Mobile -> 3/2 Desktop) */}
+      {/* 1. PORTRAIT IMAGE (3/4 Aspect Ratio: 100% uncropped full hairstyle) */}
       <div
-        ref={imageRef}
         role="button"
         tabIndex={0}
-        aria-label={`Xem kiểu tóc: ${item.title}`}
+        aria-label={`Xem ảnh lớn kiểu tóc: ${item.title}`}
         onClick={(e) => onOpenLightbox(index, e)}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -61,169 +54,87 @@ export default function StyleCard({
             onOpenLightbox(index, e as unknown as React.MouseEvent<HTMLElement>);
           }
         }}
-        className="relative w-full aspect-[4/3] sm:aspect-[3/2] max-h-[75vh] rounded-[24px] sm:rounded-[36px] md:rounded-[44px] overflow-hidden border border-[rgba(244,240,232,0.14)] group-hover:border-[#C7A66A]/50 transition-all duration-700 bg-[#121211] shadow-2xl cursor-pointer"
+        className="relative w-full md:w-[300px] lg:w-[340px] xl:w-[380px] aspect-[3/4] shrink-0 rounded-[20px] sm:rounded-[26px] overflow-hidden border border-[rgba(244,240,232,0.12)] group-hover:border-[#C7A66A]/60 transition-all duration-500 bg-[#0B0B0A] shadow-xl cursor-pointer"
       >
-        <motion.div
-          initial={
-            isReduced
-              ? { opacity: 1, scale: 1 }
-              : { clipPath: 'inset(0 0 100% 0)', opacity: 0, scale: 1.05 }
-          }
-          animate={
-            isReduced
-              ? { opacity: 1, scale: 1 }
-              : isImageInView
-              ? { clipPath: 'inset(0 0 0% 0)', opacity: 1, scale: 1 }
-              : { clipPath: 'inset(0 0 100% 0)', opacity: 0, scale: 1.05 }
-          }
-          transition={{
-            duration: 0.95,
-            ease: [0.16, 1, 0.3, 1],
-          }}
-          className="w-full h-full"
-        >
-          <EditorialImage
-            src={item.image}
-            alt={item.alt}
-            aspectRatio="3/2"
-            watermarkLabel={item.category}
-            imageClassName="group-hover:scale-[1.03] transition-transform duration-700 ease-out"
-          />
-        </motion.div>
+        <EditorialImage
+          src={item.image}
+          alt={item.alt}
+          aspectRatio="3/4"
+          watermarkLabel={item.category}
+          imageClassName="group-hover:scale-105 transition-transform duration-700 ease-out object-cover object-top"
+        />
 
-        {/* Subtle Dark Gradient Scrim on Image Hover */}
-        <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none" />
+        {/* Subtle Dark Gradient Overlay at Bottom */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80 group-hover:opacity-50 transition-opacity duration-300 pointer-events-none" />
 
-        {/* Desktop Subtle "XEM ẢNH ↗" Badge */}
-        {!isReduced && isFinePointer && (
-          <div className="pointer-events-none absolute bottom-5 right-5 z-20 hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-[#0B0B0A]/85 backdrop-blur-md border border-[#C7A66A]/70 text-[#F4F0E8] shadow-2xl opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all">
-            <Eye className="w-3.5 h-3.5 text-[#C7A66A]" />
-            <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#F4F0E8]">
-              XEM ẢNH ↗
-            </span>
-          </div>
-        )}
-      </div>
-
-      {/* 2. ENHANCED EDITORIAL METADATA & TYPOGRAPHY WITH OVERFLOW-SAFE CLEARANCE */}
-      <div ref={textRef} className="relative pt-4 sm:pt-6 flex flex-col">
-        {/* Large Decorative Watermark Plate Number in Background */}
-        <div
-          className="absolute right-0 top-2 font-mono font-black text-7xl sm:text-8xl md:text-9xl text-white/[0.03] pointer-events-none select-none tracking-tighter"
-          aria-hidden="true"
-        >
-          {formattedNumber}
+        {/* Quick View Floating Pill Badge */}
+        <div className="absolute bottom-4 right-4 z-20 flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#0B0B0A]/85 backdrop-blur-md border border-[#C7A66A]/60 text-[#F4F0E8] shadow-lg group-hover:bg-[#C7A66A] group-hover:text-[#0B0B0A] transition-all duration-300">
+          <Eye className="w-3.5 h-3.5" />
+          <span className="text-[10px] font-extrabold uppercase tracking-widest">
+            XEM ẢNH ↗
+          </span>
         </div>
 
-        {/* Category & Plate Number Eyebrow with Animated Hairline Divider */}
-        <div className="flex flex-col mb-3 sm:mb-4">
-          <motion.div
-            initial={isReduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-            animate={
-              isReduced
-                ? { opacity: 1, y: 0 }
-                : isTextInView
-                ? { opacity: 1, y: 0 }
-                : { opacity: 0, y: 16 }
-            }
-            transition={{
-              duration: 0.5,
-              delay: 0.1,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="flex items-center justify-between pb-2 sm:pb-2.5"
-          >
-            <div className="flex items-center gap-3">
-              <span className="plate-meta">
-                {formattedNumber} // {item.category.toUpperCase()}
-              </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C7A66A]/60" />
-              <span className="hidden sm:inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-[#A7A39B]">
-                TÁC PHẨM ĐẶC QUYỀN
-              </span>
-            </div>
+        {/* Top Tag Plate */}
+        <div className="absolute top-4 left-4 z-20 flex items-center gap-2 px-3 py-1 rounded-full bg-[#0B0B0A]/85 backdrop-blur-md border border-[rgba(244,240,232,0.15)] text-[10px] font-mono uppercase tracking-widest text-[#C7A66A]">
+          <span>{formattedNumber}</span>
+          <span className="w-1 h-1 rounded-full bg-[#C7A66A]" />
+          <span>{item.category}</span>
+        </div>
+      </div>
 
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#A7A39B] group-hover:text-[#C7A66A] transition-colors">
-              <span>BẢN MẪU {formattedNumber} / {String(total).padStart(2, '0')}</span>
-              <div className="p-1 rounded-full border border-transparent group-hover:border-[#C7A66A]/40 group-hover:bg-[#C7A66A]/10 transition-all">
-                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Animated Gold Hairline Divider */}
-          <motion.div
-            initial={isReduced ? { scaleX: 1 } : { scaleX: 0 }}
-            animate={
-              isReduced
-                ? { scaleX: 1 }
-                : isTextInView
-                ? { scaleX: 1 }
-                : { scaleX: 0 }
-            }
-            transition={{
-              duration: 0.85,
-              delay: 0.2,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            style={{ transformOrigin: 'left' }}
-            className="h-[1px] bg-gradient-to-r from-[#C7A66A]/60 via-[rgba(244,240,232,0.18)] to-transparent w-full"
-          />
+      {/* 2. CARD EDITORIAL DETAILS & ACTIONS */}
+      <div className="flex-1 flex flex-col justify-between w-full text-left py-1">
+        {/* Top Subtitle Row */}
+        <div className="flex items-center justify-between text-xs text-[#A7A39B] font-mono uppercase tracking-wider mb-2.5">
+          <span className="text-[#C7A66A] font-bold inline-flex items-center gap-1.5">
+            <Scissors className="w-3.5 h-3.5" /> 01.{formattedNumber} // BỘ SƯU TẬP
+          </span>
+          <div className="flex items-center gap-1 text-[#A7A39B]">
+            <span>BẢN MẪU {formattedNumber} / {String(total).padStart(2, '0')}</span>
+          </div>
         </div>
 
-        {/* Overflow-Safe Title Reveal with Kinetic Hover Shift & Scroll Parallax */}
-        <motion.div
-          style={{ y: titleParallax }}
-          className="mb-1 sm:mb-2 py-1"
-        >
-          <motion.div
-            initial={isReduced ? { y: 0, opacity: 1 } : { y: 16, opacity: 0 }}
-            animate={
-              isReduced
-                ? { y: 0, opacity: 1 }
-                : isTextInView
-                ? { y: 0, opacity: 1 }
-                : { y: 16, opacity: 0 }
-            }
-            transition={{
-              duration: 0.75,
-              delay: 0.25,
-              ease: [0.16, 1, 0.3, 1],
-            }}
+        {/* Hairstyle Title */}
+        <h3 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight text-[#F4F0E8] group-hover:text-[#C7A66A] transition-colors duration-300 mb-3 leading-tight">
+          {item.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-sm sm:text-base text-[#D6D1C8] font-light leading-relaxed mb-5">
+          {item.description}
+        </p>
+
+        {/* Highlights Bullet List */}
+        <div className="space-y-2 mb-6 pt-3 border-t border-[rgba(244,240,232,0.08)]">
+          {highlights.map((h, i) => (
+            <div key={i} className="flex items-center gap-2.5 text-xs sm:text-sm text-[#A7A39B]">
+              <CheckCircle2 className="w-4 h-4 text-[#C7A66A] shrink-0" />
+              <span>{h}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Action Buttons Row */}
+        <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-[rgba(244,240,232,0.1)]">
+          <Button
+            href={barberProfile.booking.primaryUrl}
+            variant="primary"
+            size="sm"
+            className="px-5 py-2.5 text-xs font-bold"
           >
-            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#F4F0E8] group-hover:text-[#C7A66A] group-hover:translate-x-2 transition-all duration-300 leading-[1.08]">
-              {item.title}
-            </h3>
-          </motion.div>
-        </motion.div>
+            Đặt Lịch Cắt Kiểu Này
+          </Button>
 
-        {/* Description & Editorial Feature Badges */}
-        <motion.div
-          initial={isReduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-          animate={
-            isReduced
-              ? { opacity: 1, y: 0 }
-              : isTextInView
-              ? { opacity: 1, y: 0 }
-              : { opacity: 0, y: 16 }
-          }
-          transition={{
-            duration: 0.6,
-            delay: 0.35,
-            ease: [0.16, 1, 0.3, 1],
-          }}
-          className="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
-        >
-          <p className="text-base sm:text-lg md:text-xl font-light text-[#A7A39B] leading-relaxed max-w-2xl">
-            {item.description}
-          </p>
-
-          <div className="flex items-center gap-2 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-[#C7A66A] bg-[#141413] border border-[#C7A66A]/20 px-3.5 py-1.5 rounded-full shrink-0 self-start sm:self-auto">
-            <Sparkles className="w-3 h-3 text-[#C7A66A]" />
-            <span>HOÀN THIỆN CAO CẤP</span>
-          </div>
-        </motion.div>
+          <button
+            onClick={(e) => onOpenLightbox(index, e)}
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-xs font-bold text-[#F4F0E8] bg-[rgba(244,240,232,0.06)] hover:bg-[rgba(244,240,232,0.12)] border border-[rgba(244,240,232,0.15)] hover:border-[#C7A66A] hover:text-[#C7A66A] transition-all cursor-pointer"
+          >
+            <span>Phóng To Toàn Màn Hình</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

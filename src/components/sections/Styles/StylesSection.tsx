@@ -15,14 +15,30 @@ export default function StylesSection() {
     setLightboxOpen(true);
   };
 
+  const [activeCategory, setActiveCategory] = useState<string>('all');
+
+  const categories = [
+    { id: 'all', label: 'Tất Cả', count: stylesData.length },
+    { id: 'fade', label: 'Fade Sắc Nét', count: stylesData.filter((s) => s.category === 'fade').length },
+    { id: 'textured', label: 'Texture / Layer', count: stylesData.filter((s) => s.category === 'textured').length },
+    { id: 'classic', label: 'Classic Quý Ông', count: stylesData.filter((s) => s.category === 'classic').length },
+    { id: 'long_beard', label: 'Layer Dài & Râu', count: stylesData.filter((s) => s.category === 'long' || s.category === 'beard').length },
+  ];
+
+  const filteredStyles = stylesData.filter((item) => {
+    if (activeCategory === 'all') return true;
+    if (activeCategory === 'long_beard') return item.category === 'long' || item.category === 'beard';
+    return item.category === activeCategory;
+  });
+
   return (
     <section
       id="styles"
-      className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 bg-[#0B0B0A]"
+      className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 lg:px-10 bg-[#0B0B0A]"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <FadeIn className="text-center mb-8 sm:mb-12 md:mb-14">
+        <FadeIn className="text-center mb-8 sm:mb-10">
           <p className="plate-meta mb-2.5 sm:mb-3">01 // BỘ SƯU TẬP KIỂU TÓC</p>
           <h2 className="display-heading max-w-3xl mx-auto mb-4 sm:mb-5">
             TÁC PHẨM THAY LỜI NÓI.
@@ -32,13 +48,36 @@ export default function StylesSection() {
           </p>
         </FadeIn>
 
-        {/* Vertically Scrolling Editorial Portfolio Flow */}
-        <div className="flex flex-col space-y-12 sm:space-y-16 md:space-y-20">
-          {stylesData.map((item, index) => (
+        {/* Category Filter Pills Bar */}
+        <FadeIn delay={0.15} className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10 sm:mb-14">
+          {categories.map((cat) => {
+            const isActive = activeCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`px-4 sm:px-5 py-2 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                  isActive
+                    ? 'bg-[#C7A66A] text-[#0B0B0A] shadow-lg shadow-[#C7A66A]/20 scale-105'
+                    : 'bg-[#141413] text-[#A7A39B] border border-[rgba(244,240,232,0.12)] hover:border-[#C7A66A]/50 hover:text-[#F4F0E8]'
+                }`}
+              >
+                <span>{cat.label}</span>
+                <span className={`ml-2 text-[10px] opacity-70 ${isActive ? 'text-[#0B0B0A]' : 'text-[#C7A66A]'}`}>
+                  ({cat.count})
+                </span>
+              </button>
+            );
+          })}
+        </FadeIn>
+
+        {/* Single Column Editorial Lookbook Stack */}
+        <div className="flex flex-col space-y-8 sm:space-y-10 lg:space-y-12 max-w-5xl mx-auto w-full">
+          {filteredStyles.map((item) => (
             <StyleCard
               key={item.id}
               item={item}
-              index={index}
+              index={stylesData.findIndex((s) => s.id === item.id)}
               total={stylesData.length}
               onOpenLightbox={openLightbox}
             />

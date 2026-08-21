@@ -6,6 +6,7 @@ export const testimonialsData: Testimonial[] = [
     quote:
       'Cắt ở Sown Barbershop từ những ngày đầu. Đường fade của anh Sơn cực kỳ mịn và đều, tư vấn kiểu tóc rất hợp với khuôn mặt mình.',
     clientName: 'Anh Tuấn Anh (TX. Nghi Sơn)',
+    avatar: '/images/testimonials/client1.jpg',
     rating: 5,
     service: 'Cắt Fade Chuyên Sâu',
     isPlaceholder: false,
@@ -15,6 +16,7 @@ export const testimonialsData: Testimonial[] = [
     quote:
       'Thợ cắt rất có tâm và tỉ mỉ từng sợi tóc. Tóc uốn texture ở đây về nhà tự gội sấy cực kỳ dễ vào nếp, phom giữ được lâu.',
     clientName: 'Anh Minh Đức (Tĩnh Gia)',
+    avatar: '/images/testimonials/client2.jpg',
     rating: 5,
     service: 'Uốn Texture / Phồng Chân Tóc',
     isPlaceholder: false,
@@ -24,6 +26,7 @@ export const testimonialsData: Testimonial[] = [
     quote:
       'Không gian tiệm thân thiện, dịch vụ cạo mặt khăn nóng rất phê và thư giãn. Giá cả cực kỳ hợp lý so với chất lượng đường kéo.',
     clientName: 'Anh Hoàng Nam (P. Hải Hòa)',
+    avatar: '/images/testimonials/client3.jpg',
     rating: 5,
     service: 'Combo Cắt & Khăn Nóng',
     isPlaceholder: false,

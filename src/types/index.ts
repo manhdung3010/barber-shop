@@ -104,6 +104,7 @@ export interface Testimonial {
   id: string;
   quote: string;
   clientName: string;
+  avatar?: string;
   rating: number;
   service?: string;
   isPlaceholder?: boolean;

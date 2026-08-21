@@ -103,9 +103,8 @@ export default function AboutSection() {
             {processStepsData.map((step, idx) => {
               const isOpen = activeStep === idx;
               return (
-                <div key={step.number} className="py-3.5 sm:py-4.5 transition-colors hover:bg-[rgba(244,240,232,0.02)]">
+                <div onClick={() => toggleStep(idx)} key={step.number} className="py-3.5 sm:py-4.5 transition-colors hover:bg-[rgba(244,240,232,0.02)]">
                   <button
-                    onClick={() => toggleStep(idx)}
                     aria-expanded={isOpen}
                     className="w-full flex items-center justify-between text-left cursor-pointer group select-none"
                   >

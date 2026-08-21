@@ -69,9 +69,17 @@ export default function TestimonialsSection() {
 
                   {/* Client Info with Avatar */}
                   <div className="pt-4 border-t border-[rgba(11,11,10,0.08)] flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-[#6E5A37]/12 border border-[#6E5A37]/20 text-[#6E5A37] font-mono font-extrabold text-xs flex items-center justify-center shrink-0 shadow-inner">
-                      {initial}
-                    </div>
+                    {item.avatar ? (
+                      <img
+                        src={item.avatar}
+                        alt={item.clientName}
+                        className="w-10 h-10 rounded-full object-cover border border-[#6E5A37]/30 shrink-0 shadow-sm"
+                      />
+                    ) : (
+                      <div className="w-10 h-10 rounded-full bg-[#6E5A37]/12 border border-[#6E5A37]/20 text-[#6E5A37] font-mono font-extrabold text-xs flex items-center justify-center shrink-0 shadow-inner">
+                        {initial}
+                      </div>
+                    )}
                     <div className="flex flex-col min-w-0">
                       <span className="font-extrabold uppercase tracking-wide text-xs sm:text-sm text-[#0B0B0A] truncate">
                         {item.clientName}
