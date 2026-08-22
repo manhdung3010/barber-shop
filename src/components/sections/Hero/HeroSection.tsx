@@ -23,9 +23,15 @@ export default function HeroSection() {
         <div className="md:col-span-6 lg:col-span-7 flex flex-col items-start text-left">
           {/* Eyebrow Plate */}
           <FadeIn delay={0.1}>
-            <p className="plate-meta mb-2 sm:mb-3">
-              00 // {barberProfile.shopName.toUpperCase()} · TIỆM BARBER CÁ NHÂN CAO CẤP
-            </p>
+            <div className="flex items-center gap-2 sm:gap-2.5 mb-2.5 sm:mb-3 flex-wrap">
+              <span className="font-mono text-xs font-bold text-[#C7A66A] tracking-wider uppercase shrink-0">
+                00 // SOWN BARBERSHOP
+              </span>
+              <span className="w-1 h-1 rounded-full bg-[#C7A66A]/60 shrink-0" />
+              <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.14em] text-[#A7A39B]">
+                TIỆM BARBER CÁ NHÂN CAO CẤP
+              </span>
+            </div>
           </FadeIn>
 
           {/* Hero Dominant Headline */}
