@@ -22,7 +22,7 @@ export default function ImageReveal({
     <motion.div
       initial={isReduced ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.05 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={{ once: true, margin: '150px 0px -50px 0px' }}
       transition={{
         duration: isReduced ? 0 : duration,
         delay: isReduced ? 0 : delay,

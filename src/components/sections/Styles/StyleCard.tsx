@@ -1,9 +1,7 @@
 'use client';
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React from 'react';
 import { Eye, ArrowUpRight, Scissors, CheckCircle2 } from 'lucide-react';
 import { StyleItem } from '../../../types/index';
-import { useReducedMotion } from '../../../hooks/useReducedMotion';
 import { barberProfile } from '../../../data/barber';
 import EditorialImage from '../../ui/EditorialImage';
 import Button from '../../ui/Button';
@@ -21,9 +19,6 @@ export default function StyleCard({
   total,
   onOpenLightbox,
 }: StyleCardProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, margin: '250px 0px 100px 0px' });
-  const isReduced = useReducedMotion();
   const formattedNumber = String(index + 1).padStart(2, '0');
 
   // Custom highlights based on category
@@ -36,12 +31,8 @@ export default function StyleCard({
     : ['Tỉa tầng bay bổng tự nhiên', 'Dưỡng ẩm sợi tóc mềm mượt', 'Chấn viền dao cạo sắc bén'];
 
   return (
-    <motion.div
-      ref={containerRef}
-      initial={isReduced || index === 0 ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      animate={isReduced || isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-      className="relative w-full rounded-[24px] sm:rounded-[36px] bg-[#121211] border border-[rgba(244,240,232,0.1)] hover:border-[#C7A66A]/50 transition-all duration-500 shadow-2xl p-4 xs:p-5 sm:p-7 md:p-8 flex flex-col md:flex-row items-center gap-5 sm:gap-8 lg:gap-10 group select-none"
+    <div
+      className="relative w-full rounded-[24px] sm:rounded-[36px] bg-[#121211] border border-[rgba(244,240,232,0.1)] hover:border-[#C7A66A]/50 transition-all duration-300 shadow-2xl p-4 xs:p-5 sm:p-7 md:p-8 flex flex-col md:flex-row items-center gap-5 sm:gap-8 lg:gap-10 group select-none"
     >
       {/* 1. PORTRAIT IMAGE (3/4 Aspect Ratio: 100% uncropped full hairstyle) */}
       <div
@@ -137,7 +128,7 @@ export default function StyleCard({
           </button>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
