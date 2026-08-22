@@ -136,6 +136,43 @@ Truy cập trang web tại: [http://localhost:3000](http://localhost:3000)
 
 ---
 
+## 🔄 Hướng Dẫn Cập Nhật Code Mới Lên Server (Deployment / Update)
+
+Khi bạn đẩy code mới lên Git hoặc có cập nhật cấu trúc cơ sở dữ liệu (Database Schema), hãy thao tác trên Server theo một trong 2 cách sau:
+
+### Cách 1: Nếu Server đang chạy bằng Docker Compose (Khuyến nghị)
+
+Chạy các lệnh sau tại thư mục dự án trên server:
+
+```bash
+# 1. Kéo code mới nhất từ Git về
+git pull origin main
+
+# 2. Build lại image và khởi động lại container ngầm
+docker compose up -d --build
+
+# 3. Đẩy cấu trúc Database mới vào PostgreSQL (chọn 1 trong 2 cách sau):
+# Cách A (Chạy trực tiếp từ server host):
+pnpm db:push
+
+# Cách B (Hoặc chạy thông qua container):
+docker compose exec web prisma db push
+```
+
+*(Lệnh `db:push` sẽ tự động cập nhật các bảng/cột mới trong Database mà không làm mất dữ liệu cũ của tiệm).*
+
+---
+
+### Cách 2: Nếu Server đang chạy trực tiếp bằng Node.js / PM2
+
+Chạy chuỗi lệnh 1-dòng sau:
+
+```bash
+git pull origin main && pnpm install && pnpm prisma generate && pnpm db:push && pnpm build && pm2 restart all
+```
+
+---
+
 ## 📁 Cấu Trúc Các Script Thường Dùng
 
 Các lệnh điều khiển chính được định nghĩa trong `package.json`:

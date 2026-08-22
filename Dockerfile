@@ -28,7 +28,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm prisma
 
 # Create non-root user
 RUN addgroup --system --gid 1001 nodejs
