@@ -22,7 +22,7 @@ export default function StyleCard({
   onOpenLightbox,
 }: StyleCardProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.15 });
+  const isInView = useInView(containerRef, { once: true, margin: '250px 0px 100px 0px' });
   const isReduced = useReducedMotion();
   const formattedNumber = String(index + 1).padStart(2, '0');
 
@@ -38,9 +38,9 @@ export default function StyleCard({
   return (
     <motion.div
       ref={containerRef}
-      initial={isReduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      animate={isReduced || isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      initial={isReduced || index === 0 ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      animate={isReduced || isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
       className="relative w-full rounded-[24px] sm:rounded-[36px] bg-[#121211] border border-[rgba(244,240,232,0.1)] hover:border-[#C7A66A]/50 transition-all duration-500 shadow-2xl p-4 xs:p-5 sm:p-7 md:p-8 flex flex-col md:flex-row items-center gap-5 sm:gap-8 lg:gap-10 group select-none"
     >
       {/* 1. PORTRAIT IMAGE (3/4 Aspect Ratio: 100% uncropped full hairstyle) */}
@@ -61,6 +61,7 @@ export default function StyleCard({
           src={item.image}
           alt={item.alt}
           aspectRatio="3/4"
+          priority={index < 2}
           watermarkLabel={item.category}
           imageClassName="group-hover:scale-105 transition-transform duration-700 ease-out object-cover object-top"
         />
