@@ -20,9 +20,12 @@ export default function StylesSection({ data }: StylesSectionProps) {
 
   const INITIAL_LIMIT = 3;
 
-  const openLightbox = (index: number, e: React.MouseEvent<HTMLElement>) => {
-    lastTriggerRef.current = e.currentTarget;
-    setActiveStyleIndex(index);
+  const openLightbox = (index: number, e?: React.MouseEvent<HTMLElement>) => {
+    if (e?.currentTarget) {
+      lastTriggerRef.current = e.currentTarget;
+    }
+    const safeIdx = Math.max(0, Math.min(index, list.length - 1));
+    setActiveStyleIndex(safeIdx);
     setLightboxOpen(true);
   };
 
@@ -94,15 +97,19 @@ export default function StylesSection({ data }: StylesSectionProps) {
 
         {/* Single Column Editorial Lookbook Stack */}
         <div className="flex flex-col space-y-8 sm:space-y-10 lg:space-y-12 max-w-5xl mx-auto w-full">
-          {displayedStyles.map((item) => (
-            <StyleCard
-              key={item.id}
-              item={item}
-              index={stylesData.findIndex((s) => s.id === item.id)}
-              total={stylesData.length}
-              onOpenLightbox={openLightbox}
-            />
-          ))}
+          {displayedStyles.map((item) => {
+            const itemIndex = list.findIndex((s) => s.id === item.id);
+            const validIndex = itemIndex >= 0 ? itemIndex : 0;
+            return (
+              <StyleCard
+                key={item.id}
+                item={item}
+                index={validIndex}
+                total={list.length}
+                onOpenLightbox={openLightbox}
+              />
+            );
+          })}
         </div>
 
         {/* Load More / Expand Button (Prevents Homepage from becoming overly long) */}

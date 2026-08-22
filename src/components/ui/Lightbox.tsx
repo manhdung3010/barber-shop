@@ -23,7 +23,8 @@ export default function Lightbox({
   triggerRef,
 }: LightboxProps) {
   const modalRef = useRef<HTMLDivElement>(null);
-  const currentItem = items[currentIndex];
+  const safeIndex = Math.max(0, Math.min(currentIndex, items.length - 1));
+  const currentItem = items[safeIndex] || items[0];
 
   useEffect(() => {
     if (!isOpen) return;
@@ -52,7 +53,7 @@ export default function Lightbox({
     };
   }, [isOpen, onClose, onPrev, onNext, triggerRef]);
 
-  if (!isOpen || !currentItem) return null;
+  if (!isOpen || !currentItem || items.length === 0) return null;
 
   return (
     <div
