@@ -154,19 +154,11 @@ export default function GallerySection() {
             <div className="w-8 sm:w-16 h-[1px] bg-[#C7A66A]/40" />
           </div>
 
-          <motion.h2
-            initial={isReduced ? { opacity: 1 } : { opacity: 0, x: -30 }}
-            whileInView={isReduced ? { opacity: 1 } : { opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{
-              duration: 0.8,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            whileHover={isReduced ? undefined : { x: 10 }}
+          <h2
             className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] transition-colors duration-300 mb-3 sm:mb-4 cursor-default select-none inline-block"
           >
             KHÔNG GIAN.
-          </motion.h2>
+          </h2>
 
           <p className="text-sm sm:text-base md:text-lg font-light text-[#A7A39B] leading-relaxed">
             Studio cá nhân 1-on-1 với ghế cắt thủy lực Takara, âm học tĩnh lặng và hệ thống ánh sáng chuyên dụng tôn vinh từng chi tiết tóc.
@@ -186,20 +178,11 @@ export default function GallerySection() {
             <div className="w-8 sm:w-16 h-[1px] bg-[#C7A66A]/40" />
           </div>
 
-          <motion.h2
-            initial={isReduced ? { opacity: 1 } : { opacity: 0, scale: 0.96 }}
-            whileInView={isReduced ? { opacity: 1 } : { opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{
-              duration: 0.8,
-              ease: [0.16, 1, 0.3, 1],
-              delay: 0.1,
-            }}
-            whileHover={isReduced ? undefined : { scale: 1.03 }}
+          <h2
             className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] transition-colors duration-300 mb-3 sm:mb-4 cursor-default select-none inline-block"
           >
             TAY NGHỀ.
-          </motion.h2>
+          </h2>
 
           <p className="text-sm sm:text-base md:text-lg font-light text-[#A7A39B] leading-relaxed">
             Kéo thép Hitachi Cobalt Nhật Bản và tông đơ từ tính đi chuẩn xác theo hướng mọc tự nhiên của sợi tóc, giữ phom bền bỉ sau nhiều tuần.
@@ -218,20 +201,11 @@ export default function GallerySection() {
             </span>
           </div>
 
-          <motion.h2
-            initial={isReduced ? { opacity: 1 } : { opacity: 0, x: 30 }}
-            whileInView={isReduced ? { opacity: 1 } : { opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{
-              duration: 0.8,
-              ease: [0.16, 1, 0.3, 1],
-              delay: 0.15,
-            }}
-            whileHover={isReduced ? undefined : { x: -10 }}
+          <h2
             className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#F4F0E8] leading-[1.02] group-hover:text-[#C7A66A] transition-colors duration-300 mb-3 sm:mb-4 cursor-default select-none inline-block"
           >
             CHI TIẾT.
-          </motion.h2>
+          </h2>
 
           <p className="text-sm sm:text-base md:text-lg font-light text-[#A7A39B] leading-relaxed">
             Nghi thức khăn nóng thảo mộc, đường dao cạo mài vát bén ngọt và các sản phẩm dưỡng chuyên biệt hoàn thiện diện mạo phong độ đỉnh cao.
