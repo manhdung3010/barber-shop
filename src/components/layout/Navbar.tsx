@@ -81,16 +81,16 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 border-b ${
           isScrolled
-            ? 'bg-[#0B0B0A]/90 backdrop-blur-md border-[rgba(244,240,232,0.12)] py-3 sm:py-3.5 shadow-xl shadow-black/40'
-            : 'bg-[#0B0B0A]/60 backdrop-blur-sm border-transparent py-4 sm:py-6'
+            ? 'bg-[#0B0B0A]/90 backdrop-blur-md border-[rgba(244,240,232,0.12)] py-2.5 sm:py-3.5 shadow-xl shadow-black/40'
+            : 'bg-[#0B0B0A]/60 backdrop-blur-sm border-transparent py-3 sm:py-5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 flex items-center justify-between gap-3 sm:gap-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 flex items-center justify-between gap-3 sm:gap-6 h-9 sm:h-10">
           {/* Brand Logo with Official Circular Emblem */}
           <a
             href="#"
             onClick={(e) => handleNavClick(e, '#')}
-            className="flex items-center gap-2.5 sm:gap-3 text-sm sm:text-base md:text-lg font-black uppercase tracking-wider text-[#F4F0E8] hover:text-[#C7A66A] transition-colors whitespace-nowrap shrink-0 group"
+            className="flex items-center gap-2.5 sm:gap-3 text-sm sm:text-base md:text-lg font-black uppercase tracking-wider text-[#F4F0E8] hover:text-[#C7A66A] transition-colors whitespace-nowrap shrink-0 group h-full"
           >
             {barberProfile.logo && (
               <img
@@ -103,7 +103,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 shrink-0" aria-label="Menu chính">
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 shrink-0 h-full" aria-label="Menu chính">
             {navigationData.map((item) => (
               <a
                 key={item.href}
@@ -118,38 +118,31 @@ export default function Navbar() {
           </nav>
 
           {/* Right Action: Compact Button on Mobile & Full Pill on Desktop */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            {/* Mobile Small Compact Pill Button */}
-            <div className="sm:hidden">
-              <Button
-                href={barberProfile.booking.primaryUrl}
-                variant="pill"
-                className="px-3 py-1.5 text-[10px] tracking-wider font-bold whitespace-nowrap"
-              >
-                Đặt Lịch
-              </Button>
-            </div>
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0 h-full">
+            {/* Mobile Small Compact Pill Button (Exact 32px height) */}
+            <a
+              href={barberProfile.booking.primaryUrl}
+              className="sm:hidden h-8 inline-flex items-center justify-center px-3.5 rounded-full text-[11px] font-bold uppercase tracking-wider text-[#F4F0E8] border border-[rgba(244,240,232,0.25)] hover:border-[#C7A66A] hover:text-[#C7A66A] transition-all whitespace-nowrap leading-none"
+            >
+              Đặt Lịch
+            </a>
 
-            {/* Desktop Full Button */}
-            <div className="hidden sm:block">
-              <Button
-                href={barberProfile.booking.primaryUrl}
-                variant="pill"
-                size="sm"
-                className="px-5 py-2 text-xs tracking-wider font-bold whitespace-nowrap shadow-md shadow-[#C7A66A]/15"
-              >
-                Đặt Lịch Ngay
-              </Button>
-            </div>
+            {/* Desktop Full Button (Exact 36px height) */}
+            <a
+              href={barberProfile.booking.primaryUrl}
+              className="hidden sm:inline-flex h-9 items-center justify-center px-5 rounded-full text-xs font-bold uppercase tracking-wider text-[#F4F0E8] border border-[rgba(244,240,232,0.25)] hover:border-[#C7A66A] hover:text-[#C7A66A] transition-all whitespace-nowrap shadow-md shadow-[#C7A66A]/10 leading-none"
+            >
+              Đặt Lịch Ngay
+            </a>
 
-            {/* Mobile Hamburger Button */}
+            {/* Mobile Hamburger Button (Exact 32px x 32px height) */}
             <button
               ref={menuTriggerRef}
               onClick={() => setIsMobileMenuOpen(true)}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
               aria-label="Mở menu điều hướng"
-              className="lg:hidden p-2 -mr-1.5 text-[#F4F0E8] hover:text-[#C7A66A] transition-colors cursor-pointer shrink-0 rounded-lg hover:bg-white/5"
+              className="lg:hidden w-8 h-8 flex items-center justify-center text-[#F4F0E8] hover:text-[#C7A66A] transition-colors cursor-pointer shrink-0 rounded-lg hover:bg-white/5"
             >
               <Menu className="w-5 h-5" />
             </button>
