@@ -23,16 +23,14 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle focus trapping and Escape for mobile menu
+  // Handle body overflow and Escape for mobile menu
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
-      firstLinkRef.current?.focus();
 
       const handleKeyDown = (e: KeyboardEvent) => {
         if (e.key === 'Escape') {
           setIsMobileMenuOpen(false);
-          menuTriggerRef.current?.focus();
         }
       };
       window.addEventListener('keydown', handleKeyDown);
@@ -47,7 +45,6 @@ export default function Navbar() {
 
   const closeMenu = () => {
     setIsMobileMenuOpen(false);
-    menuTriggerRef.current?.focus();
   };
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -137,12 +134,11 @@ export default function Navbar() {
 
             {/* Mobile Hamburger Button (Exact 32px x 32px height) */}
             <button
-              ref={menuTriggerRef}
               onClick={() => setIsMobileMenuOpen(true)}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
               aria-label="Mở menu điều hướng"
-              className="lg:hidden w-8 h-8 flex items-center justify-center text-[#F4F0E8] hover:text-[#C7A66A] transition-colors cursor-pointer shrink-0 rounded-lg hover:bg-white/5"
+              className="lg:hidden w-8 h-8 flex items-center justify-center text-[#F4F0E8] hover:text-[#C7A66A] transition-colors cursor-pointer shrink-0 rounded-lg hover:bg-white/5 outline-none focus:outline-none focus:ring-0 select-none"
             >
               <Menu className="w-5 h-5" />
             </button>
@@ -165,7 +161,7 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -16 }}
                 transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="fixed inset-0 z-[9999] bg-[#0B0B0A] text-[#F4F0E8] flex flex-col justify-between p-6 sm:p-10 h-[100dvh] w-full overflow-y-auto"
+                className="fixed inset-0 z-[9999] bg-[#0B0B0A] text-[#F4F0E8] flex flex-col justify-between p-6 sm:p-10 h-[100dvh] w-full overflow-y-auto outline-none"
               >
                 {/* Header */}
                 <div className="flex items-center justify-between border-b border-[rgba(244,240,232,0.12)] pb-5 shrink-0">
@@ -184,7 +180,7 @@ export default function Navbar() {
                   <button
                     onClick={closeMenu}
                     aria-label="Đóng menu"
-                    className="p-2 -mr-2 text-[#F4F0E8] hover:text-[#C7A66A] transition-colors cursor-pointer"
+                    className="p-2 -mr-2 text-[#F4F0E8] hover:text-[#C7A66A] transition-colors cursor-pointer outline-none focus:outline-none focus:ring-0"
                   >
                     <X className="w-7 h-7" />
                   </button>
@@ -192,14 +188,13 @@ export default function Navbar() {
 
                 {/* Nav items */}
                 <div className="flex-1">
-                  <nav className="flex flex-col gap-5 sm:gap-6  py-6" aria-label="Danh mục menu">
-                    {navigationData.map((item, idx) => (
+                  <nav className="flex flex-col gap-5 sm:gap-6 py-6" aria-label="Danh mục menu">
+                    {navigationData.map((item) => (
                       <a
                         key={item.href}
-                        ref={idx === 0 ? firstLinkRef : undefined}
                         href={item.href}
                         onClick={(e) => handleNavClick(e, item.href)}
-                        className="text-2xl sm:text-3xl font-extrabold uppercase tracking-wider text-[#F4F0E8] hover:text-[#C7A66A] hover:translate-x-2 transition-all cursor-pointer flex items-center justify-between group"
+                        className="text-2xl sm:text-3xl font-extrabold uppercase tracking-wider text-[#F4F0E8] hover:text-[#C7A66A] hover:translate-x-2 transition-all cursor-pointer flex items-center justify-between group outline-none focus:outline-none focus:ring-0 select-none"
                       >
                         <span>{item.label}</span>
                         <span className="text-base text-[#C7A66A] opacity-0 group-hover:opacity-100 transition-opacity">→</span>

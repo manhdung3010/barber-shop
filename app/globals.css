@@ -65,6 +65,18 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Disable browser default blue focus ring and mobile tap highlight */
+  *:focus,
+  *:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  button, a, input, select, textarea {
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
+  }
+
   ::selection {
     background-color: #C7A66A;
     color: #0B0B0A;
