@@ -12,9 +12,9 @@ export default function BookingSection() {
 
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <FadeIn>
-          <p className="plate-meta mb-2.5 sm:mb-3">08 // ĐẶT LỊCH HẸN NGAY</p>
-          <h2 className="display-heading text-[#F4F0E8] mb-4 sm:mb-6">
-            SẴN SÀNG CHO MỘT DIỆN MẠO MỚI?
+          <p className="plate-meta mb-2 sm:mb-3">08 // ĐẶT LỊCH HẸN NGAY</p>
+          <h2 className="text-[1.2rem] xs:text-[1.35rem] sm:text-2xl md:text-3xl lg:text-4xl font-display font-black uppercase tracking-tight text-[#F4F0E8] whitespace-nowrap sm:whitespace-normal mb-3.5 sm:mb-6">
+            SẴN SÀNG CHO DIỆN MẠO MỚI?
           </h2>
           <p className="body-editorial max-w-xl mx-auto mb-6 sm:mb-8">
             Chọn phong cách bạn muốn, hẹn trước khung giờ phù hợp và để Master Barber chăm sóc trọn vẹn phần còn lại.
@@ -41,14 +41,14 @@ export default function BookingSection() {
             <span className="text-xs uppercase tracking-widest text-[#A7A39B] block mb-4">
               HOẶC LIÊN HỆ TRỰC TIẾP QUA CÁC KÊNH
             </span>
-            <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+            <div className="flex flex-col xs:flex-row xs:flex-wrap justify-center gap-2.5 sm:gap-4 max-w-lg mx-auto">
               {barberProfile.booking.secondaryChannels.map((channel, i) => (
                 <Button
                   key={i}
                   href={channel.url}
                   variant="outline"
                   size="sm"
-                  className="rounded-full text-xs font-bold uppercase tracking-wider"
+                  className="rounded-full text-xs font-bold uppercase tracking-wider px-4 py-2 sm:px-5 sm:py-2.5 w-full xs:w-auto text-center justify-center"
                 >
                   {channel.label}
                 </Button>

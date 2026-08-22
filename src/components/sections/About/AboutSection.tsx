@@ -21,9 +21,9 @@ export default function AboutSection() {
     <section id="about" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 lg:px-10 bg-[#0B0B0A]">
       <div className="max-w-7xl mx-auto">
         {/* 03: The Experience / Visual Silence Breathing Moment */}
-        <FadeIn className="text-center py-8 sm:py-12 md:py-14 mb-10 sm:mb-14 border-b border-[rgba(244,240,232,0.12)]">
-          <p className="plate-meta mb-2.5 sm:mb-3">03 // TRẢI NGHIỆM ĐẶC QUYỀN</p>
-          <h2 className="display-heading max-w-4xl mx-auto mb-4 text-[#F4F0E8]">
+        <FadeIn className="text-center py-6 sm:py-12 md:py-14 mb-8 sm:mb-14 border-b border-[rgba(244,240,232,0.12)]">
+          <p className="plate-meta mb-2 sm:mb-3">03 // TRẢI NGHIỆM ĐẶC QUYỀN</p>
+          <h2 className="text-[1.25rem] xs:text-[1.45rem] sm:text-2xl md:text-3xl lg:text-4xl font-display font-black uppercase tracking-tight text-[#F4F0E8] whitespace-nowrap sm:whitespace-normal max-w-4xl mx-auto mb-3 sm:mb-4">
             HƠN CẢ MỘT LẦN CẮT TÓC.
           </h2>
           <p className="body-editorial max-w-lg mx-auto">
@@ -85,13 +85,13 @@ export default function AboutSection() {
         </div>
 
         {/* The Chair Experience / Studio Process Accordion */}
-        <FadeIn delay={0.2} className="pt-10 sm:pt-12 border-t border-[rgba(244,240,232,0.12)]">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-4">
+        <FadeIn delay={0.2} className="pt-8 sm:pt-12 border-t border-[rgba(244,240,232,0.12)]">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-5 sm:mb-8 gap-3 sm:gap-4">
             <div>
-              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#C7A66A] mb-1.5">
+              <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-[#C7A66A] mb-1">
                 <Sparkles className="w-3.5 h-3.5" /> QUY TRÌNH TẠI GHẾ CẮT
               </span>
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold uppercase tracking-tight text-[#F4F0E8]">
+              <h3 className="text-base xs:text-lg sm:text-2xl md:text-3xl font-extrabold uppercase tracking-tight text-[#F4F0E8]">
                 TRẢI NGHIỆM CHĂM SÓC 1-ON-1
               </h3>
             </div>
@@ -104,32 +104,32 @@ export default function AboutSection() {
             {processStepsData.map((step, idx) => {
               const isOpen = activeStep === idx;
               return (
-                <div onClick={() => toggleStep(idx)} key={step.number} className="py-3.5 sm:py-4.5 transition-colors hover:bg-[rgba(244,240,232,0.02)]">
+                <div onClick={() => toggleStep(idx)} key={step.number} className="py-3 sm:py-4 transition-colors hover:bg-[rgba(244,240,232,0.02)]">
                   <button
                     aria-expanded={isOpen}
-                    className="w-full flex items-center justify-between text-left cursor-pointer group select-none"
+                    className="w-full flex items-center justify-between text-left cursor-pointer group select-none gap-3"
                   >
-                    <div className="flex items-center gap-4 sm:gap-8">
-                      <span className="text-xs sm:text-sm font-mono font-bold text-[#C7A66A] tracking-wider">
+                    <div className="flex items-center gap-2.5 sm:gap-5 min-w-0">
+                      <span className="text-xs sm:text-sm font-mono font-bold text-[#C7A66A] tracking-wider shrink-0">
                         {step.number}
                       </span>
-                      <span className="text-sm sm:text-lg font-bold uppercase tracking-wider text-[#F4F0E8] group-hover:text-[#C7A66A] transition-colors">
+                      <span className="text-xs xs:text-sm sm:text-base md:text-lg font-bold uppercase tracking-wide text-[#F4F0E8] group-hover:text-[#C7A66A] transition-colors leading-snug">
                         {step.title}
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-3 sm:gap-4">
+                    <div className="flex items-center gap-2 sm:gap-4 shrink-0">
                       {step.duration && (
-                        <span className="hidden sm:inline-block text-[10px] uppercase tracking-widest text-[#A7A39B] border border-[rgba(244,240,232,0.15)] px-2 py-0.5 rounded-full">
+                        <span className="hidden sm:inline-block text-[10px] uppercase tracking-widest text-[#A7A39B] border border-[rgba(244,240,232,0.15)] px-2 py-0.5 rounded-full font-mono">
                           {step.duration}
                         </span>
                       )}
                       <div
-                        className={`p-1.5 rounded-full border border-[rgba(244,240,232,0.2)] text-[#F4F0E8] transition-transform duration-300 ${
+                        className={`p-1 sm:p-1.5 rounded-full border border-[rgba(244,240,232,0.2)] text-[#F4F0E8] transition-transform duration-300 ${
                           isOpen ? 'rotate-180 bg-[#C7A66A] text-[#0B0B0A] border-[#C7A66A]' : ''
                         }`}
                       >
-                        <ChevronDown className="w-4 h-4" />
+                        <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       </div>
                     </div>
                   </button>
@@ -143,7 +143,7 @@ export default function AboutSection() {
                         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                         className="overflow-hidden"
                       >
-                        <p className="pt-3 pl-8 sm:pl-14 text-xs sm:text-sm text-[#A7A39B] font-light leading-relaxed max-w-2xl">
+                        <p className="pt-2 pl-6 sm:pl-10 pr-2 text-xs sm:text-sm text-[#A7A39B] font-light leading-relaxed max-w-2xl">
                           {step.description}
                         </p>
                       </motion.div>

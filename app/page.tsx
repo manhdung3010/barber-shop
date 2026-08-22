@@ -21,6 +21,15 @@ import { Service, StyleItem, Testimonial } from '../src/types/index';
 export const revalidate = 0; // On-demand dynamic data fetching
 
 async function getLiveContent() {
+  if (!process.env.DATABASE_URL) {
+    return {
+      services: servicesData,
+      styles: stylesData,
+      testimonials: testimonialsData,
+      faqs: faqData,
+    };
+  }
+
   try {
     const [dbServices, dbStyles, dbTestimonials, dbFaqs] = await Promise.all([
       prisma.serviceItem.findMany({ where: { active: true }, orderBy: { order: 'asc' } }),
@@ -85,8 +94,7 @@ async function getLiveContent() {
         : faqData;
 
     return { services, styles, testimonials, faqs };
-  } catch (err) {
-    console.error('Prisma fetch fallback to static data:', err);
+  } catch {
     return {
       services: servicesData,
       styles: stylesData,

@@ -49,7 +49,7 @@ export const barberProfile: BarberProfile = {
     facebook: 'https://www.facebook.com/nguyen.bellerin.1',
     zalo: 'https://zalo.me/0987443091',
     messenger: 'https://www.facebook.com/nguyen.bellerin.1',
-    googleMaps: 'https://www.bing.com/maps/default.aspx?v=2&pc=FACEBK&mid=8100&where1=32%20%C4%91%C6%B0%E1%BB%9Dng%20L%C6%B0%C6%A1ng%20Ch%C3%AD%20-%20TDP%204%20-%20P.%20T%C4%A9nh%20Gia%20-%20Thanh%20Ho%C3%A1%2C%20Thanh%20H%C3%B3a%2C%20Vietnam',
+    googleMaps: 'https://www.google.com/maps/search/?api=1&query=32+%C4%90%C6%B0%E1%BB%9Dng+L%C6%B0%C6%A1ng+Ch%C3%AD,+TDP+4,+H%E1%BA%A3i+H%C3%B2a,+Nghi+S%C6%A1n,+Thanh+H%C3%B3a',
   },
   establishedYear: '2018',
   showTestimonials: true,

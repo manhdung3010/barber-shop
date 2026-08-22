@@ -80,7 +80,7 @@
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.04em;
-  font-size: clamp(2.4rem, 4.4vw + 0.5rem, 5rem);
+  font-size: clamp(2.2rem, 4.4vw + 0.5rem, 5rem);
   line-height: clamp(0.98, 0.2vw + 0.96, 1.02);
   color: #F4F0E8;
 }
@@ -90,14 +90,14 @@
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.025em;
-  font-size: clamp(1.85rem, 3.2vw, 3.15rem);
-  line-height: clamp(1.04, 0.3vw + 1.02, 1.08);
+  font-size: clamp(1.35rem, 2.8vw + 0.5rem, 3.15rem);
+  line-height: clamp(1.05, 0.3vw + 1.02, 1.1);
   color: #F4F0E8;
 }
 
 .body-editorial {
   font-family: var(--font-sans);
-  font-size: clamp(0.95rem, 0.2vw + 0.9rem, 1.15rem);
+  font-size: clamp(0.9rem, 0.2vw + 0.85rem, 1.15rem);
   line-height: 1.68;
   color: #A7A39B;
   font-weight: 300;
@@ -105,11 +105,20 @@
 
 .plate-meta {
   font-family: var(--font-mono);
-  font-size: clamp(0.7rem, 0.1vw + 0.68rem, 0.78rem);
+  font-size: clamp(0.68rem, 0.1vw + 0.65rem, 0.78rem);
   text-transform: uppercase;
   letter-spacing: 0.22em;
   color: #C7A66A;
   font-weight: 700;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* ==========================================================================

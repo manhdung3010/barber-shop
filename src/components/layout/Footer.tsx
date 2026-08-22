@@ -43,23 +43,30 @@ export default function Footer() {
             <a
               href="#"
               onClick={(e) => handleNavClick(e, '#')}
-              className="flex items-center gap-3 text-2xl sm:text-3xl font-black uppercase tracking-wider text-[#F4F0E8] hover:text-[#C7A66A] transition-colors mb-3 group"
+              className="flex items-center gap-2.5 sm:gap-3 text-xl sm:text-3xl font-black uppercase tracking-wider text-[#F4F0E8] hover:text-[#C7A66A] transition-colors mb-2.5 group"
             >
               {barberProfile.logo && (
                 <img
                   src={barberProfile.logo}
                   alt="Sown Barbershop Logo"
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-[#C7A66A]/40 shadow-lg group-hover:scale-105 transition-transform shrink-0"
+                  className="w-9 h-9 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-[#C7A66A]/40 shadow-lg group-hover:scale-105 transition-transform shrink-0"
                 />
               )}
               <span>{barberProfile.shopName}</span>
             </a>
-            <p className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#C7A66A] mb-3">
+            <p className="text-xs font-sans font-bold uppercase tracking-[0.12em] text-[#C7A66A] mb-2.5">
               {barberProfile.tagline}
             </p>
-            <p className="text-xs sm:text-sm text-[#A7A39B] font-light leading-relaxed max-w-md mb-5">
-              {barberProfile.address}, {barberProfile.city}
-            </p>
+            <a
+              href={barberProfile.socials.googleMaps || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs sm:text-sm text-[#A7A39B] hover:text-[#C7A66A] font-light leading-relaxed max-w-md mb-4 transition-colors block group/ftaddr"
+              title="Mở địa chỉ trên Google Maps"
+            >
+              <span>{barberProfile.address}, {barberProfile.city}</span>
+              <span className="text-[#C7A66A] opacity-70 group-hover/ftaddr:opacity-100 ml-1">↗</span>
+            </a>
 
             {/* Quick Contact Badges */}
             <div className="flex flex-wrap items-center gap-3">

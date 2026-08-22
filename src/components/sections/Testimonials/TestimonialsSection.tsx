@@ -21,9 +21,9 @@ export default function TestimonialsSection({ data }: TestimonialsSectionProps) 
     <section id="proof" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 bg-[#0B0B0A]">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <FadeIn className="text-center mb-8 sm:mb-12">
-          <p className="plate-meta mb-2.5 sm:mb-3">05 // BẰNG CHỨNG & BIẾN ĐỔI DIỆN MẠO</p>
-          <h2 className="display-heading text-[#F4F0E8] mb-3 sm:mb-4">
+        <FadeIn className="text-center mb-6 sm:mb-12">
+          <p className="plate-meta mb-2 sm:mb-3">05 // BẰNG CHỨNG & BIẾN ĐỔI DIỆN MẠO</p>
+          <h2 className="text-[1.25rem] xs:text-[1.45rem] sm:text-2xl md:text-3xl lg:text-4xl font-display font-black uppercase tracking-tight text-[#F4F0E8] whitespace-nowrap sm:whitespace-normal mb-3 sm:mb-4">
             TÓC ĐẸP. NĂNG LƯỢNG TÍCH CỰC.
           </h2>
           <p className="body-editorial max-w-lg mx-auto">

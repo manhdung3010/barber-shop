@@ -60,10 +60,10 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/hero/hero.jpg',
+        url: '/images/hero/hero-mobile.jpg',
         width: 1200,
-        height: 630,
-        alt: 'Sown Barbershop - Tiệm Barber Nam Chuyên Nghiệp tại Thanh Hóa',
+        height: 675,
+        alt: 'Sown Barbershop — Định Hình Phong Cách, Khẳng Định Bản Sắc',
         type: 'image/jpeg',
       },
     ],
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     title: 'Sown Barbershop — Tiệm Cắt Tóc Nam Đẹp & Fade Sắc Nét tại Tĩnh Gia, Thanh Hóa',
     description:
       'Cắt tóc thiết kế cá nhân hóa, fade sắc nét, uốn định hình và chăm sóc diện mạo phái mạnh chuẩn gu tại TX. Nghi Sơn, Thanh Hóa.',
-    images: ['/images/hero/hero.jpg'],
+    images: ['/images/hero/hero-mobile.jpg'],
   },
   robots: {
     index: true,

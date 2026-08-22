@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { Sparkles, Plus, Edit, Trash2, Save, X, Upload, Check, AlertCircle, Eye } from 'lucide-react';
+import { Sparkles, Plus, Edit, Trash2, Save, X, Upload, Check, AlertCircle, Eye, EyeOff } from 'lucide-react';
 
 interface StyleItem {
   id: string;
@@ -45,6 +45,27 @@ export default function AdminStylesPage() {
   useEffect(() => {
     fetchStyles();
   }, []);
+
+  const handleToggleActive = async (item: StyleItem) => {
+    const updated = { ...item, active: !item.active };
+    try {
+      const res = await fetch('/api/admin/styles', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updated),
+      });
+      if (!res.ok) throw new Error('Lỗi khi đổi trạng thái');
+      setStyles((prev) => prev.map((s) => (s.id === item.id ? updated : s)));
+      setMessage({
+        type: 'success',
+        text: updated.active
+          ? `Đã BẬT hiển thị mẫu "${item.title}" ra trang chủ!`
+          : `Đã ẨN mẫu "${item.title}" khỏi trang chủ!`,
+      });
+    } catch (err: unknown) {
+      if (err instanceof Error) setMessage({ type: 'error', text: err.message });
+    }
+  };
 
   const handleOpenNew = () => {
     setIsNew(true);
@@ -203,6 +224,19 @@ export default function AdminStylesPage() {
                   <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-full bg-[#0B0B0A]/85 backdrop-blur-md text-[10px] font-mono font-bold text-[#C7A66A] border border-[rgba(244,240,232,0.1)]">
                     #{String(index + 1).padStart(2, '0')} · {item.category.toUpperCase()}
                   </div>
+
+                  {/* Active Status Badge */}
+                  <div className="absolute top-2.5 right-2.5">
+                    <span
+                      className={`px-2.5 py-1 rounded-full text-[9px] font-mono font-bold uppercase tracking-wider backdrop-blur-md shadow-sm ${
+                        item.active
+                          ? 'bg-emerald-950/85 text-emerald-300 border border-emerald-700/60'
+                          : 'bg-zinc-900/85 text-zinc-400 border border-zinc-700/60'
+                      }`}
+                    >
+                      {item.active ? '● Trang Chủ' : '○ Đã Ẩn'}
+                    </span>
+                  </div>
                 </div>
 
                 <h3 className="text-base font-bold text-[#F4F0E8] line-clamp-1 mb-1">{item.title}</h3>
@@ -212,21 +246,37 @@ export default function AdminStylesPage() {
               </div>
 
               {/* Actions */}
-              <div className="pt-3 border-t border-[rgba(244,240,232,0.08)] flex items-center justify-end gap-2">
+              <div className="pt-3 border-t border-[rgba(244,240,232,0.08)] flex items-center justify-between gap-2">
                 <button
-                  onClick={() => handleEdit(item)}
-                  className="p-2 rounded-xl bg-[#1A1A18] hover:bg-[#C7A66A] text-[#A7A39B] hover:text-[#0B0B0A] transition-colors cursor-pointer"
-                  title="Chỉnh sửa"
+                  type="button"
+                  onClick={() => handleToggleActive(item)}
+                  className={`px-3 py-1.5 rounded-xl text-[11px] font-mono font-bold uppercase transition-colors cursor-pointer flex items-center gap-1.5 ${
+                    item.active
+                      ? 'bg-emerald-950/40 text-emerald-400 border border-emerald-800/50 hover:bg-emerald-900/50'
+                      : 'bg-zinc-900 text-zinc-400 border border-zinc-800 hover:text-zinc-200'
+                  }`}
+                  title={item.active ? 'Bấm để ẩn khỏi trang chủ' : 'Bấm để hiển thị ra trang chủ'}
                 >
-                  <Edit className="w-3.5 h-3.5" />
+                  {item.active ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
+                  <span>{item.active ? 'Đang Hiện' : 'Đã Ẩn'}</span>
                 </button>
-                <button
-                  onClick={() => handleDelete(item.id, item.title)}
-                  className="p-2 rounded-xl bg-[#1A1A18] hover:bg-red-950/60 text-[#A7A39B] hover:text-red-400 transition-colors cursor-pointer"
-                  title="Xóa"
-                >
-                  <Trash2 className="w-3.5 h-3.5" />
-                </button>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => handleEdit(item)}
+                    className="p-2 rounded-xl bg-[#1A1A18] hover:bg-[#C7A66A] text-[#A7A39B] hover:text-[#0B0B0A] transition-colors cursor-pointer"
+                    title="Chỉnh sửa"
+                  >
+                    <Edit className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(item.id, item.title)}
+                    className="p-2 rounded-xl bg-[#1A1A18] hover:bg-red-950/60 text-[#A7A39B] hover:text-red-400 transition-colors cursor-pointer"
+                    title="Xóa"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
             </div>
           ))}
@@ -261,21 +311,49 @@ export default function AdminStylesPage() {
                 />
               </div>
 
-              <div>
-                <label className="block text-xs font-mono font-bold uppercase tracking-wider text-[#A7A39B] mb-1.5">
-                  Phân Loại Danh Mục
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-mono font-bold uppercase tracking-wider text-[#A7A39B] mb-1.5">
+                    Phân Loại Danh Mục
+                  </label>
+                  <select
+                    value={editingItem.category}
+                    onChange={(e) => setEditingItem({ ...editingItem, category: e.target.value })}
+                    className="w-full px-4 py-2.5 bg-[#0B0B0A] border border-[rgba(244,240,232,0.12)] focus:border-[#C7A66A] rounded-xl text-sm text-[#F4F0E8] outline-none"
+                  >
+                    {CATEGORIES.map((cat) => (
+                      <option key={cat.id} value={cat.id}>
+                        {cat.label} ({cat.id})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono font-bold uppercase tracking-wider text-[#A7A39B] mb-1.5">
+                    Thứ Tự Sắp Xếp (Order)
+                  </label>
+                  <input
+                    type="number"
+                    value={editingItem.order}
+                    onChange={(e) => setEditingItem({ ...editingItem, order: parseInt(e.target.value) || 0 })}
+                    className="w-full px-4 py-2.5 bg-[#0B0B0A] border border-[rgba(244,240,232,0.12)] focus:border-[#C7A66A] rounded-xl text-sm text-[#F4F0E8] outline-none"
+                  />
+                </div>
+              </div>
+
+              {/* Active Toggle Checkbox */}
+              <div className="flex items-center gap-3 p-3.5 rounded-xl bg-[#0B0B0A] border border-[rgba(244,240,232,0.12)]">
+                <input
+                  type="checkbox"
+                  id="style-active"
+                  checked={editingItem.active}
+                  onChange={(e) => setEditingItem({ ...editingItem, active: e.target.checked })}
+                  className="w-4 h-4 accent-[#C7A66A] rounded cursor-pointer"
+                />
+                <label htmlFor="style-active" className="text-xs text-[#F4F0E8] font-mono font-bold uppercase tracking-wider cursor-pointer">
+                  Hiển thị kiểu tóc này ngoài trang chủ
                 </label>
-                <select
-                  value={editingItem.category}
-                  onChange={(e) => setEditingItem({ ...editingItem, category: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-[#0B0B0A] border border-[rgba(244,240,232,0.12)] focus:border-[#C7A66A] rounded-xl text-sm text-[#F4F0E8] outline-none"
-                >
-                  {CATEGORIES.map((cat) => (
-                    <option key={cat.id} value={cat.id}>
-                      {cat.label} ({cat.id})
-                    </option>
-                  ))}
-                </select>
               </div>
 
               <div>

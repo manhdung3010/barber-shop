@@ -348,6 +348,19 @@ export default function AdminProfilePage() {
               />
             </div>
           </div>
+
+          <div className="pt-4 border-t border-[rgba(244,240,232,0.06)]">
+            <label className="block text-xs font-mono font-bold uppercase tracking-wider text-[#A7A39B] mb-2">
+              Link Chỉ Đường Google Maps (Mở khi khách bấm vào địa chỉ)
+            </label>
+            <input
+              type="text"
+              value={profile.socials?.googleMaps || ''}
+              onChange={(e) => setProfile({ ...profile, socials: { ...profile.socials, googleMaps: e.target.value } })}
+              placeholder="https://www.google.com/maps/search/?api=1&query=..."
+              className="w-full px-4 py-2.5 bg-[#0B0B0A] border border-[rgba(244,240,232,0.12)] focus:border-[#C7A66A] rounded-xl text-sm text-[#F4F0E8] outline-none"
+            />
+          </div>
         </div>
 
         {/* 3. Bio & Story Card */}

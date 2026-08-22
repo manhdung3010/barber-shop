@@ -22,6 +22,7 @@ export function generateBarberShopJsonLd(profile: BarberProfile): string {
     url: baseUrl,
     logo: `${baseUrl}/images/logo.jpg`,
     image: [
+      `${baseUrl}/images/hero/hero-mobile.jpg`,
       `${baseUrl}/images/hero/hero.jpg`,
       `${baseUrl}/images/barber/barber.jpg`,
       `${baseUrl}/images/gallery/interior.jpg`,

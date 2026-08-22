@@ -27,11 +27,11 @@ export default function FAQSection({ data }: FAQSectionProps) {
       <div className="max-w-5xl mx-auto relative z-10">
         {/* Section Header */}
         <FadeIn className="text-center mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1A1A18] border border-[rgba(244,240,232,0.12)] text-[11px] font-mono font-bold uppercase tracking-widest text-[#C7A66A] mb-3.5">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1A1A18] border border-[rgba(244,240,232,0.12)] text-[11px] font-mono font-bold uppercase tracking-widest text-[#C7A66A] mb-3">
             <HelpCircle className="w-3.5 h-3.5" />
             <span>06 // CÂU HỎI THƯỜNG GẶP</span>
           </div>
-          <h2 id="faq-heading" className="display-heading text-[#F4F0E8] mb-3.5 sm:mb-4">
+          <h2 id="faq-heading" className="text-[1.25rem] xs:text-[1.4rem] sm:text-2xl md:text-3xl lg:text-4xl font-display font-black uppercase tracking-tight text-[#F4F0E8] whitespace-nowrap sm:whitespace-normal mb-3 sm:mb-4">
             GIẢI ĐÁP & THẮC MẮC PHỔ BIẾN
           </h2>
           <p className="body-editorial max-w-xl mx-auto">
@@ -40,14 +40,14 @@ export default function FAQSection({ data }: FAQSectionProps) {
         </FadeIn>
 
         {/* FAQ Accordion List */}
-        <div className="space-y-3.5 sm:space-y-4 mb-10 sm:mb-12">
+        <div className="space-y-2.5 sm:space-y-4 mb-10 sm:mb-12">
           {list.map((item, index) => {
             const isOpen = openId === item.id;
 
             return (
               <FadeIn key={item.id} delay={index * 0.06}>
                 <div
-                  className={`rounded-[20px] sm:rounded-[24px] border transition-all duration-300 overflow-hidden ${
+                  className={`rounded-[16px] sm:rounded-[24px] border transition-all duration-300 overflow-hidden ${
                     isOpen
                       ? 'bg-[#141413] border-[#C7A66A]/50 shadow-xl shadow-[#C7A66A]/5'
                       : 'bg-[#121211]/80 border-[rgba(244,240,232,0.08)] hover:border-[rgba(244,240,232,0.2)]'
@@ -58,18 +58,18 @@ export default function FAQSection({ data }: FAQSectionProps) {
                     aria-expanded={isOpen}
                     aria-controls={`faq-answer-${item.id}`}
                     id={`faq-question-${item.id}`}
-                    className="w-full p-5 sm:p-6 md:p-7 flex items-center justify-between gap-4 text-left cursor-pointer select-none"
+                    className="w-full p-3.5 xs:p-4.5 sm:p-6 md:p-7 flex items-center justify-between gap-3 sm:gap-4 text-left cursor-pointer select-none"
                   >
-                    <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
+                    <div className="flex items-center gap-2.5 sm:gap-4 min-w-0">
                       <span
-                        className={`text-xs font-mono font-bold shrink-0 transition-colors ${
+                        className={`text-[11px] sm:text-xs font-mono font-bold shrink-0 transition-colors ${
                           isOpen ? 'text-[#C7A66A]' : 'text-[#A7A39B]/60'
                         }`}
                       >
                         Q{String(index + 1).padStart(2, '0')}
                       </span>
                       <h3
-                        className={`text-base sm:text-lg md:text-xl font-bold tracking-tight transition-colors ${
+                        className={`text-xs xs:text-sm sm:text-base md:text-lg font-bold tracking-tight transition-colors leading-snug ${
                           isOpen ? 'text-[#F4F0E8]' : 'text-[#D6D1C8]'
                         }`}
                       >
@@ -78,13 +78,13 @@ export default function FAQSection({ data }: FAQSectionProps) {
                     </div>
 
                     <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border transition-all duration-300 ${
+                      className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center shrink-0 border transition-all duration-300 ${
                         isOpen
                           ? 'bg-[#C7A66A] text-[#0B0B0A] border-[#C7A66A] rotate-180'
                           : 'bg-[#1A1A18] text-[#A7A39B] border-[rgba(244,240,232,0.12)]'
                       }`}
                     >
-                      <ChevronDown className="w-4 h-4" />
+                      <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </div>
                   </button>
 
@@ -100,7 +100,7 @@ export default function FAQSection({ data }: FAQSectionProps) {
                         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                         className="overflow-hidden"
                       >
-                        <div className="px-5 pb-6 sm:px-7 sm:pb-7 pt-1 border-t border-[rgba(244,240,232,0.06)] text-sm sm:text-base text-[#A7A39B] leading-relaxed font-light">
+                        <div className="px-4 pb-4 sm:px-7 sm:pb-7 pt-2 border-t border-[rgba(244,240,232,0.06)] text-xs sm:text-sm md:text-base text-[#A7A39B] leading-relaxed font-light">
                           <p>{item.answer}</p>
                         </div>
                       </motion.div>

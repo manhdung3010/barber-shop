@@ -18,9 +18,9 @@ export default function HeroSection() {
       />
 
       {/* Unified Hero Grid Composition: All Narrative & Image in Same Cohesive Section */}
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center my-auto py-4 sm:py-6 relative z-10">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-8 lg:gap-12 items-center my-auto py-4 sm:py-6 relative z-10">
         {/* Left Column: Eyebrow + Headline + Mobile Artwork + Subtitle + Action CTAs */}
-        <div className="lg:col-span-7 flex flex-col items-start text-left">
+        <div className="md:col-span-6 lg:col-span-7 flex flex-col items-start text-left">
           {/* Eyebrow Plate */}
           <FadeIn delay={0.1}>
             <p className="plate-meta mb-2 sm:mb-3">
@@ -35,15 +35,15 @@ export default function HeroSection() {
             </h1>
           </FadeIn>
 
-          {/* Mobile Featured Artwork Card (Visible immediately on mobile) */}
-          <FadeIn delay={0.25} className="lg:hidden w-full flex justify-center my-3.5 sm:my-5">
-            <div className="w-full max-w-[260px] sm:max-w-[300px] rounded-[20px] sm:rounded-[24px] shadow-2xl overflow-hidden border border-[rgba(244,240,232,0.14)] relative">
+          {/* Mobile Featured Artwork Banner - Full Width 16:9 Cinematic Composition */}
+          <FadeIn delay={0.25} className="md:hidden w-full my-4 sm:my-5">
+            <div className="w-full rounded-[20px] sm:rounded-[24px] shadow-2xl overflow-hidden border border-[rgba(244,240,232,0.18)] relative bg-[#141413]">
               <EditorialImage
-                src={barberProfile.heroImage.src}
+                src="/images/hero/hero-mobile.jpg"
                 alt={barberProfile.heroImage.alt}
-                aspectRatio="3/4"
+                aspectRatio="16/9"
                 priority={true}
-                watermarkLabel="SOWN BARBERSHOP"
+                watermarkLabel="SOWN BARBERSHOP · SIGNATURE CRAFT"
                 imageClassName="hover:scale-105 transition-transform duration-700"
               />
             </div>
@@ -79,10 +79,12 @@ export default function HeroSection() {
           </FadeIn>
         </div>
 
-        {/* Right Column: Desktop Only Hero Artwork */}
-        <div className="hidden lg:flex lg:col-span-5 justify-center lg:justify-end relative">
-          <div className="absolute -inset-4 bg-gradient-to-r from-[#C7A66A]/10 to-transparent rounded-[36px] blur-2xl -z-10 pointer-events-none" />
-          <ImageReveal delay={0.35} className="w-full max-w-[360px] xl:max-w-[400px] rounded-[28px] sm:rounded-[32px] shadow-2xl border border-[rgba(244,240,232,0.12)]">
+        {/* Right Column: Tablet & Desktop Multi-Image Editorial Composition */}
+        <div className="hidden md:flex md:col-span-6 lg:col-span-5 justify-center md:justify-end relative">
+          <div className="absolute -inset-4 bg-gradient-to-r from-[#C7A66A]/12 to-transparent rounded-[36px] blur-2xl -z-10 pointer-events-none" />
+          
+          {/* Main Signature Artwork */}
+          <ImageReveal delay={0.35} className="w-full max-w-[280px] sm:max-w-[310px] lg:max-w-[370px] xl:max-w-[410px] rounded-[26px] sm:rounded-[32px] shadow-2xl border border-[rgba(244,240,232,0.14)] relative">
             <EditorialImage
               src={barberProfile.heroImage.src}
               alt={barberProfile.heroImage.alt}
@@ -92,6 +94,30 @@ export default function HeroSection() {
               imageClassName="hover:scale-105 transition-transform duration-700"
             />
           </ImageReveal>
+
+          {/* Companion Overlapping Craft Card (Prevents vertical stretch on tablet & enriches editorial balance) */}
+          <FadeIn
+            delay={0.5}
+            className="absolute -bottom-4 -left-3 sm:-bottom-5 sm:-left-4 lg:-bottom-6 lg:-left-6 z-20 pointer-events-none"
+          >
+            <div className="w-[150px] sm:w-[170px] lg:w-[200px] rounded-[18px] sm:rounded-[22px] overflow-hidden border border-[rgba(199,166,106,0.45)] shadow-[0_16px_36px_rgba(0,0,0,0.9)] bg-[#0B0B0A]/95 backdrop-blur-md">
+              <div className="relative aspect-[16/10] overflow-hidden">
+                <img
+                  src={barberProfile.barberImage.src}
+                  alt={barberProfile.barberImage.alt}
+                  loading="lazy"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0A]/90 via-[#0B0B0A]/20 to-transparent" />
+                <div className="absolute bottom-2 left-2.5 right-2.5 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C7A66A] animate-pulse" />
+                  <span className="text-[8px] sm:text-[9px] font-mono font-bold uppercase tracking-wider text-[#C7A66A] truncate">
+                    MASTER BARBER · SOWN
+                  </span>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </div>
 

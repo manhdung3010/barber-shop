@@ -26,8 +26,8 @@ export default function ServicesSection({ data }: ServicesSectionProps) {
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}
         <FadeIn className="text-center mb-8 sm:mb-12 md:mb-14">
-          <p className="plate-meta mb-2.5 sm:mb-3">02 // DỊCH VỤ & BẢNG GIÁ</p>
-          <h2 className="display-heading text-[#F4F0E8] mb-3 sm:mb-4">
+          <p className="plate-meta mb-2 sm:mb-3">02 // DỊCH VỤ & BẢNG GIÁ</p>
+          <h2 className="text-[1.25rem] xs:text-[1.45rem] sm:text-2xl md:text-3xl lg:text-4xl font-display font-black uppercase tracking-tight text-[#F4F0E8] whitespace-nowrap sm:whitespace-normal mb-3 sm:mb-4">
             CẮT. TẠO KIỂU. TRAU CHUỐT.
           </h2>
           <p className="body-editorial max-w-xl mx-auto">
