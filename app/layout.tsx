@@ -3,7 +3,10 @@ import './globals.css';
 import { barberProfile } from '../src/data/barber';
 import { generateBarberShopJsonLd } from '../src/utils/seo';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXTAUTH_URL || 'https://sownbarbershop.vn';
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.NEXTAUTH_URL ||
+  'http://160.250.247.137:5051';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -62,7 +65,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/hero/hero-mobile.jpg',
+        url: `${siteUrl}/images/hero/hero-mobile.jpg`,
         width: 1200,
         height: 675,
         alt: 'Sown Barbershop — Định Hình Phong Cách, Khẳng Định Bản Sắc',
@@ -75,7 +78,7 @@ export const metadata: Metadata = {
     title: 'Sown Barbershop — Tiệm Cắt Tóc Nam Đẹp & Fade Sắc Nét tại Tĩnh Gia, Thanh Hóa',
     description:
       'Cắt tóc thiết kế cá nhân hóa, fade sắc nét, uốn định hình và chăm sóc diện mạo phái mạnh chuẩn gu tại TX. Nghi Sơn, Thanh Hóa.',
-    images: ['/images/hero/hero-mobile.jpg'],
+    images: [`${siteUrl}/images/hero/hero-mobile.jpg`],
   },
   robots: {
     index: true,
@@ -116,6 +119,12 @@ export default function RootLayout({
   return (
     <html lang="vi" className="dark scroll-smooth">
       <head>
+        <meta property="og:image" content={`${siteUrl}/images/hero/hero-mobile.jpg`} />
+        <meta property="og:image:secure_url" content={`${siteUrl}/images/hero/hero-mobile.jpg`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="675" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta name="twitter:image" content={`${siteUrl}/images/hero/hero-mobile.jpg`} />
         <link rel="image_src" href={`${siteUrl}/images/hero/hero-mobile.jpg`} />
         <meta name="thumbnail" content={`${siteUrl}/images/hero/hero-mobile.jpg`} />
         <script
