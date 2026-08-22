@@ -30,6 +30,7 @@ services:
       - JWT_SECRET=${JWT_SECRET:-sown-barbershop-super-secret-jwt-key-2026}
       - ADMIN_DEFAULT_PASSWORD=${ADMIN_DEFAULT_PASSWORD:-sownbarber2026}
       - NEXTAUTH_URL=${NEXTAUTH_URL:-http://localhost:5051}
+      - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-http://localhost:5051}
     ports:
       - '5051:3000'
     volumes:

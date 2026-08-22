@@ -3,8 +3,10 @@ import './globals.css';
 import { barberProfile } from '../src/data/barber';
 import { generateBarberShopJsonLd } from '../src/utils/seo';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXTAUTH_URL || 'https://sownbarbershop.vn';
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://sownbarbershop.vn'),
+  metadataBase: new URL(siteUrl),
   title: {
     default: 'Sown Barbershop — Tiệm Cắt Tóc Nam Đẹp & Fade Sắc Nét tại Tĩnh Gia, Thanh Hóa',
     template: '%s | Sown Barbershop',
@@ -37,7 +39,7 @@ export const metadata: Metadata = {
     email: false,
   },
   alternates: {
-    canonical: 'https://sownbarbershop.vn',
+    canonical: siteUrl,
   },
   icons: {
     icon: [
@@ -54,7 +56,7 @@ export const metadata: Metadata = {
     title: 'Sown Barbershop — Tiệm Cắt Tóc Nam Đẹp & Fade Sắc Nét tại Tĩnh Gia, Thanh Hóa',
     description:
       'Cắt tóc thiết kế cá nhân hóa, fade sắc nét, uốn định hình và chăm sóc diện mạo phái mạnh chuẩn gu tại TX. Nghi Sơn, Thanh Hóa. Trải nghiệm ghế cắt 1-on-1 tận tâm.',
-    url: 'https://sownbarbershop.vn',
+    url: siteUrl,
     siteName: 'Sown Barbershop',
     locale: 'vi_VN',
     type: 'website',
@@ -88,6 +90,7 @@ export const metadata: Metadata = {
     },
   },
   other: {
+    'thumbnail': `${siteUrl}/images/hero/hero-mobile.jpg`,
     'geo.region': 'VN-38',
     'geo.placename': 'Thị xã Nghi Sơn, Thanh Hóa',
     'geo.position': '19.3364;105.7869',
@@ -113,6 +116,8 @@ export default function RootLayout({
   return (
     <html lang="vi" className="dark scroll-smooth">
       <head>
+        <link rel="image_src" href={`${siteUrl}/images/hero/hero-mobile.jpg`} />
+        <meta name="thumbnail" content={`${siteUrl}/images/hero/hero-mobile.jpg`} />
         <script
           id="barbershop-jsonld"
           type="application/ld+json"
